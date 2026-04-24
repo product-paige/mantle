@@ -147,7 +147,7 @@
       align-items: center;
       gap: 5px;
       font-family: var(--font-body);
-      font-size: 14px;
+      font-size: 15px;
       color: #ffffff;
       font-weight: 400;
       cursor: pointer;
@@ -281,9 +281,10 @@
       display: flex;
       align-items: center;
       gap: 12px;
-      font-family: var(--font-body);
-      font-size: 13px;
-      letter-spacing: -0.005em;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
       color: var(--text-muted);
       font-weight: 500;
       margin-bottom: 16px;
@@ -377,8 +378,10 @@
     /* Square arrow button — sits inline with eyebrow inside .mm-card-head */
     .mm-card-arrow {
       flex-shrink: 0;
-      width: 22px;
-      height: 22px;
+      width: 18px;
+      height: 18px;
+      padding: 0;
+      margin: 0;
       border: none;
       background: transparent;
       display: inline-flex;
@@ -388,11 +391,8 @@
       cursor: pointer;
       transition: color var(--t-fast) var(--ease);
     }
-    .mm-card-arrow svg { width: 22px; height: 22px; }
-    .mm-card-arrow .icon-hover { display: none; }
+    .mm-card-arrow svg { width: 18px; height: 18px; display: block; }
     .mm-card:hover .mm-card-arrow { color: var(--gold); }
-    .mm-card:hover .mm-card-arrow .icon-default { display: none; }
-    .mm-card:hover .mm-card-arrow .icon-hover  { display: inline-flex; }
 
     .mm-card {
       background: linear-gradient(180deg, #121017 0%, #0a080d 100%);
@@ -456,8 +456,16 @@
     .mm-card-kicker {
       font-family: var(--font-mono);
       font-size: 12px;
-      letter-spacing: 0.05rem;
+      letter-spacing: 0.05em;
       text-transform: uppercase;
+      color: var(--gold);
+    }
+    .mega-menu-platform .mm-card-kicker {
+      font-family: var(--font-head);
+      font-size: 18px;
+      font-weight: 500;
+      letter-spacing: -0.015em;
+      text-transform: none;
       color: var(--gold);
     }
     .mm-card-title {
@@ -467,6 +475,11 @@
       color: var(--text-primary);
       line-height: 1.2;
       letter-spacing: -0.015em;
+    }
+    .mega-menu-platform .mm-card-title {
+      font-size: 16px;
+      color: var(--text-primary);
+      font-weight: 400;
     }
     .mm-card-body {
       font-family: var(--font-body);
@@ -482,7 +495,7 @@
     }
     .sign-in-link {
       font-family: var(--font-body);
-      font-size: 16px;
+      font-size: 15px;
       color: var(--text-primary);
       font-weight: 500;
       cursor: pointer;
@@ -502,7 +515,7 @@
       background: var(--gold);
       color: #000;
       font-family: var(--font-body);
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 500;
       line-height: 1;
       white-space: nowrap;
@@ -1088,7 +1101,7 @@
       border-radius: 18px;
       border: 1px solid transparent;
       font-family: var(--font-body);
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 500;
       line-height: 1;
       white-space: nowrap;
@@ -2171,7 +2184,7 @@
                   <div class="mm-card-head">
                     <div class="mm-card-kicker">Mantle Ops</div>
                     <span class="mm-card-arrow" aria-hidden="true">
-                      <svg class="icon-default" width="22" height="22" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13 L13 3"/><path d="M5 3h8v8"/></svg><svg class="icon-hover" width="22" height="22" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10"/><path d="M9 4l4 4-4 4"/></svg>
+                      <svg class="icon-default" width="18" height="18" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9L9 3"/><path d="M5 3h4v4"/></svg>
                     </span>
                   </div>
                   <div class="mm-card-title">The business layer for your app</div>
@@ -2181,7 +2194,7 @@
                   <div class="mm-card-head">
                     <div class="mm-card-kicker">Mantle AI <span class="mm-badge">New</span></div>
                     <span class="mm-card-arrow" aria-hidden="true">
-                      <svg class="icon-default" width="22" height="22" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13 L13 3"/><path d="M5 3h8v8"/></svg><svg class="icon-hover" width="22" height="22" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10"/><path d="M9 4l4 4-4 4"/></svg>
+                      <svg class="icon-default" width="18" height="18" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9L9 3"/><path d="M5 3h4v4"/></svg>
                     </span>
                   </div>
                   <div class="mm-card-title">AI that connects everything</div>
@@ -2251,7 +2264,7 @@
                 <div class="mm-card-head">
                   <div class="mm-card-kicker">Featured customer</div>
                   <span class="mm-card-arrow" aria-hidden="true">
-                    <svg class="icon-default" width="22" height="22" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13 L13 3"/><path d="M5 3h8v8"/></svg><svg class="icon-hover" width="22" height="22" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10"/><path d="M9 4l4 4-4 4"/></svg>
+                    <svg class="icon-default" width="18" height="18" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9L9 3"/><path d="M5 3h4v4"/></svg>
                   </span>
                 </div>
                 <div class="mm-card-title">How TXTCart drove $131K in referral revenue using Mantle</div>
@@ -2303,7 +2316,7 @@
                 <div class="mm-card-head">
                   <div class="mm-card-kicker">Mantle Compass</div>
                   <span class="mm-card-arrow" aria-hidden="true">
-                    <svg class="icon-default" width="22" height="22" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13 L13 3"/><path d="M5 3h8v8"/></svg><svg class="icon-hover" width="22" height="22" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10"/><path d="M9 4l4 4-4 4"/></svg>
+                    <svg class="icon-default" width="18" height="18" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9L9 3"/><path d="M5 3h4v4"/></svg>
                   </span>
                 </div>
                 <div class="mm-card-title">The framework for building great apps</div>
