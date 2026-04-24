@@ -266,8 +266,8 @@
       align-items: center;
       gap: 12px;
       font-family: var(--font-mono);
-      font-size: 11px;
-      letter-spacing: 0.08em;
+      font-size: 12px;
+      letter-spacing: 0.05em;
       text-transform: uppercase;
       color: var(--text-muted);
       font-weight: 500;
@@ -353,8 +353,10 @@
     .mm-card > * { position: relative; }
     .mm-card-arrow {
       flex-shrink: 0;
-      width: 22px;
-      height: 22px;
+      width: 18px;
+      height: 18px;
+      padding: 0;
+      margin: 0;
       border: none;
       background: transparent;
       display: inline-flex;
@@ -364,7 +366,7 @@
       cursor: pointer;
       transition: color var(--t-fast) var(--ease);
     }
-    .mm-card-arrow svg { width: 22px; height: 22px; }
+    .mm-card-arrow svg { width: 18px; height: 18px; display: block; }
     .mm-card-arrow .icon-hover { display: none; }
     .mm-card:hover .mm-card-arrow { color: var(--gold); }
     .mm-card:hover .mm-card-arrow .icon-default { display: none; }
@@ -428,7 +430,7 @@
     }
     .mega-menu-platform .mm-card-title {
       font-size: 16px;
-      color: var(--text-muted);
+      color: var(--text-primary);
       font-weight: 400;
     }
     .mm-card-body {
@@ -627,6 +629,7 @@
     }
     .what-statement h2 span { display: block; }
     .what-statement h2 span + span { margin-top: 0.6em; }
+    .what-statement h2 .accent { color: var(--gold-high); }
     .what-statement h2 .muted {
       color: var(--text-muted);
     }
@@ -1286,7 +1289,7 @@
                   <div class="mm-card-head">
                     <div class="mm-card-kicker">Mantle Ops</div>
                     <span class="mm-card-arrow" aria-hidden="true">
-                      <svg class="icon-default" width="22" height="22" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12L12 4"/><path d="M7 4h5v5"/></svg><svg class="icon-hover" width="22" height="22" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h8"/><path d="M9 5l3 3-3 3"/></svg>
+                      <svg class="icon-default" width="18" height="18" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9L9 3"/><path d="M5 3h4v4"/></svg><svg class="icon-hover" width="18" height="18" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h6"/><path d="M6 3l3 3-3 3"/></svg>
                     </span>
                   </div>
                   <div class="mm-card-title">The business layer for your app</div>
@@ -1296,7 +1299,7 @@
                   <div class="mm-card-head">
                     <div class="mm-card-kicker">Mantle AI <span class="mm-badge">New</span></div>
                     <span class="mm-card-arrow" aria-hidden="true">
-                      <svg class="icon-default" width="22" height="22" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12L12 4"/><path d="M7 4h5v5"/></svg><svg class="icon-hover" width="22" height="22" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h8"/><path d="M9 5l3 3-3 3"/></svg>
+                      <svg class="icon-default" width="18" height="18" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9L9 3"/><path d="M5 3h4v4"/></svg><svg class="icon-hover" width="18" height="18" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h6"/><path d="M6 3l3 3-3 3"/></svg>
                     </span>
                   </div>
                   <div class="mm-card-title">AI that connects everything</div>
@@ -1366,7 +1369,7 @@
                 <div class="mm-card-head">
                   <div class="mm-card-kicker">Featured customer</div>
                   <span class="mm-card-arrow" aria-hidden="true">
-                    <svg class="icon-default" width="22" height="22" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12L12 4"/><path d="M7 4h5v5"/></svg><svg class="icon-hover" width="22" height="22" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h8"/><path d="M9 5l3 3-3 3"/></svg>
+                    <svg class="icon-default" width="18" height="18" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9L9 3"/><path d="M5 3h4v4"/></svg><svg class="icon-hover" width="18" height="18" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h6"/><path d="M6 3l3 3-3 3"/></svg>
                   </span>
                 </div>
                 <div class="mm-card-title">How TXTCart drove $131K in referral revenue using Mantle</div>
@@ -1416,7 +1419,7 @@
                 <div class="mm-card-head">
                   <div class="mm-card-kicker">Mantle Compass</div>
                   <span class="mm-card-arrow" aria-hidden="true">
-                    <svg class="icon-default" width="22" height="22" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12L12 4"/><path d="M7 4h5v5"/></svg><svg class="icon-hover" width="22" height="22" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h8"/><path d="M9 5l3 3-3 3"/></svg>
+                    <svg class="icon-default" width="18" height="18" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9L9 3"/><path d="M5 3h4v4"/></svg><svg class="icon-hover" width="18" height="18" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h6"/><path d="M6 3l3 3-3 3"/></svg>
                   </span>
                 </div>
                 <div class="mm-card-title">The framework for building great apps</div>
@@ -1485,8 +1488,8 @@
     <div class="container">
       <div class="what-statement">
         <h2>
-          <span>AI made building easy. Turning it into a real business is still hard. Most products are stitched together. Mantle isn't.</span>
-          <span class="muted">Customers, billing, messaging, and analytics — all connected from day one.</span>
+          <span><span class="accent">AI made building apps easy.</span> Scaling a real product is still hard. Most products are stitched together. Mantle replaces the stack.</span>
+          <span class="muted">Customers, billing, messaging, and analytics in one platform. AI works across everything.</span>
         </h2>
       </div>
     </div>
