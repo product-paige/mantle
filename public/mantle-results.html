@@ -86,7 +86,7 @@
       align-items: center;
       gap: 12px;
       font-family: var(--font-mono);
-      font-size: 12px;
+      font-size: 14px;
       font-weight: 500;
       letter-spacing: 0.05em;
       line-height: 1.8;
@@ -1308,9 +1308,27 @@
       padding: 120px 0;
       border-bottom: 1px solid var(--border-soft);
     }
-    .cs-results .section-head { text-align: center; max-width: 680px; margin: 0 auto 64px; }
+    .cs-results .section-head { text-align: left; max-width: 720px; margin: 0 0 64px; }
     .cs-results .section-head h2 { margin-bottom: 12px; }
     .cs-results .section-head .eyebrow { display: inline-flex; margin-bottom: 20px; }
+
+    .cs-hero-logos {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+      margin-top: 48px;
+    }
+    .cs-hero-logo {
+      height: 28px;
+      flex: 0 1 auto;
+      min-width: 120px;
+      max-width: 160px;
+      border-radius: 4px;
+      background: linear-gradient(90deg, rgba(255,255,255,0.05), rgba(255,255,255,0.12), rgba(255,255,255,0.05));
+      opacity: 0.6;
+    }
     .cs-stat-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -1639,6 +1657,13 @@
     <div class="container">
       <h1>We help app teams make more money</h1>
       <p class="lead">Real results from teams using Mantle.</p>
+      <div class="cs-hero-logos" aria-hidden="true">
+        <div class="cs-hero-logo"></div>
+        <div class="cs-hero-logo"></div>
+        <div class="cs-hero-logo"></div>
+        <div class="cs-hero-logo"></div>
+        <div class="cs-hero-logo"></div>
+      </div>
     </div>
   </section>
 
@@ -1646,8 +1671,8 @@
   <section class="cs-results">
     <div class="container">
       <div class="section-head">
-        <span class="eyebrow">Results</span>
-        <h2>Outcomes teams shipped with Mantle</h2>
+        <span class="eyebrow">Proof</span>
+        <h2>Real results from teams using Mantle</h2>
       </div>
       <div class="cs-stat-grid">
         <div class="cs-stat">
