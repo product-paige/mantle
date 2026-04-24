@@ -1734,6 +1734,18 @@
       color: var(--text-secondary);
       line-height: 1.5;
     }
+    .compass-feature-item-link {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      width: fit-content;
+      margin-top: 14px;
+      font-family: var(--font-body);
+      font-size: 14px;
+      color: var(--gold);
+      transition: transform var(--t-fast) var(--ease);
+    }
+    .compass-feature-item:hover .compass-feature-item-link { transform: translateX(2px); }
 
     /* "Explore more ways" grid */
     /* Section anchor nav (under hero) */
@@ -2354,21 +2366,21 @@
               <div class="compass-feature-item-kicker">Manual 01</div>
               <div class="compass-feature-item-row">
                 <div class="compass-feature-item-title">Operate like a founder</div>
-                <div class="compass-feature-item-desc">Stop thinking like a builder. Learn how to make decisions that lead to a real product.</div>
+                <div class="compass-feature-item-desc">Stop thinking like a builder. Learn how to make decisions that lead to a real product.<span class="compass-feature-item-link">Read the manual →</span></div>
               </div>
             </a>
             <a class="compass-feature-item">
               <div class="compass-feature-item-kicker">Manual 02</div>
               <div class="compass-feature-item-row">
                 <div class="compass-feature-item-title">Get to real demand</div>
-                <div class="compass-feature-item-desc">Find real users, validate demand, and avoid building something no one needs.</div>
+                <div class="compass-feature-item-desc">Find real users, validate demand, and avoid building something no one needs.<span class="compass-feature-item-link">Read the manual →</span></div>
               </div>
             </a>
             <a class="compass-feature-item">
               <div class="compass-feature-item-kicker">Manual 03</div>
               <div class="compass-feature-item-row">
                 <div class="compass-feature-item-title">Build your first MVP</div>
-                <div class="compass-feature-item-desc">Build the smallest version that delivers value. Focus on what works, ignore the rest.</div>
+                <div class="compass-feature-item-desc">Build the smallest version that delivers value. Focus on what works, ignore the rest.<span class="compass-feature-item-link">Read the manual →</span></div>
               </div>
             </a>
           </div>
