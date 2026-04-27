@@ -8,7 +8,10 @@ const nextConfig: NextConfig = {
       beforeFiles: [
         { source: "/", destination: "/mantle-homepage.html" },
       ],
-      afterFiles: [],
+      afterFiles: [
+        { source: "/manuals/:manual", destination: "/manuals/:manual/index.html" },
+        { source: "/manuals/:manual/:section", destination: "/manuals/:manual/:section/index.html" },
+      ],
       fallback: [],
     };
   },

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mantle Compass — Resource hub</title>
+  <title>Mantle Compass — Insights</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -2201,6 +2201,188 @@
       .page-header { flex-direction: column; align-items: flex-start; }
     }
 
+    /* ───────── Manuals list (stacked rows) ───────── */
+    .compass-manuals-intro {
+      padding: 56px 0 32px;
+    }
+    .compass-manuals-intro h2 {
+      font-family: var(--font-head);
+      font-size: clamp(28px, 3vw, 40px);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+      margin-bottom: 12px;
+    }
+    .compass-manuals-intro p {
+      font-family: var(--font-body);
+      font-size: 18px;
+      color: var(--text-secondary);
+      max-width: 640px;
+    }
+
+    .compass-manuals-list {
+      display: flex;
+      flex-direction: column;
+      padding-bottom: 80px;
+    }
+    .compass-manual-row {
+      display: grid;
+      grid-template-columns: 480px 1fr;
+      gap: 56px;
+      align-items: center;
+      padding: 40px 0;
+      border-bottom: 1px solid var(--border-soft);
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+      transition: background var(--t-base) var(--ease);
+    }
+    .compass-manual-row:first-child { border-top: 1px solid var(--border-soft); }
+    .compass-manual-row:hover { background: rgba(255, 255, 255, 0.015); }
+
+    .compass-manual-media {
+      aspect-ratio: 16 / 10;
+      border-radius: 6px;
+      background:
+        radial-gradient(circle at 30% 40%, rgba(255,187,83,0.10), transparent 55%),
+        radial-gradient(circle at 80% 70%, rgba(140,95,210,0.22), transparent 55%),
+        linear-gradient(135deg, #1d1628 0%, #120d1c 100%);
+      border: 1px solid var(--border-soft);
+      position: relative;
+      overflow: hidden;
+    }
+    .compass-manual-media::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(45deg, rgba(255,255,255,0.035) 1px, transparent 1px),
+        linear-gradient(-45deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+      background-size: 18px 18px;
+      opacity: 0.55;
+    }
+
+    .compass-manual-text { display: flex; flex-direction: column; gap: 12px; }
+    .compass-manual-kicker {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      letter-spacing: 0.05rem;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .compass-manual-title {
+      font-family: var(--font-head);
+      font-size: clamp(28px, 2.6vw, 36px);
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      color: var(--text-primary);
+    }
+    .compass-manual-row:hover .compass-manual-title { color: var(--gold); }
+    .compass-manual-desc {
+      font-family: var(--font-body);
+      font-size: 17px;
+      line-height: 1.55;
+      color: var(--text-secondary);
+      max-width: 560px;
+    }
+    .compass-manual-link {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.05rem;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-top: 8px;
+    }
+
+    @media (max-width: 860px) {
+      .compass-manual-row {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 28px 0;
+      }
+      .compass-manual-media { aspect-ratio: 16 / 9; }
+    }
+
+    /* ───────── Insights grid (blog listing) ───────── */
+    .compass-insights-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 28px;
+      padding: 16px 0 80px;
+    }
+    .insights-card {
+      display: flex;
+      flex-direction: column;
+      background: var(--surface);
+      border: 1px solid var(--border-soft);
+      border-radius: 6px;
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      transition: transform var(--t-base) var(--ease), border-color var(--t-base) var(--ease), background var(--t-base) var(--ease);
+      cursor: pointer;
+    }
+    .insights-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(255, 255, 255, 0.12);
+      background: var(--surface-raised);
+    }
+    .insights-card-media {
+      aspect-ratio: 16 / 9;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(255,187,83,0.55), transparent 60%),
+        radial-gradient(circle at 75% 70%, rgba(140,95,210,0.30), transparent 60%),
+        linear-gradient(135deg, #2a210f 0%, #1a1407 100%);
+    }
+    .insights-card-media::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(45deg, rgba(255,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(-45deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+      background-size: 22px 22px;
+      opacity: 0.5;
+      pointer-events: none;
+    }
+    .insights-card-title {
+      font-family: var(--font-head);
+      font-size: 22px;
+      font-weight: 500;
+      letter-spacing: -0.015em;
+      line-height: 1.25;
+      color: var(--text-primary);
+    }
+    .insights-card-body {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 20px 24px 24px;
+    }
+    .insights-card-meta {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.05rem;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .insights-card-desc {
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.5;
+      color: var(--text-secondary);
+    }
+
+    @media (max-width: 1100px) {
+      .compass-insights-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 700px) {
+      .compass-insights-grid { grid-template-columns: 1fr; }
+    }
+
     /* Site search bar (Mantle Compass header) */
     .site-search {
       display: flex;
@@ -2268,8 +2450,8 @@
         <div class="compass-hero">
           <div class="compass-hero-text">
             <a class="compass-hero-eyebrow" href="mantle-compass.html">Compass</a>
-            <h1>Mantle Compass</h1>
-            <p>Everything you need to go from idea to a real, working product.</p>
+            <h1>Insights</h1>
+            <p>Lessons, frameworks, and field notes from teams shipping real products.</p>
           </div>
         </div>
 
@@ -2278,72 +2460,102 @@
           <a href="mantle-compass-manuals.html" data-count="8">Manuals</a>
           <a href="#" data-count="8">Tools</a>
           <a href="mantle-compass-answers.html" data-count="9">Answers</a>
-          <a href="mantle-compass-insights.html" data-count="9">Insights</a>
+          <a class="active" href="mantle-compass-insights.html" data-count="9">Insights</a>
           <a href="#" data-count="9">Releases</a>
         </nav>
 
-        <!-- Featured collections split -->
-        <div class="compass-feature">
-          <div class="compass-feature-visual">
-            <span class="compass-feature-visual-label">Feature visual</span>
-          </div>
-          <div class="compass-feature-list">
-            <a class="compass-feature-item">
-              <div class="compass-feature-item-kicker">Manual 01</div>
-              <div class="compass-feature-item-row">
-                <div class="compass-feature-item-title">Operate like a founder</div>
-                <div class="compass-feature-item-desc">Stop thinking like a builder. Learn how to make decisions that lead to a real product.<span class="compass-feature-item-link">Read the manual →</span></div>
-              </div>
-            </a>
-            <a class="compass-feature-item">
-              <div class="compass-feature-item-kicker">Manual 02</div>
-              <div class="compass-feature-item-row">
-                <div class="compass-feature-item-title">Get to real demand</div>
-                <div class="compass-feature-item-desc">Find real users, validate demand, and avoid building something no one needs.<span class="compass-feature-item-link">Read the manual →</span></div>
-              </div>
-            </a>
-            <a class="compass-feature-item">
-              <div class="compass-feature-item-kicker">Manual 03</div>
-              <div class="compass-feature-item-row">
-                <div class="compass-feature-item-title">Build your first MVP</div>
-                <div class="compass-feature-item-desc">Build the smallest version that delivers value. Focus on what works, ignore the rest.<span class="compass-feature-item-link">Read the manual →</span></div>
-              </div>
-            </a>
-          </div>
-        </div>
-
-        <!-- Latest from Compass's blog -->
-        <section class="compass-blog">
-          <h2>What our team is saying</h2>
-          <div class="compass-blog-grid">
-            <article class="compass-blog-feature">
-              <div class="compass-blog-feature-media">
-                <span class="compass-blog-ribbon">Getting started</span>
-              </div>
-              <div class="compass-blog-feature-title">Introducing enterprise AppGen: Software that starts with a sentence and ends in production</div>
-              <div class="compass-blog-feature-byline">By David Hsu</div>
-            </article>
-            <div class="compass-blog-side">
-              <article class="compass-blog-item">
-                <div>
-                  <div class="compass-blog-item-title">The building revolution: 2026 builder report</div>
-                  <div class="compass-blog-item-byline">By Kelsey McKeon</div>
-                </div>
-                <div class="compass-blog-item-thumb">
-                  <span class="compass-blog-ribbon">Report</span>
-                </div>
-              </article>
-              <article class="compass-blog-item">
-                <div>
-                  <div class="compass-blog-item-title">Lessons from four days of AI-assisted app development in Mantle</div>
-                  <div class="compass-blog-item-byline">By Sarah Sherman</div>
-                </div>
-                <div class="compass-blog-item-thumb">
-                  <span class="compass-blog-ribbon">Story</span>
-                </div>
-              </article>
+        <!-- Insights blog grid -->
+        <section class="compass-insights-grid">
+          <a class="insights-card" href="#">
+            <div class="insights-card-media">
+              <span class="compass-blog-ribbon">Validate</span>
             </div>
-          </div>
+            <div class="insights-card-body">
+              <div class="insights-card-meta">5 min read</div>
+              <div class="insights-card-title">How to validate your startup idea</div>
+              <div class="insights-card-desc">Validate your startup idea effectively before building it.</div>
+            </div>
+          </a>
+          <a class="insights-card" href="#">
+            <div class="insights-card-media">
+              <span class="compass-blog-ribbon">Validate</span>
+            </div>
+            <div class="insights-card-body">
+              <div class="insights-card-meta">4 min read</div>
+              <div class="insights-card-title">Stop overthinking your product name</div>
+              <div class="insights-card-desc">Stop overthinking product names; focus on what truly matters.</div>
+            </div>
+          </a>
+          <a class="insights-card" href="#">
+            <div class="insights-card-media">
+              <span class="compass-blog-ribbon">Validate</span>
+            </div>
+            <div class="insights-card-body">
+              <div class="insights-card-meta">5 min read</div>
+              <div class="insights-card-title">Your first users: how to find them</div>
+              <div class="insights-card-desc">Find your first user: key strategies for early-stage success.</div>
+            </div>
+          </a>
+          <a class="insights-card" href="#">
+            <div class="insights-card-media">
+              <span class="compass-blog-ribbon">Build</span>
+            </div>
+            <div class="insights-card-body">
+              <div class="insights-card-meta">6 min read</div>
+              <div class="insights-card-title">Ship your MVP in two weeks</div>
+              <div class="insights-card-desc">A realistic playbook for cutting scope and shipping fast.</div>
+            </div>
+          </a>
+          <a class="insights-card" href="#">
+            <div class="insights-card-media">
+              <span class="compass-blog-ribbon">Build</span>
+            </div>
+            <div class="insights-card-body">
+              <div class="insights-card-meta">7 min read</div>
+              <div class="insights-card-title">The cost of premature optimization</div>
+              <div class="insights-card-desc">Why most "scalable" early-stage code is a tax on momentum.</div>
+            </div>
+          </a>
+          <a class="insights-card" href="#">
+            <div class="insights-card-media">
+              <span class="compass-blog-ribbon">Launch</span>
+            </div>
+            <div class="insights-card-body">
+              <div class="insights-card-meta">5 min read</div>
+              <div class="insights-card-title">Soft launches that actually work</div>
+              <div class="insights-card-desc">Test in public without burning your launch story.</div>
+            </div>
+          </a>
+          <a class="insights-card" href="#">
+            <div class="insights-card-media">
+              <span class="compass-blog-ribbon">Launch</span>
+            </div>
+            <div class="insights-card-body">
+              <div class="insights-card-meta">8 min read</div>
+              <div class="insights-card-title">Pricing pages that convert</div>
+              <div class="insights-card-desc">The patterns behind pricing pages users actually trust.</div>
+            </div>
+          </a>
+          <a class="insights-card" href="#">
+            <div class="insights-card-media">
+              <span class="compass-blog-ribbon">Grow</span>
+            </div>
+            <div class="insights-card-body">
+              <div class="insights-card-meta">6 min read</div>
+              <div class="insights-card-title">From first dollar to first hundred</div>
+              <div class="insights-card-desc">How early revenue compounds when you treat it like signal.</div>
+            </div>
+          </a>
+          <a class="insights-card" href="#">
+            <div class="insights-card-media">
+              <span class="compass-blog-ribbon">Grow</span>
+            </div>
+            <div class="insights-card-body">
+              <div class="insights-card-meta">5 min read</div>
+              <div class="insights-card-title">Onboarding that earns the next session</div>
+              <div class="insights-card-desc">Design the first five minutes for the second visit.</div>
+            </div>
+          </a>
         </section>
 
         <!-- Newsletter + community -->

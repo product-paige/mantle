@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mantle Compass — Resource hub</title>
+  <title>Get to real demand — Validate your app idea | Mantle Compass</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -36,9 +36,9 @@
       --gold-glow:      rgba(255, 187, 83, 0.16);
 
       /* ── Radius ── */
-      --r-sm:  4px;
-      --r-md:  6px;
-      --r-lg:  6px;
+      --r-sm:  8px;
+      --r-md:  0.75rem;
+      --r-lg:  0.75rem;
 
       /* ── Spacing (8-point) ── */
       --s-1:  8px;
@@ -175,7 +175,7 @@
       width: min(1200px, calc(100vw - 48px));
       background: #15131c;
       border: 1px solid rgba(255, 255, 255, 0.10);
-      border-radius: 6px;
+      border-radius: 12px;
       box-shadow:
         0 1px 0 rgba(255,255,255,0.04) inset,
         0 30px 60px -20px rgba(0,0,0,0.6),
@@ -427,7 +427,7 @@
         linear-gradient(135deg, #1d1628 0%, #120d1c 100%);
       /* Pull image out of the card's padding so only text stays padded */
       margin: -16px -16px 8px;
-      border-radius: 6px 6px 0 0;
+      border-radius: 0.75rem 0.75rem 0 0;
       border-bottom: 1px solid rgba(255,255,255,0.05);
     }
     /* Subtle diagonal hatch pattern on media */
@@ -510,7 +510,7 @@
       gap: 10px;
       height: 34px;
       padding: 0 14px;
-      border-radius: 6px;
+      border-radius: 8px;
       border: 1px solid var(--gold);
       background: var(--gold);
       color: #000;
@@ -1098,7 +1098,7 @@
       gap: 12px;
       height: 42px;
       padding: 0 18px;
-      border-radius: 6px;
+      border-radius: 10px;
       border: 1px solid transparent;
       font-family: var(--font-body);
       font-size: 15px;
@@ -1315,7 +1315,7 @@
     }
     .uc-workflow-feature-title {
       font-family: var(--font-head);
-      font-size: 17px;
+      font-size: 18px;
       font-weight: 500;
       color: var(--text-primary);
       letter-spacing: -0.015em;
@@ -1500,7 +1500,7 @@
     }
     .uc-final-cta p {
       font-family: var(--font-body);
-      font-size: 17px;
+      font-size: 18px;
       color: var(--text-secondary);
       max-width: 620px;
       margin-bottom: var(--s-4);
@@ -1518,13 +1518,8 @@
     .compass-container {
       max-width: 1320px;
       margin: 0 auto;
-      padding: 0;
+      padding: var(--s-5) var(--s-4) 0;
     }
-    .compass-container > *:not(.compass-hero) {
-      margin-top: 0;
-      padding-top: 40px;
-    }
-    .compass-container > .compass-nav { padding-top: 0; }
 
     .compass-layout {
       display: grid;
@@ -1547,7 +1542,7 @@
       align-items: center;
       gap: 12px;
       padding: 10px 12px;
-      border-radius: 6px;
+      border-radius: 0.5rem;
       font-family: var(--font-body);
       font-size: 16px;
       color: var(--text-secondary);
@@ -1580,7 +1575,7 @@
       margin-top: 32px;
       padding: 20px;
       border: 1px solid var(--border);
-      border-radius: 6px;
+      border-radius: 0.75rem;
       background: var(--surface);
     }
     .compass-sidebar-cta h5 {
@@ -1613,52 +1608,38 @@
 
     /* Hero header */
     .compass-hero {
-      display: block;
-      padding-top: 40px;
-      padding-bottom: 40px;
-    }
-    .compass-hero-eyebrow {
-      display: inline-flex;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
       align-items: center;
-      gap: 12px;
-      font-family: var(--font-mono);
-      font-size: 14px;
-      font-weight: 500;
-      letter-spacing: 0.05em;
-      line-height: 1.8;
-      text-transform: uppercase;
-      color: var(--gold-high);
-      text-decoration: none;
-      margin-bottom: 12px;
-      transition: color var(--t-fast) var(--ease);
+      padding-bottom: 0;
     }
-    .compass-hero-eyebrow::before {
-      content: "";
-      flex-shrink: 0;
-      width: 16px;
-      height: 16px;
-      background: currentColor;
-      -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='m9 18 6-6-6-6'/></svg>") no-repeat center / contain;
-              mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='m9 18 6-6-6-6'/></svg>") no-repeat center / contain;
-    }
-    .compass-hero-eyebrow:hover { color: var(--gold); }
     .compass-hero-text h1 {
       font-family: var(--font-head);
-      font-size: 56px;
+      font-size: clamp(48px, 6vw, 80px);
       font-weight: 400;
       letter-spacing: -0.028em;
+      line-height: 1.05;
       color: var(--text-primary);
-      margin-bottom: 16px;
-      line-height: 1;
+      margin-bottom: 24px;
     }
     .compass-hero-text p {
       font-family: var(--font-body);
-      font-size: 18px;
+      font-size: 20px;
       line-height: 1.5;
       color: var(--text-secondary);
-      max-width: 720px;
+      max-width: 580px;
     }
-    .compass-hero-graphic { display: none; }
+    .compass-hero-graphic {
+      aspect-ratio: 16 / 5;
+      max-height: 240px;
+      border-radius: 0;
+      background:
+        linear-gradient(0deg, transparent 49%, rgba(255,255,255,0.04) 50%, transparent 51%),
+        linear-gradient(90deg, transparent 49%, rgba(255,255,255,0.04) 50%, transparent 51%);
+      background-size: 40px 40px;
+      position: relative;
+    }
 
     /* Hero featured + collections split */
     .compass-feature {
@@ -1794,7 +1775,7 @@
       letter-spacing: -0.01em;
       text-transform: none;
       color: var(--text-primary);
-      padding: 18px 18px;
+      padding: 22px 18px;
       border-radius: 0;
       border-right: 1px solid var(--border-soft);
       white-space: nowrap;
@@ -1942,7 +1923,7 @@
     }
     .compass-blog-feature-media {
       aspect-ratio: 16 / 9;
-      border-radius: 6px;
+      border-radius: 0.75rem;
       background:
         radial-gradient(circle at 40% 50%, rgba(255,187,83,0.12), transparent 55%),
         radial-gradient(circle at 80% 60%, rgba(120,80,180,0.20), transparent 55%),
@@ -2006,7 +1987,7 @@
     }
     .compass-blog-item-thumb {
       aspect-ratio: 1 / 1;
-      border-radius: 6px;
+      border-radius: 0.5rem;
       background:
         radial-gradient(circle at 30% 30%, rgba(255,187,83,0.14), transparent 55%),
         radial-gradient(circle at 75% 75%, rgba(120,80,180,0.20), transparent 55%),
@@ -2032,21 +2013,23 @@
       color: var(--text-muted);
     }
 
-    /* Newsletter */
+    /* Newsletter + community */
     .compass-connect {
-      display: block;
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 48px;
       padding: 56px 0;
       border-bottom: 1px solid var(--border-soft);
     }
     .compass-news h3 {
       font-family: var(--font-head);
-      font-size: 38px;
-      font-weight: 400;
-      letter-spacing: -0.02em;
+      font-size: 22px;
+      font-weight: 500;
+      letter-spacing: -0.018em;
       color: var(--text-primary);
-      margin-bottom: 24px;
-      max-width: 540px;
-      line-height: 1.15;
+      margin-bottom: 20px;
+      max-width: 360px;
+      line-height: 1.25;
     }
     .compass-news-form {
       display: flex;
@@ -2065,39 +2048,26 @@
       gap: 10px;
     }
     .compass-news-input {
-      flex: 0 0 400px;
-      width: 400px;
-      max-width: 100%;
-      height: 42px;
-      padding: 0 16px;
+      flex: 1;
+      padding: 12px 14px;
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 6px;
+      border-radius: 0.5rem;
       color: var(--text-primary);
       font-family: var(--font-body);
-      font-size: 15px;
-      outline: none;
-      transition: border-color var(--t-fast) var(--ease);
+      font-size: 14px;
     }
-    .compass-news-input:focus { border-color: var(--gold); }
     .compass-news-submit {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      height: 42px;
-      padding: 0 18px;
-      border-radius: 6px;
+      padding: 12px 22px;
+      border-radius: 999px;
       background: var(--gold);
-      color: #000;
+      color: #1a1320;
       border: 1px solid var(--gold);
       font-family: var(--font-body);
-      font-size: 15px;
+      font-size: 13.5px;
       font-weight: 500;
-      line-height: 1;
       cursor: pointer;
-      transition: background var(--t-fast) var(--ease), border-color var(--t-fast) var(--ease);
     }
-    .compass-news-submit:hover { background: var(--gold-dim); border-color: var(--gold-dim); }
     .compass-news-legal {
       font-family: var(--font-body);
       font-size: 12px;
@@ -2118,7 +2088,7 @@
     }
     .compass-community-icon {
       width: 48px; height: 48px;
-      border-radius: 6px;
+      border-radius: 0.5rem;
       border: 1px solid var(--border);
       display: grid;
       place-items: center;
@@ -2201,6 +2171,368 @@
       .page-header { flex-direction: column; align-items: flex-start; }
     }
 
+    /* ───────── Manuals list (stacked rows) ───────── */
+    .compass-manuals-intro {
+      padding: 56px 0 32px;
+    }
+    .compass-manuals-intro h2 {
+      font-family: var(--font-head);
+      font-size: clamp(28px, 3vw, 40px);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+      margin-bottom: 12px;
+    }
+    .compass-manuals-intro p {
+      font-family: var(--font-body);
+      font-size: 18px;
+      color: var(--text-secondary);
+      max-width: 640px;
+    }
+
+    .compass-manuals-list {
+      display: flex;
+      flex-direction: column;
+      padding-bottom: 80px;
+    }
+    .compass-manual-row {
+      display: grid;
+      grid-template-columns: 480px 1fr;
+      gap: 56px;
+      align-items: center;
+      padding: 40px 0;
+      border-bottom: 1px solid var(--border-soft);
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+      transition: background var(--t-base) var(--ease);
+    }
+    .compass-manual-row:first-child { border-top: 1px solid var(--border-soft); }
+    .compass-manual-row:hover { background: rgba(255, 255, 255, 0.015); }
+
+    .compass-manual-media {
+      aspect-ratio: 16 / 10;
+      border-radius: 0.75rem;
+      background:
+        radial-gradient(circle at 30% 40%, rgba(255,187,83,0.10), transparent 55%),
+        radial-gradient(circle at 80% 70%, rgba(140,95,210,0.22), transparent 55%),
+        linear-gradient(135deg, #1d1628 0%, #120d1c 100%);
+      border: 1px solid var(--border-soft);
+      position: relative;
+      overflow: hidden;
+    }
+    .compass-manual-media::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(45deg, rgba(255,255,255,0.035) 1px, transparent 1px),
+        linear-gradient(-45deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+      background-size: 18px 18px;
+      opacity: 0.55;
+    }
+
+    .compass-manual-text { display: flex; flex-direction: column; gap: 12px; }
+    .compass-manual-kicker {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      letter-spacing: 0.05rem;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .compass-manual-title {
+      font-family: var(--font-head);
+      font-size: clamp(28px, 2.6vw, 36px);
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      color: var(--text-primary);
+    }
+    .compass-manual-row:hover .compass-manual-title { color: var(--gold); }
+    .compass-manual-desc {
+      font-family: var(--font-body);
+      font-size: 18px;
+      line-height: 1.55;
+      color: var(--text-secondary);
+      max-width: 560px;
+    }
+    .compass-manual-link {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.05rem;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-top: 8px;
+    }
+
+    @media (max-width: 860px) {
+      .compass-manual-row {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 28px 0;
+      }
+      .compass-manual-media { aspect-ratio: 16 / 9; }
+    }
+
+    /* ───────── Manual detail page (section page) ───────── */
+    .manual-shell {
+      max-width: 1320px;
+      margin: 40px auto 80px;
+      padding: 0;
+      border: 1px solid var(--border-soft);
+      border-radius: 12px;
+      background: var(--surface);
+      overflow: hidden;
+    }
+
+    .manual-breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+      padding: 18px 32px;
+      border-bottom: 1px solid var(--border-soft);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      letter-spacing: 0.04rem;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .manual-breadcrumb a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color var(--t-fast) var(--ease);
+    }
+    .manual-breadcrumb a:hover { color: var(--gold); }
+    .manual-breadcrumb-sep {
+      color: var(--text-label);
+      opacity: 0.7;
+    }
+    .manual-breadcrumb .current {
+      color: var(--text-primary);
+    }
+
+    .manual-hero {
+      padding: 40px;
+      border-bottom: 1px solid var(--border-soft);
+    }
+    .manual-hero-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      letter-spacing: 0.05rem;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 18px;
+    }
+    .manual-hero-eyebrow::before {
+      content: "> ";
+      color: var(--gold);
+    }
+    .manual-hero h1 {
+      font-family: var(--font-head);
+      font-size: 56px;
+      font-weight: 400;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+    }
+
+    .manual-layout {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      align-items: stretch;
+    }
+
+    .manual-sidebar {
+      display: flex;
+      flex-direction: column;
+      padding: 24px 0;
+      border-right: 1px solid var(--border-soft);
+      align-self: stretch;
+    }
+    .manual-sidebar-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.06rem;
+      text-transform: uppercase;
+      color: var(--text-label);
+      padding: 0 28px 14px;
+    }
+    .manual-sidebar a {
+      font-family: var(--font-body);
+      font-size: 15px;
+      color: var(--text-secondary);
+      padding: 12px 28px;
+      border-left: 2px solid transparent;
+      text-decoration: none;
+      transition: color var(--t-fast) var(--ease), border-color var(--t-fast) var(--ease), background var(--t-fast) var(--ease);
+    }
+    .manual-sidebar a:hover {
+      color: var(--text-primary);
+      background: rgba(255, 255, 255, 0.02);
+    }
+    .manual-sidebar a.active {
+      color: var(--text-primary);
+      font-weight: 500;
+      border-left-color: var(--gold);
+      background: rgba(255, 187, 83, 0.04);
+    }
+
+    .manual-content {
+      padding: 40px 48px 56px;
+      min-width: 0;
+    }
+    .manual-section-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      letter-spacing: 0.06rem;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+    .manual-section h2 {
+      font-family: var(--font-head);
+      font-size: clamp(28px, 2.6vw, 40px);
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      color: var(--text-primary);
+      margin-bottom: 16px;
+    }
+    .manual-section-lead {
+      font-family: var(--font-body);
+      font-size: 20px;
+      line-height: 1.5;
+      color: var(--text-secondary);
+      margin-bottom: 28px;
+    }
+    .manual-section p {
+      font-family: var(--font-body);
+      font-size: 18px;
+      line-height: 1.5;
+      color: var(--text-secondary);
+      margin-bottom: 14px;
+    }
+    .manual-section h3 {
+      font-family: var(--font-head);
+      font-size: 22px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      color: var(--text-primary);
+      margin: 28px 0 10px;
+    }
+    .manual-section ul {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 18px;
+    }
+    .manual-section ul li {
+      font-family: var(--font-body);
+      font-size: 18px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      padding: 8px 0 8px 22px;
+      position: relative;
+    }
+    .manual-section ul li::before {
+      content: "→";
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+    }
+    .manual-section blockquote {
+      font-family: var(--font-head);
+      font-size: 22px;
+      font-weight: 400;
+      line-height: 1.4;
+      color: var(--text-primary);
+      letter-spacing: -0.01em;
+      padding: 24px 28px;
+      border-left: 2px solid var(--gold);
+      background: rgba(255, 187, 83, 0.04);
+      border-radius: 0 8px 8px 0;
+      margin: 24px 0;
+    }
+
+    /* Feature image for the introduction (top of right column) */
+    .manual-feature-media {
+      aspect-ratio: 16 / 9;
+      width: 100%;
+      max-width: 520px;
+      margin: 0 0 32px auto;
+      border-radius: 12px;
+      border: 1px solid var(--border-soft);
+      background:
+        radial-gradient(circle at 30% 30%, rgba(255,187,83,0.45), transparent 60%),
+        radial-gradient(circle at 75% 70%, rgba(140,95,210,0.30), transparent 60%),
+        linear-gradient(135deg, #2a210f 0%, #1a1407 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .manual-feature-media::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(45deg, rgba(255,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(-45deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+      background-size: 22px 22px;
+      opacity: 0.55;
+      pointer-events: none;
+    }
+
+    /* Prev/next navigation at bottom of section content */
+    .manual-prev-next {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      margin-top: 56px;
+      padding-top: 28px;
+      border-top: 1px solid var(--border-soft);
+    }
+    .manual-prev-next a {
+      display: inline-flex;
+      flex-direction: column;
+      gap: 4px;
+      padding: 14px 18px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      text-decoration: none;
+      max-width: 48%;
+      transition: border-color var(--t-fast) var(--ease), background var(--t-fast) var(--ease);
+    }
+    .manual-prev-next a:hover {
+      border-color: rgba(255,187,83,0.5);
+      background: rgba(255,187,83,0.04);
+    }
+    .manual-prev-next a.next { text-align: right; align-items: flex-end; }
+    .manual-prev-next .pn-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.05rem;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .manual-prev-next .pn-title {
+      font-family: var(--font-head);
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--text-primary);
+      letter-spacing: -0.01em;
+    }
+    .manual-prev-next .placeholder { visibility: hidden; }
+
+    @media (max-width: 860px) {
+      .manual-shell { margin: 16px; border-radius: 8px; }
+      .manual-hero { padding: 32px 20px; }
+      .manual-breadcrumb { padding: 14px 20px; }
+      .manual-layout { grid-template-columns: 1fr; }
+      .manual-sidebar { border-right: none; border-bottom: 1px solid var(--border-soft); padding: 16px 0; }
+      .manual-content { padding: 28px 20px; }
+      .manual-feature-media { max-width: 100%; }
+    }
+
+
     /* Site search bar (Mantle Compass header) */
     .site-search {
       display: flex;
@@ -2212,7 +2544,7 @@
       padding: 0 14px;
       margin: 0 24px;
       border: 1px solid var(--border);
-      border-radius: 6px;
+      border-radius: 10px;
       background: rgba(255, 255, 255, 0.03);
       transition: border-color var(--t-fast) var(--ease), background var(--t-fast) var(--ease);
     }
@@ -2241,12 +2573,13 @@
     }
 
   </style>
+  <link rel="stylesheet" href="/manuals/get-to-real-demand/manual.css" />
 </head>
-<body>
+<body data-section="validate-your-app-idea">
 
   <!-- ═══════════ Site header (Mantle Compass) ═══════════ -->
   <header class="site-header">
-    <a class="site-brand" href="mantle-compass.html" aria-label="Mantle Compass">
+    <a class="site-brand" href="/mantle-compass.html" aria-label="Mantle Compass">
       <img class="site-logo" src="/compass-logo-color-white.svg" alt="Mantle Compass" />
     </a>
     <form class="site-search" role="search" action="#">
@@ -2255,114 +2588,41 @@
     </form>
 
     <div class="site-actions">
-      <a class="sign-in-link" href="mantle-homepage.html">← Back to Mantle</a>
+      <a class="sign-in-link" href="/mantle-homepage.html">← Back to Mantle</a>
       <a class="site-cta" href="#">Start for free</a>
     </div>
   </header>
 
-    <!-- ═══════════ PAGE: Compass (resource hub, dark mode) ═══════════ -->
-    <section class="page compass is-active" data-page="compass" data-layout="wide">
-      <div class="compass-container">
+    <!-- ═══════════ PAGE: Manual section (Introduction) ═══════════ -->
+    <main class="manual-shell">
+      <nav class="manual-breadcrumb" aria-label="Breadcrumb"></nav>
+      <header class="manual-hero"></header>
+      <div class="manual-layout">
+        <aside class="manual-sidebar" aria-label="Manual sections"></aside>
+        <article class="manual-content">
+          <section class="manual-section">
+            <div class="manual-section-eyebrow">Section 03</div>
+            <h2>Validate your app idea</h2>
+            <p class="manual-section-lead">Look for real behavior, not opinions.</p>
+            <p>People will tell you your idea is great. They'll tell you they'd pay for it. They'll tell you they'd use it every day. Almost none of that holds up under contact with reality. Validation isn't asking — it's watching. The signal you want is what people <em>do</em>, not what they say they would do.</p>
+            <p>The point of validation isn't to prove you're right. It's to find the smallest, cheapest test that could prove you wrong. The faster you collect that evidence, the cheaper your eventual product becomes — because you've already cut the features no one will use.</p>
+            <h3>Behavior beats opinion</h3>
+            <ul>
+              <li>Ask people to do something — sign up, pay a deposit, share a contact — not just say something.</li>
+              <li>Run a landing page with a real call-to-action before you write a line of product code.</li>
+              <li>Watch users attempt a manual version of the workflow. Friction in v0 is friction in v1.</li>
+              <li>Track conversions, not compliments. Numbers don't have feelings.</li>
+            </ul>
+            <blockquote>Validation is the discipline of asking, "what would have to be true for this to fail?" — and then looking honestly.</blockquote>
+          </section>
 
-        <!-- Hero -->
-        <div class="compass-hero">
-          <div class="compass-hero-text">
-            <a class="compass-hero-eyebrow" href="mantle-compass.html">Compass</a>
-            <h1>Mantle Compass</h1>
-            <p>Everything you need to go from idea to a real, working product.</p>
-          </div>
-        </div>
-
-        <!-- Section navigation -->
-        <nav class="compass-nav" aria-label="Compass sections">
-          <a href="mantle-compass-manuals.html" data-count="8">Manuals</a>
-          <a href="#" data-count="8">Tools</a>
-          <a href="mantle-compass-answers.html" data-count="9">Answers</a>
-          <a href="mantle-compass-insights.html" data-count="9">Insights</a>
-          <a href="#" data-count="9">Releases</a>
-        </nav>
-
-        <!-- Featured collections split -->
-        <div class="compass-feature">
-          <div class="compass-feature-visual">
-            <span class="compass-feature-visual-label">Feature visual</span>
-          </div>
-          <div class="compass-feature-list">
-            <a class="compass-feature-item">
-              <div class="compass-feature-item-kicker">Manual 01</div>
-              <div class="compass-feature-item-row">
-                <div class="compass-feature-item-title">Operate like a founder</div>
-                <div class="compass-feature-item-desc">Stop thinking like a builder. Learn how to make decisions that lead to a real product.<span class="compass-feature-item-link">Read the manual →</span></div>
-              </div>
-            </a>
-            <a class="compass-feature-item">
-              <div class="compass-feature-item-kicker">Manual 02</div>
-              <div class="compass-feature-item-row">
-                <div class="compass-feature-item-title">Get to real demand</div>
-                <div class="compass-feature-item-desc">Find real users, validate demand, and avoid building something no one needs.<span class="compass-feature-item-link">Read the manual →</span></div>
-              </div>
-            </a>
-            <a class="compass-feature-item">
-              <div class="compass-feature-item-kicker">Manual 03</div>
-              <div class="compass-feature-item-row">
-                <div class="compass-feature-item-title">Build your first MVP</div>
-                <div class="compass-feature-item-desc">Build the smallest version that delivers value. Focus on what works, ignore the rest.<span class="compass-feature-item-link">Read the manual →</span></div>
-              </div>
-            </a>
-          </div>
-        </div>
-
-        <!-- Latest from Compass's blog -->
-        <section class="compass-blog">
-          <h2>What our team is saying</h2>
-          <div class="compass-blog-grid">
-            <article class="compass-blog-feature">
-              <div class="compass-blog-feature-media">
-                <span class="compass-blog-ribbon">Getting started</span>
-              </div>
-              <div class="compass-blog-feature-title">Introducing enterprise AppGen: Software that starts with a sentence and ends in production</div>
-              <div class="compass-blog-feature-byline">By David Hsu</div>
-            </article>
-            <div class="compass-blog-side">
-              <article class="compass-blog-item">
-                <div>
-                  <div class="compass-blog-item-title">The building revolution: 2026 builder report</div>
-                  <div class="compass-blog-item-byline">By Kelsey McKeon</div>
-                </div>
-                <div class="compass-blog-item-thumb">
-                  <span class="compass-blog-ribbon">Report</span>
-                </div>
-              </article>
-              <article class="compass-blog-item">
-                <div>
-                  <div class="compass-blog-item-title">Lessons from four days of AI-assisted app development in Mantle</div>
-                  <div class="compass-blog-item-byline">By Sarah Sherman</div>
-                </div>
-                <div class="compass-blog-item-thumb">
-                  <span class="compass-blog-ribbon">Story</span>
-                </div>
-              </article>
-            </div>
-          </div>
-        </section>
-
-        <!-- Newsletter + community -->
-        <section class="compass-connect">
-          <div class="compass-news">
-            <h3>Subscribe to our newsletter to receive monthly updates</h3>
-            <div class="compass-news-form">
-              <div class="compass-news-label">Email *</div>
-              <div class="compass-news-row">
-                <input class="compass-news-input" type="email" placeholder="Enter your email" />
-                <button class="compass-news-submit">Submit</button>
-              </div>
-              <div class="compass-news-legal">By clicking "Submit", you agree to opt in to Mantle's mailing list and agree to our ToS and Privacy Policy.</div>
-            </div>
-          </div>
-        </section>
-
+          <nav class="manual-prev-next" aria-label="Section navigation"></nav>
+        </article>
       </div>
-    </section>
+    </main>
+
+    <script src="/manuals/get-to-real-demand/manual.js"></script>
+
 
 </body>
 </html>
