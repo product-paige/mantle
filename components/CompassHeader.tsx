@@ -1,5 +1,5 @@
 export function CompassHeader({
-  variant = "dark",
+  variant = "light",
 }: {
   variant?: "dark" | "light";
 }) {

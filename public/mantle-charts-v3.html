@@ -9,50 +9,42 @@
 
 /* ═══════════════════════════════════════════════
    MANTLE COMPASS — CHART SYSTEM v3
-   Style Guide
    ─────────────────────────────────────────────
-   Typography
-     Headings:  Geist 500 (medium)
-     Body:      Geist 400
-     Accents:   Geist Mono 400–500
-
-   Card backgrounds
-     Vivid:     #ffbb53 mustard · #c0b4f4 lavender · #93c4bc sage
-     Light:     #fffbf0 pale yellow (default chart card)
-     Tinted:    #f0faf8 pale teal · #f5f2ff pale lavender
-     Dark:      #111111 ink (for contrast charts)
-
-   No card borders. No box shadows.
-   Page background: #f0ede7
-
-   Color usage
-     Mustard  #ffbb53    primary accent / highlight bar
-     Teal     #6fa89a    comparison / secondary series
-     Lavender #c0b4f4    tertiary
-     Ink      #111111    text, strong fills
-     Muted    #888880    secondary text
-     Faint    #c4c0b8    labels, axis
+   Yellow      #FFC66E   primary accent / vivid bg
+   Teal        #76E8FF   secondary / vivid bg
+   Dark Teal   #2A606B   highlight accent
+   Purple      #9676FF   tertiary / vivid bg
+   Red         #EE4815   alert / contrast
+   Black       #1E1C23   dark card bg
+   Gray        #d8d8d6   rule / axis
+   ─────────────────────────────────────────────
+   Heading text  #110f14
+   Body text     #5e5c5a
+   Eyebrow       #FFC66E
 ═══════════════════════════════════════════════ */
 
 :root {
-  --mustard:      #ffbb53;
-  --mustard-deep: #c48b00;
-  --teal:         #6fa89a;
-  --lavender:     #c0b4f4;
-  --sage:         #93c4bc;
-  --ink:          #111111;
-  --muted:        #888880;
-  --faint:        #c4c0b8;
+  --mustard:      #FFC66E;
+  --mustard-deep: #2A606B;
+  --teal:         #76E8FF;
+  --lavender:     #9676FF;
+  --sage:         #76E8FF;
+  --red:          #EE4815;
+  --dark-teal:    #2A606B;
 
-  --card-yellow:  #fffbf0;
-  --card-teal:    #f0faf8;
-  --card-lavender:#f5f2ff;
+  --ink:          #110f14;
+  --muted:        #5e5c5a;
+  --faint:        #d8d8d6;
+
+  --card-yellow:  #fff7ec;
+  --card-teal:    #eafeff;
+  --card-lavender:#f0ecff;
   --page-bg:      #f0ede7;
 
-  --axis:         #e0dcd5;
-  --rule:         #e8e4de;
+  --axis:         #d8d8d6;
+  --rule:         #e5e5e3;
 
-  --r:   10px;
+  --r:   6px;
   --pad: 40px;
 }
 
@@ -98,22 +90,21 @@ body {
 .bg-mustard  { background: var(--mustard); }
 .bg-sage     { background: var(--sage); }
 .bg-violet   { background: var(--lavender); }
-.bg-ink      { background: var(--ink); }
+.bg-ink      { background: #1E1C23; }
 
 /* ── CARD HEADER ────────────────────────────── */
-.ch {
-  margin-bottom: 28px;
-}
+.ch { margin-bottom: 28px; }
+
 .ch-tag {
   font-family: 'Geist Mono', monospace;
   font-size: 10px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--faint);
+  color: var(--mustard);
   margin-bottom: 8px;
 }
-.ch-tag.on-dark { color: rgba(255,255,255,0.4); }
-.ch-tag.on-vivid { color: rgba(0,0,0,0.4); }
+.ch-tag.on-dark  { color: rgba(255,255,255,0.35); }
+.ch-tag.on-vivid { color: rgba(0,0,0,0.38); }
 
 .ch-title {
   font-family: 'Geist', sans-serif;
@@ -124,16 +115,16 @@ body {
   line-height: 1.2;
   margin-bottom: 4px;
 }
-.ch-title.on-dark   { color: #fff; }
-.ch-title.on-vivid  { color: rgba(0,0,0,0.85); }
+.ch-title.on-dark  { color: #fff; }
+.ch-title.on-vivid { color: rgba(0,0,0,0.88); }
 
 .ch-sub {
   font-size: 15px;
   color: var(--muted);
   line-height: 1.45;
 }
-.ch-sub.on-dark  { color: rgba(255,255,255,0.5); }
-.ch-sub.on-vivid { color: rgba(0,0,0,0.5); }
+.ch-sub.on-dark  { color: rgba(255,255,255,0.45); }
+.ch-sub.on-vivid { color: rgba(0,0,0,0.52); }
 
 /* ── BADGE ──────────────────────────────────── */
 .badge {
@@ -146,15 +137,13 @@ body {
   letter-spacing: 0.03em;
 }
 .badge b { font-weight: 500; color: var(--muted); }
-.badge.on-dark  { color: rgba(255,255,255,0.2); }
-.badge.on-dark b { color: rgba(255,255,255,0.35); }
-.badge.on-vivid { color: rgba(0,0,0,0.3); }
-.badge.on-vivid b { color: rgba(0,0,0,0.5); }
+.badge.on-dark   { color: rgba(255,255,255,0.18); }
+.badge.on-dark b { color: rgba(255,255,255,0.32); }
+.badge.on-vivid  { color: rgba(0,0,0,0.28); }
+.badge.on-vivid b { color: rgba(0,0,0,0.48); }
 
 /* ── AXIS ───────────────────────────────────── */
-.axis-line {
-  border-top: 1.5px solid var(--axis);
-}
+.axis-line { border-top: 1.5px solid var(--axis); }
 .axis-line.on-dark  { border-color: rgba(255,255,255,0.1); }
 .axis-line.on-vivid { border-color: rgba(0,0,0,0.12); }
 
@@ -168,7 +157,7 @@ body {
 }
 .ic {
   flex: 1;
-  border-radius: 14px;
+  border-radius: 6px;
   padding: 28px 22px 22px;
   display: flex;
   flex-direction: column;
@@ -184,7 +173,7 @@ body {
   font-weight: 500;
   letter-spacing: 0.09em;
   text-transform: uppercase;
-  color: rgba(0,0,0,0.45);
+  color: rgba(0,0,0,0.42);
   margin-bottom: 10px;
   flex-shrink: 0;
 }
@@ -221,10 +210,10 @@ body {
 .ic-wave-b { flex:1; border-radius:2px 2px 0 0; background:rgba(0,0,0,0.28); min-width:0; }
 .ic-wave-b.pk { background:rgba(0,0,0,0.72); }
 .ic-cta {
-  background: rgba(0,0,0,0.82);
+  background: #1E1C23;
   color: #fff;
   border: none;
-  border-radius: 10px;
+  border-radius: 6px;
   padding: 13px 16px;
   font-family: 'Geist Mono', monospace;
   font-size: 10px;
@@ -242,26 +231,24 @@ body {
 .ic-dot { width:5px; height:5px; border-radius:50%; background:#fff; flex-shrink:0; }
 
 /* ═══════════════════════════════════════════
-   KPI INLINE ROW (inside a card)
+   KPI INLINE ROW
 ═══════════════════════════════════════════ */
 .kpi-row {
   display: grid;
   grid-template-columns: repeat(4,1fr);
   gap: 0;
 }
-.kpi-cell {
-  padding: 4px 28px 4px 0;
-}
+.kpi-cell { padding: 4px 28px 4px 0; }
 .kpi-cell + .kpi-cell {
   padding-left: 28px;
-  border-left: 1px solid var(--rule);
+  border-left: 1px solid rgba(0,0,0,0.12);
 }
 .kpi-tag {
   font-family: 'Geist Mono', monospace;
   font-size: 10px;
   letter-spacing: 0.07em;
   text-transform: uppercase;
-  color: var(--faint);
+  color: rgba(0,0,0,0.38);
   margin-bottom: 10px;
 }
 .kpi-num {
@@ -270,18 +257,18 @@ body {
   font-weight: 500;
   line-height: 1;
   letter-spacing: -0.035em;
-  color: var(--ink);
+  color: rgba(0,0,0,0.88);
   margin-bottom: 8px;
 }
 .kpi-num.hl { color: var(--mustard-deep); }
 .kpi-desc {
   font-size: 12px;
-  color: var(--muted);
+  color: rgba(0,0,0,0.52);
   line-height: 1.45;
   margin-bottom: 14px;
 }
-.kpi-bar { height:2px; background:var(--rule); border-radius:1px; overflow:hidden; }
-.kpi-bar-fill { height:100%; background:var(--mustard); border-radius:1px; }
+.kpi-bar { height:2px; background:rgba(0,0,0,0.12); border-radius:1px; overflow:hidden; }
+.kpi-bar-fill { height:100%; background:rgba(0,0,0,0.45); border-radius:1px; }
 
 /* ═══════════════════════════════════════════
    HORIZONTAL BAR
@@ -290,9 +277,9 @@ body {
 .hbar-item { display:flex; align-items:center; gap:16px; }
 .hbar-lbl {
   font-family: 'Geist', sans-serif;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 400;
-  color: var(--muted);
+  color: rgba(0,0,0,0.65);
   width: 172px;
   flex-shrink: 0;
 }
@@ -302,14 +289,14 @@ body {
   border-radius: 0 4px 4px 0;
   flex-shrink: 0;
 }
-.hbar-fill.p  { background: var(--mustard); }
-.hbar-fill.s  { background: var(--teal); opacity:0.5; }
-.hbar-fill.t  { background: var(--rule); }
+.hbar-fill.p { background: #1E1C23; }
+.hbar-fill.s { background: rgba(0,0,0,0.3); }
+.hbar-fill.t { background: rgba(0,0,0,0.1); }
 .hbar-val {
   font-family: 'Geist Mono', monospace;
   font-size: 13px;
   font-weight: 500;
-  color: var(--muted);
+  color: rgba(0,0,0,0.55);
   flex-shrink: 0;
 }
 
@@ -336,20 +323,16 @@ body {
   font-family: 'Geist Mono', monospace;
   font-size: 10px;
   font-weight: 500;
-  color: var(--muted);
+  color: rgba(0,0,0,0.55);
   white-space: nowrap;
 }
-.col-x {
-  display: flex;
-  gap: 14px;
-  margin-top: 10px;
-}
+.col-x { display: flex; gap: 14px; margin-top: 10px; }
 .col-x-item {
   flex: 1;
   text-align: center;
   font-family: 'Geist Mono', monospace;
   font-size: 10px;
-  color: var(--faint);
+  color: rgba(0,0,0,0.38);
   letter-spacing: 0.03em;
 }
 
@@ -359,11 +342,11 @@ body {
 .ba { display:grid; grid-template-columns:1fr auto 1fr; align-items:center; }
 .ba-panel { padding:28px 32px; border-radius:6px; }
 .ba-panel.before { background: var(--rule); }
-.ba-panel.after  { background: rgba(255,187,83,0.18); }
+.ba-panel.after  { background: rgba(255,198,110,0.22); }
 .ba-lbl {
   font-family: 'Geist Mono', monospace;
   font-size: 10px; letter-spacing:0.08em; text-transform:uppercase;
-  color: var(--faint); margin-bottom:12px;
+  color: var(--mustard); margin-bottom:12px;
 }
 .ba-num {
   font-family: 'Geist Mono', monospace;
@@ -397,35 +380,30 @@ body {
 ═══════════════════════════════════════════ */
 .sbar-rows { display:flex; flex-direction:column; gap:10px; }
 .sbar-item { display:flex; align-items:center; gap:16px; }
-.sbar-lbl {
-  font-family:'Geist',sans-serif; font-size:13px; color:var(--muted);
-  width:180px; flex-shrink:0;
-}
+.sbar-lbl { font-family:'Geist',sans-serif; font-size:13px; color:rgba(0,0,0,0.65); width:180px; flex-shrink:0; }
 .sbar-track { flex:1; height:36px; display:flex; border-radius:6px; overflow:hidden; gap:2px; }
-.sbar-s1 { background:var(--mustard); display:flex; align-items:center; justify-content:center; font-family:'Geist Mono',monospace; font-size:11px; font-weight:500; color:rgba(0,0,0,0.6); }
-.sbar-s2 { background:var(--teal); opacity:0.7; display:flex; align-items:center; justify-content:center; font-family:'Geist Mono',monospace; font-size:11px; color:#fff; }
-.sbar-s3 { background:var(--rule); display:flex; align-items:center; justify-content:center; font-family:'Geist Mono',monospace; font-size:11px; color:var(--muted); }
+.sbar-s1 { background:#1E1C23; display:flex; align-items:center; justify-content:center; font-family:'Geist Mono',monospace; font-size:11px; font-weight:500; color:rgba(255,255,255,0.7); }
+.sbar-s2 { background:rgba(255,255,255,0.45); display:flex; align-items:center; justify-content:center; font-family:'Geist Mono',monospace; font-size:11px; color:rgba(0,0,0,0.65); }
+.sbar-s3 { background:rgba(0,0,0,0.1); display:flex; align-items:center; justify-content:center; font-family:'Geist Mono',monospace; font-size:11px; color:rgba(0,0,0,0.45); }
 .sbar-legend { display:flex; gap:18px; margin-top:18px; }
-.sbar-lg-item { display:flex; align-items:center; gap:7px; font-size:12px; color:var(--muted); }
+.sbar-lg-item { display:flex; align-items:center; gap:7px; font-size:12px; color:rgba(0,0,0,0.55); }
 .sbar-swatch { width:24px; height:3px; border-radius:2px; }
 
 /* ═══════════════════════════════════════════
    FUNNEL
 ═══════════════════════════════════════════ */
-.funnel-cols {
-  display:flex; gap:6px; align-items:flex-end; height:160px;
-}
+.funnel-cols { display:flex; gap:6px; align-items:flex-end; height:160px; }
 .funnel-col { flex:1; display:flex; align-items:flex-end; }
 .funnel-bar { width:100%; border-radius:6px 6px 0 0; position:relative; }
 .funnel-lbl {
   position:absolute; top:-22px; left:50%; transform:translateX(-50%);
   font-family:'Geist Mono',monospace; font-size:12px; font-weight:500;
-  color:var(--muted); white-space:nowrap;
+  color:rgba(0,0,0,0.55); white-space:nowrap;
 }
 .funnel-x { display:flex; gap:6px; margin-top:10px; }
 .funnel-x-item { flex:1; text-align:center; }
-.funnel-x-name { font-family:'Geist',sans-serif; font-size:12px; color:var(--muted); display:block; }
-.funnel-x-tag  { font-family:'Geist Mono',monospace; font-size:10px; color:var(--faint); display:block; margin-top:2px; }
+.funnel-x-name { font-family:'Geist',sans-serif; font-size:12px; color:rgba(0,0,0,0.55); display:block; }
+.funnel-x-tag  { font-family:'Geist Mono',monospace; font-size:10px; color:rgba(0,0,0,0.38); display:block; margin-top:2px; }
 .funnel-x-item.hl .funnel-x-name { color:var(--mustard-deep); font-weight:500; }
 
 /* ═══════════════════════════════════════════
@@ -447,31 +425,24 @@ body {
 .tl-dot.active { background:var(--mustard); border-color:var(--mustard); color:rgba(0,0,0,0.75); font-weight:500; }
 .tl-content { text-align:center; padding:0 8px; }
 .tl-title { font-family:'Geist',sans-serif; font-size:13px; font-weight:500; color:var(--ink); letter-spacing:-0.01em; margin-bottom:4px; }
-.tl-desc  { font-size:12px; color:var(--muted); line-height:1.45; }
+.tl-desc  { font-size:14px; color:var(--muted); line-height:1.45; }
 
 /* ═══════════════════════════════════════════
    FRAMEWORK (3-up)
 ═══════════════════════════════════════════ */
 .fw { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
-.fw-cell { background: rgba(0,0,0,0.04); border-radius:6px; padding:24px 20px 20px; }
+.fw-cell { background: rgba(0,0,0,0.05); border-radius:6px; padding:24px 20px 20px; }
 .fw-num {
   font-family:'Geist Mono',monospace; font-size:40px; font-weight:500;
   letter-spacing:-0.03em; color:var(--mustard); line-height:1; margin-bottom:12px;
 }
 .fw-title { font-family:'Geist',sans-serif; font-size:14px; font-weight:500; color:var(--ink); letter-spacing:-0.01em; margin-bottom:6px; }
-.fw-desc  { font-size:12px; color:var(--muted); line-height:1.5; }
-
-/* on dark card variant */
-.fw-cell.on-dark { background:rgba(255,255,255,0.06); }
+.fw-desc  { font-size:14px; line-height:1.5; color:var(--muted); }
+.fw-cell.on-dark { background:rgba(255,255,255,0.07); }
 .fw-cell.on-dark .fw-title { color:#fff; }
-.fw-cell.on-dark .fw-desc  { color:rgba(255,255,255,0.5); }
-.fw-desc { font-size:14px; line-height:1.5; }
-.tl-desc { font-size:14px; }
-.hbar-lbl { font-size:14px; }
-.ch-sub.on-dark  { color:rgba(255,255,255,0.5); }
-.ch-sub.on-vivid { color:rgba(0,0,0,0.5); }
+.fw-cell.on-dark .fw-desc  { color:rgba(255,255,255,0.45); }
 
-/* ── GEIST MONO GLOBAL: uppercase · medium · 0.075rem tracking ── */
+/* ── GEIST MONO GLOBAL ── */
 .section,
 .ch-tag, .badge,
 .kpi-tag, .kpi-desc,
@@ -501,13 +472,13 @@ body {
 
 
 <!-- ═══════════════════════════════════════════════
-     INSIGHT STAT CARDS — vivid backgrounds
+     INSIGHT STAT CARDS — vivid
 ═══════════════════════════════════════════════ -->
 <div class="section">Stat cards — vivid</div>
 
 <div class="insight-row">
 
-  <!-- Mustard: Activation Rate -->
+  <!-- Yellow: Activation Rate -->
   <div class="ic ic-mustard">
     <div class="ic-label">Activation Rate</div>
     <div class="ic-metric">+38.7%</div>
@@ -522,7 +493,7 @@ body {
     <button class="ic-cta"><div class="ic-dot"></div>See more insights</button>
   </div>
 
-  <!-- Lavender: Revenue Speed (wave) -->
+  <!-- Purple: Revenue Speed (wave) -->
   <div class="ic ic-lavender">
     <div class="ic-label">Time to Revenue</div>
     <div class="ic-metric">+2.3×</div>
@@ -531,7 +502,7 @@ body {
     <button class="ic-cta"><div class="ic-dot"></div>See more insights</button>
   </div>
 
-  <!-- Sage: 90-Day Retention (SVG) -->
+  <!-- Teal: 90-Day Retention (SVG) -->
   <div class="ic ic-sage">
     <div class="ic-label">90-Day Retention</div>
     <div class="ic-metric">58%</div>
@@ -556,55 +527,55 @@ body {
 
 
 <!-- ═══════════════════════════════════════════════
-     KPI ROW — pale yellow card
+     KPI ROW — vivid purple
 ═══════════════════════════════════════════════ -->
-<div class="section">KPI row — pale yellow</div>
+<div class="section">KPI row — vivid</div>
 
-<div class="card bg-yellow">
+<div class="card bg-violet">
   <div class="ch">
-    <div class="ch-tag">Research highlights</div>
-    <div class="ch-title">Mantle Compass key metrics</div>
+    <div class="ch-tag on-vivid">Research highlights</div>
+    <div class="ch-title on-vivid">Mantle Compass key metrics</div>
   </div>
   <div class="kpi-row">
     <div class="kpi-cell">
       <div class="kpi-tag">AI citations</div>
-      <div class="kpi-num hl">85%</div>
+      <div class="kpi-num hl" style="color:rgba(0,0,0,0.88)">85%</div>
       <div class="kpi-desc">of AI brand mentions come from third-party content</div>
       <div class="kpi-bar"><div class="kpi-bar-fill" style="width:85%"></div></div>
     </div>
     <div class="kpi-cell">
       <div class="kpi-tag">UGC influence</div>
-      <div class="kpi-num">48%</div>
+      <div class="kpi-num" style="color:rgba(0,0,0,0.88)">48%</div>
       <div class="kpi-desc">of AI search answers shaped by user-generated content</div>
       <div class="kpi-bar"><div class="kpi-bar-fill" style="width:48%"></div></div>
     </div>
     <div class="kpi-cell">
       <div class="kpi-tag">Recency lift</div>
-      <div class="kpi-num">5×</div>
+      <div class="kpi-num" style="color:rgba(0,0,0,0.88)">5×</div>
       <div class="kpi-desc">more likely AI-cited if content is under 3 months old</div>
       <div class="kpi-bar"><div class="kpi-bar-fill" style="width:100%"></div></div>
     </div>
     <div class="kpi-cell">
       <div class="kpi-tag">Retention · 90d</div>
-      <div class="kpi-num hl">58%</div>
+      <div class="kpi-num hl" style="color:rgba(0,0,0,0.88)">58%</div>
       <div class="kpi-desc">retention, validated-before-launch cohorts</div>
       <div class="kpi-bar"><div class="kpi-bar-fill" style="width:58%"></div></div>
     </div>
   </div>
-  <div class="badge"><b>Mantle</b>Compass</div>
+  <div class="badge on-vivid"><b>Mantle</b>Compass</div>
 </div>
 
 
 <!-- ═══════════════════════════════════════════════
-     HORIZONTAL BAR — pale yellow
+     HORIZONTAL BAR — vivid yellow
 ═══════════════════════════════════════════════ -->
-<div class="section">Horizontal bar</div>
+<div class="section">Horizontal bar — vivid</div>
 
-<div class="card bg-yellow">
+<div class="card bg-mustard">
   <div class="ch">
-    <div class="ch-tag">Source analysis</div>
-    <div class="ch-title">Where AI citations come from</div>
-    <div class="ch-sub">% of brand mentions in AI search results, by domain type</div>
+    <div class="ch-tag on-vivid">Source analysis</div>
+    <div class="ch-title on-vivid">Where AI citations come from</div>
+    <div class="ch-sub on-vivid">% of brand mentions in AI search results, by domain type</div>
   </div>
   <div class="hbar-rows">
     <div class="hbar-item">
@@ -629,50 +600,50 @@ body {
       </div>
     </div>
   </div>
-  <div class="badge"><b>Mantle</b>Compass</div>
+  <div class="badge on-vivid"><b>Mantle</b>Compass</div>
 </div>
 
 
 <!-- ═══════════════════════════════════════════════
-     COLUMN CHART — pale teal
+     COLUMN CHART — vivid teal
 ═══════════════════════════════════════════════ -->
-<div class="section">Grouped column chart</div>
+<div class="section">Grouped column chart — vivid</div>
 
-<div class="card bg-teal">
+<div class="card bg-sage">
   <div class="ch">
-    <div class="ch-tag">Activation benchmark</div>
-    <div class="ch-title">Validated products activate faster — consistently</div>
-    <div class="ch-sub">Product activation rate by cohort quarter</div>
+    <div class="ch-tag on-vivid">Activation benchmark</div>
+    <div class="ch-title on-vivid">Validated products activate faster — consistently</div>
+    <div class="ch-sub on-vivid">Product activation rate by cohort quarter</div>
   </div>
   <div class="legend">
-    <div class="legend-item"><div class="legend-dot" style="background:var(--mustard)"></div>Validated early</div>
-    <div class="legend-item"><div class="legend-dot" style="background:rgba(111,168,154,0.35);border:1.5px solid var(--teal)"></div>No validation</div>
+    <div class="legend-item" style="color:rgba(0,0,0,0.65);"><div class="legend-dot" style="background:#1E1C23"></div>Validated early</div>
+    <div class="legend-item" style="color:rgba(0,0,0,0.55);"><div class="legend-dot" style="background:rgba(0,0,0,0.2);border:1.5px solid rgba(0,0,0,0.35)"></div>No validation</div>
   </div>
   <div class="col-wrap">
-    <div class="col-bars axis-line">
+    <div class="col-bars axis-line on-vivid">
       <div class="col-group">
-        <div class="col-bar" style="height:112px;background:var(--mustard);"><span class="col-lbl">62%</span></div>
-        <div class="col-bar" style="height:74px;background:rgba(111,168,154,0.3);border:1.5px solid rgba(111,168,154,0.6);"></div>
+        <div class="col-bar" style="height:112px;background:#1E1C23;"><span class="col-lbl">62%</span></div>
+        <div class="col-bar" style="height:74px;background:rgba(0,0,0,0.2);border:1.5px solid rgba(0,0,0,0.35);"></div>
       </div>
       <div class="col-group">
-        <div class="col-bar" style="height:122px;background:var(--mustard);"><span class="col-lbl">68%</span></div>
-        <div class="col-bar" style="height:77px;background:rgba(111,168,154,0.3);border:1.5px solid rgba(111,168,154,0.6);"></div>
+        <div class="col-bar" style="height:122px;background:#1E1C23;"><span class="col-lbl">68%</span></div>
+        <div class="col-bar" style="height:77px;background:rgba(0,0,0,0.2);border:1.5px solid rgba(0,0,0,0.35);"></div>
       </div>
       <div class="col-group">
-        <div class="col-bar" style="height:128px;background:var(--mustard);"><span class="col-lbl">71%</span></div>
-        <div class="col-bar" style="height:81px;background:rgba(111,168,154,0.3);border:1.5px solid rgba(111,168,154,0.6);"></div>
+        <div class="col-bar" style="height:128px;background:#1E1C23;"><span class="col-lbl">71%</span></div>
+        <div class="col-bar" style="height:81px;background:rgba(0,0,0,0.2);border:1.5px solid rgba(0,0,0,0.35);"></div>
       </div>
       <div class="col-group">
-        <div class="col-bar" style="height:133px;background:var(--mustard);"><span class="col-lbl">74%</span></div>
-        <div class="col-bar" style="height:83px;background:rgba(111,168,154,0.3);border:1.5px solid rgba(111,168,154,0.6);"></div>
+        <div class="col-bar" style="height:133px;background:#1E1C23;"><span class="col-lbl">74%</span></div>
+        <div class="col-bar" style="height:83px;background:rgba(0,0,0,0.2);border:1.5px solid rgba(0,0,0,0.35);"></div>
       </div>
       <div class="col-group">
-        <div class="col-bar" style="height:140px;background:var(--mustard);"><span class="col-lbl">78%</span></div>
-        <div class="col-bar" style="height:85px;background:rgba(111,168,154,0.3);border:1.5px solid rgba(111,168,154,0.6);"></div>
+        <div class="col-bar" style="height:140px;background:#1E1C23;"><span class="col-lbl">78%</span></div>
+        <div class="col-bar" style="height:85px;background:rgba(0,0,0,0.2);border:1.5px solid rgba(0,0,0,0.35);"></div>
       </div>
       <div class="col-group">
-        <div class="col-bar" style="height:149px;background:var(--mustard);"><span class="col-lbl">83%</span></div>
-        <div class="col-bar" style="height:86px;background:rgba(111,168,154,0.3);border:1.5px solid rgba(111,168,154,0.6);"><span class="col-lbl" style="color:var(--teal);">48%</span></div>
+        <div class="col-bar" style="height:149px;background:#1E1C23;"><span class="col-lbl">83%</span></div>
+        <div class="col-bar" style="height:86px;background:rgba(0,0,0,0.2);border:1.5px solid rgba(0,0,0,0.35);"><span class="col-lbl" style="color:rgba(0,0,0,0.45);">48%</span></div>
       </div>
     </div>
     <div class="col-x">
@@ -681,7 +652,7 @@ body {
       <div class="col-x-item">Q4 '24</div><div class="col-x-item">Q1 '25</div>
     </div>
   </div>
-  <div class="badge"><b>Mantle</b>Compass</div>
+  <div class="badge on-vivid"><b>Mantle</b>Compass</div>
 </div>
 
 
@@ -697,24 +668,24 @@ body {
     <div class="ch-sub on-dark">User retention curves by validation approach. Cohort start = Day 1.</div>
   </div>
   <div class="legend" style="margin-bottom:20px;">
-    <div class="legend-item" style="color:rgba(255,255,255,0.5);">
-      <div style="width:22px;height:2.5px;background:var(--mustard);border-radius:1px;"></div>
+    <div class="legend-item" style="color:rgba(255,255,255,0.45);">
+      <div style="width:22px;height:2.5px;background:#FFC66E;border-radius:1px;"></div>
       Validated early — <b style="color:#fff;font-weight:500;">58% at 90d</b>
     </div>
-    <div class="legend-item" style="color:rgba(255,255,255,0.5);">
-      <div style="width:22px;border-top:2px dashed rgba(111,168,154,0.6);"></div>
-      No validation — <b style="color:rgba(255,255,255,0.6);font-weight:500;">28% at 90d</b>
+    <div class="legend-item" style="color:rgba(255,255,255,0.45);">
+      <div style="width:22px;border-top:2px dashed rgba(118,232,255,0.6);"></div>
+      No validation — <b style="color:rgba(255,255,255,0.55);font-weight:500;">28% at 90d</b>
     </div>
   </div>
   <svg viewBox="0 0 812 220" width="100%" height="220" style="overflow:visible;">
     <line x1="0" y1="195" x2="812" y2="195" stroke="rgba(255,255,255,0.08)" stroke-width="1.5"/>
-    <path d="M 0,0 C 80,0 100,74 160,74 C 230,74 240,108 300,108 C 420,108 460,130 550,133 C 680,136 720,143 812,144 L 812,195 L 0,195 Z" fill="rgba(111,168,154,0.08)"/>
-    <path d="M 0,0 C 80,0 100,74 160,74 C 230,74 240,108 300,108 C 420,108 460,130 550,133 C 680,136 720,143 812,144" fill="none" stroke="rgba(111,168,154,0.4)" stroke-width="1.5" stroke-dasharray="5 4"/>
-    <path d="M 0,0 C 100,0 100,38 160,38 C 220,38 240,58 300,58 C 420,58 460,74 550,78 C 680,82 720,84 812,84 L 812,195 L 0,195 Z" fill="rgba(255,187,83,0.12)"/>
-    <path d="M 0,0 C 100,0 100,38 160,38 C 220,38 240,58 300,58 C 420,58 460,74 550,78 C 680,82 720,84 812,84" fill="none" stroke="#ffbb53" stroke-width="2.5" stroke-linecap="round"/>
-    <circle cx="812" cy="84"  r="5" fill="#ffbb53"/>
-    <circle cx="812" cy="144" r="4" fill="rgba(111,168,154,0.7)"/>
-    <text x="800" y="76"  font-family="Geist Mono,monospace" font-size="11" fill="#c48b00" font-weight="500" text-anchor="end">58%</text>
+    <path d="M 0,0 C 80,0 100,74 160,74 C 230,74 240,108 300,108 C 420,108 460,130 550,133 C 680,136 720,143 812,144 L 812,195 L 0,195 Z" fill="rgba(118,232,255,0.08)"/>
+    <path d="M 0,0 C 80,0 100,74 160,74 C 230,74 240,108 300,108 C 420,108 460,130 550,133 C 680,136 720,143 812,144" fill="none" stroke="rgba(118,232,255,0.4)" stroke-width="1.5" stroke-dasharray="5 4"/>
+    <path d="M 0,0 C 100,0 100,38 160,38 C 220,38 240,58 300,58 C 420,58 460,74 550,78 C 680,82 720,84 812,84 L 812,195 L 0,195 Z" fill="rgba(255,198,110,0.14)"/>
+    <path d="M 0,0 C 100,0 100,38 160,38 C 220,38 240,58 300,58 C 420,58 460,74 550,78 C 680,82 720,84 812,84" fill="none" stroke="#FFC66E" stroke-width="2.5" stroke-linecap="round"/>
+    <circle cx="812" cy="84"  r="5" fill="#FFC66E"/>
+    <circle cx="812" cy="144" r="4" fill="rgba(118,232,255,0.7)"/>
+    <text x="800" y="76"  font-family="Geist Mono,monospace" font-size="11" fill="#FFC66E" font-weight="500" text-anchor="end">58%</text>
     <text x="800" y="158" font-family="Geist Mono,monospace" font-size="11" fill="rgba(255,255,255,0.4)" text-anchor="end">28%</text>
     <text x="0"   y="213" font-family="Geist Mono,monospace" font-size="10" fill="rgba(255,255,255,0.25)">Day 1</text>
     <text x="155" y="213" font-family="Geist Mono,monospace" font-size="10" fill="rgba(255,255,255,0.25)">Day 14</text>
@@ -727,9 +698,9 @@ body {
 
 
 <!-- ═══════════════════════════════════════════════
-     BEFORE / AFTER — pale yellow
+     BEFORE / AFTER — light
 ═══════════════════════════════════════════════ -->
-<div class="section">Before / After</div>
+<div class="section">Before / After — light</div>
 
 <div class="card bg-yellow">
   <div class="ch">
@@ -765,15 +736,15 @@ body {
 
 
 <!-- ═══════════════════════════════════════════════
-     STACKED BAR — pale lavender
+     STACKED BAR — vivid teal
 ═══════════════════════════════════════════════ -->
-<div class="section">Stacked bar</div>
+<div class="section">Stacked bar — vivid</div>
 
-<div class="card bg-lavender">
+<div class="card bg-sage">
   <div class="ch">
-    <div class="ch-tag">Content performance</div>
-    <div class="ch-title">Original research dominates AI citation rates</div>
-    <div class="ch-sub">Content citation status by type — AI-cited · Partially cited · Not cited</div>
+    <div class="ch-tag on-vivid">Content performance</div>
+    <div class="ch-title on-vivid">Original research dominates AI citation rates</div>
+    <div class="ch-sub on-vivid">Content citation status by type — AI-cited · Partially cited · Not cited</div>
   </div>
   <div class="sbar-rows">
     <div class="sbar-item"><div class="sbar-lbl">Original research</div><div class="sbar-track"><div class="sbar-s1" style="width:68%">68%</div><div class="sbar-s2" style="width:21%">21%</div><div class="sbar-s3" style="width:11%">11%</div></div></div>
@@ -781,31 +752,31 @@ body {
     <div class="sbar-item"><div class="sbar-lbl">Generic guides</div><div class="sbar-track"><div class="sbar-s1" style="width:18%">18%</div><div class="sbar-s2" style="width:32%">32%</div><div class="sbar-s3" style="width:50%">50%</div></div></div>
   </div>
   <div class="sbar-legend">
-    <div class="sbar-lg-item"><div class="sbar-swatch" style="background:var(--mustard)"></div>AI-cited</div>
-    <div class="sbar-lg-item"><div class="sbar-swatch" style="background:var(--teal);opacity:0.75"></div>Partially cited</div>
-    <div class="sbar-lg-item"><div class="sbar-swatch" style="background:var(--rule)"></div>Not cited</div>
+    <div class="sbar-lg-item"><div class="sbar-swatch" style="background:#1E1C23"></div>AI-cited</div>
+    <div class="sbar-lg-item"><div class="sbar-swatch" style="background:rgba(255,255,255,0.5)"></div>Partially cited</div>
+    <div class="sbar-lg-item"><div class="sbar-swatch" style="background:rgba(0,0,0,0.12)"></div>Not cited</div>
   </div>
-  <div class="badge"><b>Mantle</b>Compass</div>
+  <div class="badge on-vivid"><b>Mantle</b>Compass</div>
 </div>
 
 
 <!-- ═══════════════════════════════════════════════
-     FUNNEL — pale yellow
+     FUNNEL — vivid purple
 ═══════════════════════════════════════════════ -->
-<div class="section">Funnel chart</div>
+<div class="section">Funnel chart — vivid</div>
 
-<div class="card bg-yellow">
+<div class="card bg-violet">
   <div class="ch">
-    <div class="ch-tag">Citation funnel</div>
-    <div class="ch-title">From published content to AI-driven conversion</div>
-    <div class="ch-sub">Proportion of content reaching each stage of AI visibility</div>
+    <div class="ch-tag on-vivid">Citation funnel</div>
+    <div class="ch-title on-vivid">From published content to AI-driven conversion</div>
+    <div class="ch-sub on-vivid">Proportion of content reaching each stage of AI visibility</div>
   </div>
-  <div class="funnel-cols axis-line">
-    <div class="funnel-col"><div class="funnel-bar" style="height:160px;background:var(--teal);opacity:0.45;"><span class="funnel-lbl">100%</span></div></div>
-    <div class="funnel-col"><div class="funnel-bar" style="height:115px;background:var(--teal);opacity:0.32;"><span class="funnel-lbl">72%</span></div></div>
-    <div class="funnel-col"><div class="funnel-bar" style="height:72px;background:var(--rule);"><span class="funnel-lbl">45%</span></div></div>
-    <div class="funnel-col"><div class="funnel-bar" style="height:37px;background:var(--mustard);"><span class="funnel-lbl" style="color:var(--mustard-deep);">23%</span></div></div>
-    <div class="funnel-col"><div class="funnel-bar" style="height:14px;background:rgba(196,139,0,0.6);"><span class="funnel-lbl">9%</span></div></div>
+  <div class="funnel-cols axis-line on-vivid">
+    <div class="funnel-col"><div class="funnel-bar" style="height:160px;background:rgba(0,0,0,0.14);"><span class="funnel-lbl">100%</span></div></div>
+    <div class="funnel-col"><div class="funnel-bar" style="height:115px;background:rgba(0,0,0,0.1);"><span class="funnel-lbl">72%</span></div></div>
+    <div class="funnel-col"><div class="funnel-bar" style="height:72px;background:rgba(0,0,0,0.08);"><span class="funnel-lbl">45%</span></div></div>
+    <div class="funnel-col"><div class="funnel-bar" style="height:37px;background:#FFC66E;"><span class="funnel-lbl" style="color:#2A606B;">23%</span></div></div>
+    <div class="funnel-col"><div class="funnel-bar" style="height:14px;background:rgba(0,0,0,0.25);"><span class="funnel-lbl">9%</span></div></div>
   </div>
   <div class="funnel-x">
     <div class="funnel-x-item"><span class="funnel-x-name">Published</span><span class="funnel-x-tag">all content</span></div>
@@ -814,14 +785,14 @@ body {
     <div class="funnel-x-item hl"><span class="funnel-x-name">Cited ✦</span><span class="funnel-x-tag">as AI source</span></div>
     <div class="funnel-x-item"><span class="funnel-x-name">Converts</span><span class="funnel-x-tag">to pipeline</span></div>
   </div>
-  <div class="badge"><b>Mantle</b>Compass</div>
+  <div class="badge on-vivid"><b>Mantle</b>Compass</div>
 </div>
 
 
 <!-- ═══════════════════════════════════════════════
-     TIMELINE — pale teal
+     TIMELINE — light
 ═══════════════════════════════════════════════ -->
-<div class="section">Timeline / process</div>
+<div class="section">Timeline / process — light</div>
 
 <div class="card bg-teal">
   <div class="ch">
@@ -844,7 +815,7 @@ body {
 <!-- ═══════════════════════════════════════════════
      FRAMEWORK — dark card
 ═══════════════════════════════════════════════ -->
-<div class="section">Framework (3-up)</div>
+<div class="section">Framework (3-up) — dark</div>
 
 <div class="card bg-ink">
   <div class="ch">
@@ -862,7 +833,6 @@ body {
 
 
 <script>
-// Wave bars for insight card 2
 (function() {
   const c = document.getElementById('v3-wave');
   if (!c) return;
