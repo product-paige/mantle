@@ -1,0 +1,13 @@
+{
+  "slug": "get-to-real-demand",
+  "title": "Get to real demand",
+  "number": "002",
+  "sections": [
+    { "slug": "", "title": "Introduction", "isIntro": true, "file": "00-introduction.mdx" },
+    { "slug": "start-with-the-problem",   "title": "Start with the problem",   "file": "01-start-with-the-problem.mdx" },
+    { "slug": "find-your-ideal-customer", "title": "Find your ideal customer", "file": "02-find-your-ideal-customer.mdx" },
+    { "slug": "validate-your-app-idea",   "title": "Validate your app idea",   "file": "03-validate-your-app-idea.mdx" },
+    { "slug": "capture-early-users",      "title": "Capture early users",      "file": "04-capture-early-users.mdx" },
+    { "slug": "define-your-positioning",  "title": "Define your positioning",  "file": "05-define-your-positioning.mdx" }
+  ]
+}

@@ -4,6 +4,20 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mantle Compass — Insights</title>
+  <!-- seo:start -->
+  <meta name="description" content="Short insights on what actually moves early-stage products — drawn from operators, founders, and product leaders.">
+  <link rel="canonical" href="https://heymantle.com/compass/insights">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Mantle Compass">
+  <meta property="og:title" content="Insights — Mantle Compass">
+  <meta property="og:description" content="Short insights on what actually moves early-stage products — drawn from operators, founders, and product leaders.">
+  <meta property="og:url" content="https://heymantle.com/compass/insights">
+  <meta property="og:image" content="https://heymantle.com/api/og">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Insights — Mantle Compass">
+  <meta name="twitter:description" content="Short insights on what actually moves early-stage products — drawn from operators, founders, and product leaders.">
+  <meta name="twitter:image" content="https://heymantle.com/api/og">
+<!-- seo:end -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -1632,15 +1646,6 @@
       margin-bottom: 12px;
       transition: color var(--t-fast) var(--ease);
     }
-    .compass-hero-eyebrow::before {
-      content: "";
-      flex-shrink: 0;
-      width: 16px;
-      height: 16px;
-      background: currentColor;
-      -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='m9 18 6-6-6-6'/></svg>") no-repeat center / contain;
-              mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='m9 18 6-6-6-6'/></svg>") no-repeat center / contain;
-    }
     .compass-hero-eyebrow:hover { color: var(--gold); }
     .compass-hero-text h1 {
       font-family: var(--font-head);
@@ -2308,72 +2313,96 @@
     .compass-insights-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 28px;
-      padding: 16px 0 80px;
+      gap: 32px 28px;
+      padding: 16px 0 84px;
     }
     .insights-card {
       display: flex;
       flex-direction: column;
-      background: var(--surface);
-      border: 1px solid var(--border-soft);
-      border-radius: 6px;
-      overflow: hidden;
+      gap: 18px;
       text-decoration: none;
       color: inherit;
-      transition: transform var(--t-base) var(--ease), border-color var(--t-base) var(--ease), background var(--t-base) var(--ease);
-      cursor: pointer;
     }
-    .insights-card:hover {
-      transform: translateY(-2px);
-      border-color: rgba(255, 255, 255, 0.12);
-      background: var(--surface-raised);
+    .insights-card:hover .insights-card-block {
+      transform: translateY(-3px);
     }
-    .insights-card-media {
-      aspect-ratio: 16 / 9;
+    .insights-card-block {
       position: relative;
+      aspect-ratio: 16 / 9;
+      padding: 28px 28px;
+      border-radius: 4px;
       overflow: hidden;
-      background:
-        radial-gradient(circle at 30% 30%, rgba(255,187,83,0.55), transparent 60%),
-        radial-gradient(circle at 75% 70%, rgba(140,95,210,0.30), transparent 60%),
-        linear-gradient(135deg, #2a210f 0%, #1a1407 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background-color: #1E1C23;
+      background-image:
+        linear-gradient(135deg, rgba(255,255,255,0.04) 0%, transparent 60%),
+        linear-gradient(45deg, rgba(255,255,255,0.025) 25%, transparent 25%, transparent 75%, rgba(255,255,255,0.025) 75%),
+        linear-gradient(45deg, rgba(255,255,255,0.025) 25%, transparent 25%, transparent 75%, rgba(255,255,255,0.025) 75%);
+      background-size: auto, 16px 16px, 16px 16px;
+      background-position: 0 0, 0 0, 8px 8px;
+      transition: transform 220ms var(--ease, ease);
     }
-    .insights-card-media::before {
+    /* Placeholder image icon centered behind content */
+    .insights-card-block::after {
       content: "";
       position: absolute;
       inset: 0;
-      background-image:
-        linear-gradient(45deg, rgba(255,255,255,0.04) 1px, transparent 1px),
-        linear-gradient(-45deg, rgba(255,255,255,0.04) 1px, transparent 1px);
-      background-size: 22px 22px;
-      opacity: 0.5;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='52' height='52' viewBox='0 0 24 24' fill='none' stroke='white' stroke-opacity='0.16' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'><rect x='3' y='3' width='18' height='18' rx='2'/><circle cx='8.5' cy='8.5' r='1.5'/><path d='m21 15-5-5L5 21'/></svg>");
+      background-repeat: no-repeat;
+      background-position: center;
       pointer-events: none;
     }
     .insights-card-title {
       font-family: var(--font-head);
-      font-size: 22px;
+      font-size: 32px;
       font-weight: 500;
-      letter-spacing: -0.015em;
-      line-height: 1.25;
-      color: var(--text-primary);
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      color: #ffffff;
+      max-width: 14ch;
+      position: relative;
+      z-index: 1;
     }
-    .insights-card-body {
+    .insights-card-tags {
       display: flex;
-      flex-direction: column;
-      gap: 10px;
-      padding: 20px 24px 24px;
+      gap: 8px;
+      align-self: flex-start;
+      position: relative;
+      z-index: 1;
     }
-    .insights-card-meta {
+    .insights-card-tag {
       font-family: var(--font-mono);
       font-size: 11px;
-      letter-spacing: 0.05rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
-      color: var(--gold);
+      padding: 5px 9px;
+      background: #0a0a0c;
+      color: #ffffff;
+      border-radius: 2px;
     }
     .insights-card-desc {
       font-family: var(--font-body);
       font-size: 16px;
-      line-height: 1.5;
+      line-height: 1.55;
       color: var(--text-secondary);
+      margin: 0;
+    }
+    .insights-card-date {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      color: var(--text-muted);
+    }
+    .insights-card-date-label {
+      color: var(--text-label);
+      margin-right: 6px;
+      text-transform: uppercase;
+      font-size: 11px;
+      letter-spacing: 0.08em;
     }
 
     @media (max-width: 1100px) {
@@ -2422,13 +2451,71 @@
       .site-search { display: none; }
     }
 
+  
+    /* ─── Mobile optimization (Compass) ─── */
+    @media (max-width: 720px) {
+      .site-header {
+        height: auto;
+        min-height: 56px;
+        padding: 10px 16px;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .site-header .site-search { display: none; }
+      .site-actions { gap: 10px; }
+      .sign-in-link { font-size: 13px; }
+      .site-cta { padding: 0 12px; height: 32px; font-size: 13px; }
+      .site-brand .site-logo { height: 22px; }
+
+      .compass-container { padding: 32px 20px !important; }
+      .compass-hero { padding: 0 !important; }
+      .compass-hero-text h1 {
+        font-size: clamp(36px, 11vw, 48px) !important;
+        line-height: 1.05 !important;
+      }
+      .compass-hero-text p { font-size: 16px !important; }
+
+      .compass-nav {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+      .compass-nav::-webkit-scrollbar { display: none; }
+      .compass-nav a { flex: none; white-space: nowrap; }
+
+      .compass-frameworks-grid,
+      .compass-insights-grid {
+        gap: 24px !important;
+        padding-bottom: 56px !important;
+      }
+      .framework-card-title { font-size: 24px !important; }
+      .framework-card-block { padding: 20px 18px !important; }
+
+      .insights-card-title { font-size: 18px !important; }
+
+      .compass-frameworks-filter {
+        font-size: 13px !important;
+        padding: 6px 12px !important;
+      }
+
+      .compass-manuals-list {
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+        padding-bottom: 56px !important;
+      }
+
+      .compass-connect { padding: 48px 0 !important; }
+      .compass-news h3 { font-size: 26px !important; }
+    }
+
   </style>
 </head>
 <body>
 
   <!-- ═══════════ Site header (Mantle Compass) ═══════════ -->
   <header class="site-header">
-    <a class="site-brand" href="mantle-compass.html" aria-label="Mantle Compass">
+    <a class="site-brand" href="/compass" aria-label="Mantle Compass">
       <img class="site-logo" src="/compass-logo-color-white.svg" alt="Mantle Compass" />
     </a>
     <form class="site-search" role="search" action="#">
@@ -2437,7 +2524,7 @@
     </form>
 
     <div class="site-actions">
-      <a class="sign-in-link" href="mantle-homepage.html">← Back to Mantle</a>
+      <a class="sign-in-link" href="/">← Back to Mantle</a>
       <a class="site-cta" href="#">Start for free</a>
     </div>
   </header>
@@ -2449,7 +2536,7 @@
         <!-- Hero -->
         <div class="compass-hero">
           <div class="compass-hero-text">
-            <a class="compass-hero-eyebrow" href="mantle-compass.html">Compass</a>
+            <a class="compass-hero-eyebrow" href="/compass">Compass /</a>
             <h1>Insights</h1>
             <p>Lessons, frameworks, and field notes from teams shipping real products.</p>
           </div>
@@ -2457,103 +2544,38 @@
 
         <!-- Section navigation -->
         <nav class="compass-nav" aria-label="Compass sections">
-          <a href="mantle-compass-manuals.html" data-count="8">Manuals</a>
-          <a href="#" data-count="8">Tools</a>
-          <a href="mantle-compass-answers.html" data-count="9">Answers</a>
-          <a class="active" href="mantle-compass-insights.html" data-count="9">Insights</a>
-          <a href="#" data-count="9">Releases</a>
+          <a href="/compass/manuals" data-count="8">Manuals</a>
+          <a href="/compass/frameworks" data-count="8">Frameworks</a>
+          <a href="/compass/answers" data-count="9">Answers</a>
+          <a class="active" href="/compass/insights" data-count="9">Insights</a>
         </nav>
 
         <!-- Insights blog grid -->
         <section class="compass-insights-grid">
-          <a class="insights-card" href="#">
-            <div class="insights-card-media">
-              <span class="compass-blog-ribbon">Validate</span>
+          <a class="insights-card" href="/compass/insights/mantle-is-a-thesis">
+            <div class="insights-card-block">
+              <div class="insights-card-title">Mantle is a thesis</div>
+              <div class="insights-card-tags">
+                <span class="insights-card-tag">Thesis</span>
+              </div>
             </div>
-            <div class="insights-card-body">
-              <div class="insights-card-meta">5 min read</div>
-              <div class="insights-card-title">How to validate your startup idea</div>
-              <div class="insights-card-desc">Validate your startup idea effectively before building it.</div>
-            </div>
-          </a>
-          <a class="insights-card" href="#">
-            <div class="insights-card-media">
-              <span class="compass-blog-ribbon">Validate</span>
-            </div>
-            <div class="insights-card-body">
-              <div class="insights-card-meta">4 min read</div>
-              <div class="insights-card-title">Stop overthinking your product name</div>
-              <div class="insights-card-desc">Stop overthinking product names; focus on what truly matters.</div>
+            <p class="insights-card-desc">There's a difference between putting five products in one place and building one product that does five things.</p>
+            <div class="insights-card-date">
+              <span class="insights-card-date-label">Added</span>
+              <time datetime="2026-04-22">Apr 22, 2026</time>
             </div>
           </a>
-          <a class="insights-card" href="#">
-            <div class="insights-card-media">
-              <span class="compass-blog-ribbon">Validate</span>
+          <a class="insights-card" href="/compass/insights/asa-sasi-acquisition">
+            <div class="insights-card-block">
+              <div class="insights-card-title">Mantle expands with acquisition of ASA and SASI</div>
+              <div class="insights-card-tags">
+                <span class="insights-card-tag">Announcement</span>
+              </div>
             </div>
-            <div class="insights-card-body">
-              <div class="insights-card-meta">5 min read</div>
-              <div class="insights-card-title">Your first users: how to find them</div>
-              <div class="insights-card-desc">Find your first user: key strategies for early-stage success.</div>
-            </div>
-          </a>
-          <a class="insights-card" href="#">
-            <div class="insights-card-media">
-              <span class="compass-blog-ribbon">Build</span>
-            </div>
-            <div class="insights-card-body">
-              <div class="insights-card-meta">6 min read</div>
-              <div class="insights-card-title">Ship your MVP in two weeks</div>
-              <div class="insights-card-desc">A realistic playbook for cutting scope and shipping fast.</div>
-            </div>
-          </a>
-          <a class="insights-card" href="#">
-            <div class="insights-card-media">
-              <span class="compass-blog-ribbon">Build</span>
-            </div>
-            <div class="insights-card-body">
-              <div class="insights-card-meta">7 min read</div>
-              <div class="insights-card-title">The cost of premature optimization</div>
-              <div class="insights-card-desc">Why most "scalable" early-stage code is a tax on momentum.</div>
-            </div>
-          </a>
-          <a class="insights-card" href="#">
-            <div class="insights-card-media">
-              <span class="compass-blog-ribbon">Launch</span>
-            </div>
-            <div class="insights-card-body">
-              <div class="insights-card-meta">5 min read</div>
-              <div class="insights-card-title">Soft launches that actually work</div>
-              <div class="insights-card-desc">Test in public without burning your launch story.</div>
-            </div>
-          </a>
-          <a class="insights-card" href="#">
-            <div class="insights-card-media">
-              <span class="compass-blog-ribbon">Launch</span>
-            </div>
-            <div class="insights-card-body">
-              <div class="insights-card-meta">8 min read</div>
-              <div class="insights-card-title">Pricing pages that convert</div>
-              <div class="insights-card-desc">The patterns behind pricing pages users actually trust.</div>
-            </div>
-          </a>
-          <a class="insights-card" href="#">
-            <div class="insights-card-media">
-              <span class="compass-blog-ribbon">Grow</span>
-            </div>
-            <div class="insights-card-body">
-              <div class="insights-card-meta">6 min read</div>
-              <div class="insights-card-title">From first dollar to first hundred</div>
-              <div class="insights-card-desc">How early revenue compounds when you treat it like signal.</div>
-            </div>
-          </a>
-          <a class="insights-card" href="#">
-            <div class="insights-card-media">
-              <span class="compass-blog-ribbon">Grow</span>
-            </div>
-            <div class="insights-card-body">
-              <div class="insights-card-meta">5 min read</div>
-              <div class="insights-card-title">Onboarding that earns the next session</div>
-              <div class="insights-card-desc">Design the first five minutes for the second visit.</div>
+            <p class="insights-card-desc">Mantle has acquired App Store Analytics and Shopify App Store Index from Union Works.</p>
+            <div class="insights-card-date">
+              <span class="insights-card-date-label">Added</span>
+              <time datetime="2026-04-08">Apr 08, 2026</time>
             </div>
           </a>
         </section>

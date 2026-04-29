@@ -4,6 +4,20 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mantle Compass — Resource hub</title>
+  <!-- seo:start -->
+  <meta name="description" content="Mantle Compass is the resource hub for early-stage founders — operating manuals, frameworks, and answers on positioning, demand, and customer discovery.">
+  <link rel="canonical" href="https://heymantle.com/compass">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Mantle Compass">
+  <meta property="og:title" content="Mantle Compass — Resource hub for early-stage founders">
+  <meta property="og:description" content="Mantle Compass is the resource hub for early-stage founders — operating manuals, frameworks, and answers on positioning, demand, and customer discovery.">
+  <meta property="og:url" content="https://heymantle.com/compass">
+  <meta property="og:image" content="https://heymantle.com/api/og">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Mantle Compass — Resource hub for early-stage founders">
+  <meta name="twitter:description" content="Mantle Compass is the resource hub for early-stage founders — operating manuals, frameworks, and answers on positioning, demand, and customer discovery.">
+  <meta name="twitter:image" content="https://heymantle.com/api/og">
+<!-- seo:end -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -1632,15 +1646,6 @@
       margin-bottom: 12px;
       transition: color var(--t-fast) var(--ease);
     }
-    .compass-hero-eyebrow::before {
-      content: "";
-      flex-shrink: 0;
-      width: 16px;
-      height: 16px;
-      background: currentColor;
-      -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='m9 18 6-6-6-6'/></svg>") no-repeat center / contain;
-              mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='m9 18 6-6-6-6'/></svg>") no-repeat center / contain;
-    }
     .compass-hero-eyebrow:hover { color: var(--gold); }
     .compass-hero-text h1 {
       font-family: var(--font-head);
@@ -2240,13 +2245,71 @@
       .site-search { display: none; }
     }
 
+  
+    /* ─── Mobile optimization (Compass) ─── */
+    @media (max-width: 720px) {
+      .site-header {
+        height: auto;
+        min-height: 56px;
+        padding: 10px 16px;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .site-header .site-search { display: none; }
+      .site-actions { gap: 10px; }
+      .sign-in-link { font-size: 13px; }
+      .site-cta { padding: 0 12px; height: 32px; font-size: 13px; }
+      .site-brand .site-logo { height: 22px; }
+
+      .compass-container { padding: 32px 20px !important; }
+      .compass-hero { padding: 0 !important; }
+      .compass-hero-text h1 {
+        font-size: clamp(36px, 11vw, 48px) !important;
+        line-height: 1.05 !important;
+      }
+      .compass-hero-text p { font-size: 16px !important; }
+
+      .compass-nav {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+      .compass-nav::-webkit-scrollbar { display: none; }
+      .compass-nav a { flex: none; white-space: nowrap; }
+
+      .compass-frameworks-grid,
+      .compass-insights-grid {
+        gap: 24px !important;
+        padding-bottom: 56px !important;
+      }
+      .framework-card-title { font-size: 24px !important; }
+      .framework-card-block { padding: 20px 18px !important; }
+
+      .insights-card-title { font-size: 18px !important; }
+
+      .compass-frameworks-filter {
+        font-size: 13px !important;
+        padding: 6px 12px !important;
+      }
+
+      .compass-manuals-list {
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+        padding-bottom: 56px !important;
+      }
+
+      .compass-connect { padding: 48px 0 !important; }
+      .compass-news h3 { font-size: 26px !important; }
+    }
+
   </style>
 </head>
 <body>
 
   <!-- ═══════════ Site header (Mantle Compass) ═══════════ -->
   <header class="site-header">
-    <a class="site-brand" href="mantle-compass.html" aria-label="Mantle Compass">
+    <a class="site-brand" href="/compass" aria-label="Mantle Compass">
       <img class="site-logo" src="/compass-logo-color-white.svg" alt="Mantle Compass" />
     </a>
     <form class="site-search" role="search" action="#">
@@ -2255,7 +2318,7 @@
     </form>
 
     <div class="site-actions">
-      <a class="sign-in-link" href="mantle-homepage.html">← Back to Mantle</a>
+      <a class="sign-in-link" href="/">← Back to Mantle</a>
       <a class="site-cta" href="#">Start for free</a>
     </div>
   </header>
@@ -2267,7 +2330,7 @@
         <!-- Hero -->
         <div class="compass-hero">
           <div class="compass-hero-text">
-            <a class="compass-hero-eyebrow" href="mantle-compass.html">Compass</a>
+            <a class="compass-hero-eyebrow" href="/compass">Compass /</a>
             <h1>Mantle Compass</h1>
             <p>Everything you need to go from idea to a real, working product.</p>
           </div>
@@ -2275,11 +2338,10 @@
 
         <!-- Section navigation -->
         <nav class="compass-nav" aria-label="Compass sections">
-          <a href="mantle-compass-manuals.html" data-count="8">Manuals</a>
-          <a href="#" data-count="8">Tools</a>
-          <a href="mantle-compass-answers.html" data-count="9">Answers</a>
-          <a href="mantle-compass-insights.html" data-count="9">Insights</a>
-          <a href="#" data-count="9">Releases</a>
+          <a href="/compass/manuals" data-count="8">Manuals</a>
+          <a href="/compass/frameworks" data-count="8">Frameworks</a>
+          <a href="/compass/answers" data-count="9">Answers</a>
+          <a href="/compass/insights" data-count="9">Insights</a>
         </nav>
 
         <!-- Featured collections split -->
