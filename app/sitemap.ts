@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { listInsights } from "@/lib/insights/content";
 import { getManualManifest, listManuals } from "@/lib/manuals/content";
 
-const SITE_URL = "https://heymantle.com";
+const SITE_URL = "https://mantle-chi.vercel.app";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();

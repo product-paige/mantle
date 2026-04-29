@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://heymantle.com"),
+  metadataBase: new URL("https://mantle-chi.vercel.app"),
   title: {
     default: "Mantle Compass — practical manuals for early-stage founders",
     template: "%s | Mantle Compass",
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     title: "Mantle Compass — practical manuals for early-stage founders",
     description:
       "Mantle Compass — practical manuals for early-stage founders on positioning, real demand, and customer discovery.",
-    url: "https://heymantle.com",
+    url: "https://mantle-chi.vercel.app",
     locale: "en_US",
   },
   twitter: {

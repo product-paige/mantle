@@ -87,7 +87,7 @@ export function OGImage({
           color: "#a8a29e",
         }}
       >
-        <div>heymantle.com</div>
+        <div>mantle-chi.vercel.app</div>
         <div>Mantle Compass</div>
       </div>
     </div>
