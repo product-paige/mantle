@@ -1928,6 +1928,7 @@
     .compass-blog {
       padding: 56px 0;
       border-bottom: 1px solid var(--border-soft);
+      margin-top: 84px;
     }
     .compass-blog h2 {
       font-family: var(--font-head);
@@ -1940,10 +1941,11 @@
     .compass-blog-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 32px;
+      gap: 56px;
     }
     .compass-blog a.compass-blog-feature,
-    .compass-blog a.compass-blog-item { text-decoration: none; color: inherit; display: block; }
+    .compass-blog a.compass-blog-item { text-decoration: none; color: inherit; }
+    .compass-blog a.compass-blog-feature { display: block; }
     .compass-blog-feature {
       cursor: pointer;
     }
@@ -1970,6 +1972,10 @@
       opacity: 0.6;
     }
     .compass-blog-tag {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      z-index: 2;
       display: inline-block;
       font-family: var(--font-mono);
       font-size: 12px;
@@ -1980,11 +1986,14 @@
       background: var(--text-primary);
       color: var(--canvas);
       border-radius: 2px;
-      margin-bottom: 14px;
+    }
+    .compass-blog-item-thumb .compass-blog-tag {
+      top: 10px;
+      left: 10px;
     }
     .compass-blog-feature-title {
       font-family: var(--font-head);
-      font-size: 30px;
+      font-size: 32px;
       font-weight: 500;
       letter-spacing: -0.02em;
       line-height: 1.15;
@@ -2040,14 +2049,14 @@
     .compass-blog-side { display: flex; flex-direction: column; gap: 24px; }
     .compass-blog-item {
       display: grid;
-      grid-template-columns: 1fr 140px;
+      grid-template-columns: 1fr 1fr;
       gap: 20px;
       align-items: start;
       cursor: pointer;
     }
     .compass-blog-item-body { display: flex; flex-direction: column; }
     .compass-blog-item-thumb {
-      aspect-ratio: 1 / 1;
+      aspect-ratio: 16 / 9;
       border-radius: 6px;
       background:
         radial-gradient(circle at 30% 30%, rgba(255,187,83,0.14), transparent 55%),
@@ -2057,12 +2066,22 @@
       position: relative;
       overflow: hidden;
     }
+    .compass-blog-item-thumb::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(45deg, rgba(255,255,255,0.035) 1px, transparent 1px),
+        linear-gradient(-45deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+      background-size: 18px 18px;
+      opacity: 0.6;
+    }
     .compass-blog-item-title {
       font-family: var(--font-head);
-      font-size: 26px;
+      font-size: 22px;
       font-weight: 500;
       letter-spacing: -0.018em;
-      line-height: 1.15;
+      line-height: 1.2;
       color: var(--text-primary);
       margin-bottom: 14px;
     }
@@ -2373,7 +2392,7 @@
         <div class="compass-hero">
           <div class="compass-hero-text">
             <a class="compass-hero-eyebrow" href="/compass">Compass /</a>
-            <h1>Compass</h1>
+            <h1>Mantle Compass</h1>
             <p>Everything you need to go from idea to a real, working product.</p>
           </div>
         </div>
@@ -2392,21 +2411,21 @@
             <span class="compass-feature-visual-label">Feature visual</span>
           </div>
           <div class="compass-feature-list">
-            <a class="compass-feature-item">
+            <a class="compass-feature-item" href="/manuals/operate-like-a-founder/">
               <div class="compass-feature-item-kicker">Manual 01</div>
               <div class="compass-feature-item-row">
                 <div class="compass-feature-item-title">Operate like a founder</div>
                 <div class="compass-feature-item-desc">Stop thinking like a builder. Learn how to make decisions that lead to a real product.<span class="compass-feature-item-link">Read the manual →</span></div>
               </div>
             </a>
-            <a class="compass-feature-item">
+            <a class="compass-feature-item" href="/manuals/get-to-real-demand/">
               <div class="compass-feature-item-kicker">Manual 02</div>
               <div class="compass-feature-item-row">
                 <div class="compass-feature-item-title">Get to real demand</div>
                 <div class="compass-feature-item-desc">Find real users, validate demand, and avoid building something no one needs.<span class="compass-feature-item-link">Read the manual →</span></div>
               </div>
             </a>
-            <a class="compass-feature-item">
+            <a class="compass-feature-item" href="/manuals/build-your-first-mvp/">
               <div class="compass-feature-item-kicker">Manual 03</div>
               <div class="compass-feature-item-row">
                 <div class="compass-feature-item-title">Build your first MVP</div>
@@ -2421,8 +2440,9 @@
           <h2>What our team is saying</h2>
           <div class="compass-blog-grid">
             <a class="compass-blog-feature" href="/compass/insights/mantle-is-a-thesis">
-              <div class="compass-blog-feature-media"></div>
-              <span class="compass-blog-tag">Thesis</span>
+              <div class="compass-blog-feature-media">
+                <span class="compass-blog-tag">Thesis</span>
+              </div>
               <div class="compass-blog-feature-title">Mantle is a thesis</div>
               <p class="compass-blog-feature-excerpt">There's a difference between putting five products in one place and building one product that does five things.</p>
               <div class="compass-blog-author">
@@ -2436,7 +2456,6 @@
             <div class="compass-blog-side">
               <a class="compass-blog-item" href="/compass/insights/asa-sasi-acquisition">
                 <div class="compass-blog-item-body">
-                  <span class="compass-blog-tag">Announcement</span>
                   <div class="compass-blog-item-title">Mantle expands with acquisition of App Store Analytics and Shopify App Store Index</div>
                   <div class="compass-blog-author">
                     <span class="compass-blog-author-avatar" aria-hidden="true">JG</span>
@@ -2446,7 +2465,39 @@
                     </div>
                   </div>
                 </div>
-                <div class="compass-blog-item-thumb"></div>
+                <div class="compass-blog-item-thumb">
+                  <span class="compass-blog-tag">Announcement</span>
+                </div>
+              </a>
+              <a class="compass-blog-item" href="/compass/insights">
+                <div class="compass-blog-item-body">
+                  <div class="compass-blog-item-title">The building revolution: 2026 builder report</div>
+                  <div class="compass-blog-author">
+                    <span class="compass-blog-author-avatar" aria-hidden="true">KM</span>
+                    <div>
+                      <div class="compass-blog-author-name">Kelsey McKeon</div>
+                      <div class="compass-blog-author-role">Marketing, Mantle</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="compass-blog-item-thumb">
+                  <span class="compass-blog-tag">Report</span>
+                </div>
+              </a>
+              <a class="compass-blog-item" href="/compass/insights">
+                <div class="compass-blog-item-body">
+                  <div class="compass-blog-item-title">Lessons from four days of AI-assisted app development in Mantle</div>
+                  <div class="compass-blog-author">
+                    <span class="compass-blog-author-avatar" aria-hidden="true">SS</span>
+                    <div>
+                      <div class="compass-blog-author-name">Sarah Sherman</div>
+                      <div class="compass-blog-author-role">Product, Mantle</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="compass-blog-item-thumb">
+                  <span class="compass-blog-tag">Story</span>
+                </div>
               </a>
             </div>
           </div>
@@ -2456,19 +2507,13 @@
         <section class="compass-connect">
           <div class="compass-news">
             <h3>Subscribe to our newsletter to receive monthly updates</h3>
-            <div class="compass-news-form">
-              <div class="compass-news-label">Email *</div>
-              <div class="compass-news-row">
-                <input class="compass-news-input" type="email" placeholder="Enter your email" />
-                <button class="compass-news-submit">Submit</button>
-              </div>
-              <div class="compass-news-legal">By clicking "Submit", you agree to opt in to Mantle's mailing list and agree to our ToS and Privacy Policy.</div>
-            </div>
+            <mantle-newsletter></mantle-newsletter>
           </div>
         </section>
 
       </div>
     </section>
 
+  <script src="/mantle-newsletter.js" defer></script>
 </body>
 </html>

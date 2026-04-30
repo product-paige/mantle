@@ -1,0 +1,18 @@
+{
+  "slug": "operate-like-a-founder",
+  "title": "Operate like a founder",
+  "number": "001",
+  "accent": "#FFBB53",
+  "heroVariant": "light",
+  "sections": [
+    { "slug": "", "title": "Introduction", "isIntro": true, "file": "00-introduction.mdx" },
+    { "slug": "vibe-coding-vs-real-products",      "title": "Vibe coding vs real products",                 "file": "01-vibe-coding-vs-real-products.mdx" },
+    { "slug": "the-shift-in-how-software-gets-built", "title": "The shift in how software gets built",      "file": "02-the-shift-in-how-software-gets-built.mdx" },
+    { "slug": "from-vibe-coder-to-founder",        "title": "From vibe coder to founder",                   "file": "03-youre-not-a-vibe-coder.mdx" },
+    { "slug": "outcomes-over-features",            "title": "Outcomes > features",                          "file": "04-outcomes-over-features.mdx" },
+    { "slug": "what-to-do-next",                   "title": "What to do next (and what to ignore)",         "file": "05-what-to-do-next.mdx" },
+    { "slug": "do-you-need-a-cofounder",           "title": "Do you need a cofounder?",                     "file": "06-do-you-need-a-cofounder.mdx" },
+    { "slug": "make-it-sustainable",               "title": "Make it sustainable",                          "file": "07-make-it-sustainable.mdx" },
+    { "slug": "ownership-and-risk",                "title": "Ownership + risk",                             "file": "08-ownership-and-risk.mdx" }
+  ]
+}

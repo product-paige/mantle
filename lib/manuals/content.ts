@@ -19,6 +19,8 @@ export type ManualManifest = {
   number: string;
   /** Hex accent color for this manual. Falls back to the default purple. */
   accent?: string;
+  /** Hero treatment. "light" = dark text, no dot overlay (use on light accents). */
+  heroVariant?: "default" | "light";
   sections: ManualSection[];
 };
 

@@ -60,7 +60,12 @@ export function ManualShell({
         </aside>
 
         <article className="manual-content">
-          <header className="manual-hero">
+          <header
+            className={
+              "manual-hero" +
+              (manifest.heroVariant === "light" ? " manual-hero--light" : "")
+            }
+          >
             <div className="manual-hero-row">
               <div className="manual-hero-trail">
                 <Link href="/compass/manuals">Manuals</Link>
