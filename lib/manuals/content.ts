@@ -17,6 +17,8 @@ export type ManualManifest = {
   slug: string;
   title: string;
   number: string;
+  /** Hex accent color for this manual. Falls back to the default purple. */
+  accent?: string;
   sections: ManualSection[];
 };
 

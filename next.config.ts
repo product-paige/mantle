@@ -35,14 +35,8 @@ const nextConfig: NextConfig = {
         { source: "/use-cases/customers/profiles",   destination: "/use-cases/customers/profiles/index.html" },
         { source: "/use-cases/customers/data",       destination: "/use-cases/customers/data/index.html" },
         { source: "/use-cases/customers/segments",   destination: "/use-cases/customers/segments/index.html" },
-        // Manual intro — static HTML for now.
-        { source: "/manuals/:manual", destination: "/manuals/:manual/index.html" },
-        // Legacy static-HTML sections. Remove an entry once the section
-        // has been migrated to MDX under /content/manuals/...
-        { source: "/manuals/get-to-real-demand/start-with-the-problem",   destination: "/manuals/get-to-real-demand/start-with-the-problem/index.html" },
-        { source: "/manuals/get-to-real-demand/validate-your-app-idea",   destination: "/manuals/get-to-real-demand/validate-your-app-idea/index.html" },
-        { source: "/manuals/get-to-real-demand/capture-early-users",      destination: "/manuals/get-to-real-demand/capture-early-users/index.html" },
-        { source: "/manuals/get-to-real-demand/define-your-positioning",  destination: "/manuals/get-to-real-demand/define-your-positioning/index.html" },
+        // Manual intro and sections 01–07 are MDX, served by the dynamic
+        // /manuals/[manual] and /manuals/[manual]/[section] routes.
       ],
       fallback: [],
     };

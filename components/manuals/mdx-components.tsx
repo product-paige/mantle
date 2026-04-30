@@ -21,4 +21,13 @@ export const mdxComponents = {
   CheckItem,
   // Map a plain "---" thematic break to our notion-divider class
   hr: () => <hr className="notion-divider" />,
+  // remark-gfm renders task-list checkboxes with `disabled`; strip that so
+  // readers can actually toggle them.
+  input: (props: React.InputHTMLAttributes<HTMLInputElement>) => {
+    if (props.type === "checkbox") {
+      const { disabled: _disabled, defaultChecked, ...rest } = props;
+      return <input {...rest} type="checkbox" defaultChecked={defaultChecked} />;
+    }
+    return <input {...props} />;
+  },
 };

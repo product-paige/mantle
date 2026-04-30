@@ -1,6 +1,8 @@
 import Link from "next/link";
-import type { ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
 import type { ManualManifest, ManualSection } from "@/lib/manuals/content";
+import { ManualCopyLink } from "./ManualCopyLink";
+import { SidebarSubscribe } from "./SidebarSubscribe";
 
 function pad2(n: number) {
   return n < 10 ? "0" + n : "" + n;
@@ -25,37 +27,19 @@ export function ManualShell({
   next: ManualSection | null;
   children: ReactNode;
 }) {
+  const accent = manifest.accent ?? "#9676FF";
   return (
-    <main className="manual-shell">
-      <nav className="manual-breadcrumb" aria-label="Breadcrumb">
-        <div className="manual-breadcrumb-trail">
-          <Link href="/compass">Compass</Link>
-          <span className="manual-breadcrumb-sep">/</span>
-          <Link href="/compass/manuals">Manuals</Link>
-          <span className="manual-breadcrumb-sep">/</span>
-          <span className="current">{manifest.title}</span>
-        </div>
-      </nav>
-
-      <header className="manual-hero">
-        <div className="manual-hero-eyebrow">
-          <svg
-            className="eyebrow-chev"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth={2}
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            aria-hidden="true"
-          >
-            <path d="M9 6l6 6-6 6" />
-          </svg>
-          <span>Manual {manifest.number}</span>
-        </div>
-        <h1>{manifest.title}</h1>
-      </header>
-
+    <main
+      className="manual-shell"
+      style={
+        {
+          "--gold": accent,
+          "--gold-high": accent,
+          "--gold-soft": `color-mix(in srgb, ${accent} 18%, transparent)`,
+          "--gold-glow": `color-mix(in srgb, ${accent} 30%, transparent)`,
+        } as CSSProperties
+      }
+    >
       <div className="manual-layout">
         <aside className="manual-sidebar" aria-label="Manual sections">
           <div className="manual-sidebar-label">Sections</div>
@@ -72,9 +56,23 @@ export function ManualShell({
               </Link>
             );
           })}
+          <SidebarSubscribe />
         </aside>
 
         <article className="manual-content">
+          <header className="manual-hero">
+            <div className="manual-hero-row">
+              <div className="manual-hero-trail">
+                <Link href="/compass/manuals">Manuals</Link>
+                <span className="manual-hero-trail-sep">/</span>
+                <Link href={`/manuals/${manifest.slug}/`} className="current">
+                  {manifest.title}
+                </Link>
+              </div>
+              <ManualCopyLink />
+            </div>
+            <h1>{manifest.title}</h1>
+          </header>
           <section className="manual-section">
             {currentIndex > 0 ? (
               <div className="manual-section-eyebrow">

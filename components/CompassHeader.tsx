@@ -38,7 +38,7 @@ export function CompassHeader({
       </form>
       <div className="site-actions">
         <a className="sign-in-link" href="/">
-          ← Back to Mantle
+          Back to Mantle
         </a>
         <a className="site-cta" href="#">
           Start for free
