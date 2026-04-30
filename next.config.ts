@@ -13,7 +13,7 @@ const CLEAN_URL_PAGES: Array<{ clean: string; file: string }> = [
   { clean: "/compass/frameworks", file: "/mantle-compass-frameworks.html" },
   { clean: "/systems",            file: "/mantle-core-systems.html" },
   { clean: "/results",            file: "/mantle-results.html" },
-  { clean: "/use-cases",          file: "/mantle-use-case-directory.html" },
+  { clean: "/features",           file: "/mantle-use-case-directory.html" },
 ];
 
 const nextConfig: NextConfig = {
@@ -29,12 +29,13 @@ const nextConfig: NextConfig = {
         })),
       ],
       afterFiles: [
-        // Use-case static-HTML pages.
-        { source: "/use-cases/customers",            destination: "/use-cases/customers/index.html" },
-        { source: "/use-cases/customers/lifecycle",  destination: "/use-cases/customers/lifecycle/index.html" },
-        { source: "/use-cases/customers/profiles",   destination: "/use-cases/customers/profiles/index.html" },
-        { source: "/use-cases/customers/data",       destination: "/use-cases/customers/data/index.html" },
-        { source: "/use-cases/customers/segments",   destination: "/use-cases/customers/segments/index.html" },
+        // Sub-pages still live under the /features prefix today; their
+        // static HTML files happen to be authored under /use-cases/.
+        { source: "/features/customers",            destination: "/use-cases/customers/index.html" },
+        { source: "/features/customers/lifecycle",  destination: "/use-cases/customers/lifecycle/index.html" },
+        { source: "/features/customers/profiles",   destination: "/use-cases/customers/profiles/index.html" },
+        { source: "/features/customers/data",       destination: "/use-cases/customers/data/index.html" },
+        { source: "/features/customers/segments",   destination: "/use-cases/customers/segments/index.html" },
         // Manual intro and sections 01–07 are MDX, served by the dynamic
         // /manuals/[manual] and /manuals/[manual]/[section] routes.
       ],
@@ -42,11 +43,16 @@ const nextConfig: NextConfig = {
     };
   },
   async redirects() {
-    return CLEAN_URL_PAGES.map(({ clean, file }) => ({
-      source: file,
-      destination: clean,
-      permanent: true,
-    }));
+    return [
+      ...CLEAN_URL_PAGES.map(({ clean, file }) => ({
+        source: file,
+        destination: clean,
+        permanent: true,
+      })),
+      // Old /use-cases URL retired in favor of /features.
+      { source: "/use-cases",            destination: "/features",            permanent: true },
+      { source: "/use-cases/:path*",     destination: "/features/:path*",     permanent: true },
+    ];
   },
 };
 

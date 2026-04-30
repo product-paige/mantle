@@ -1422,11 +1422,16 @@
     .cmp-pain-line {
       text-align: center;
       font-family: var(--font-head);
-      font-size: clamp(22px, 2.4vw, 30px);
+      font-size: 56px;
+      line-height: 1.05;
+      font-weight: 500;
       color: var(--text-primary);
-      letter-spacing: -0.018em;
-      max-width: 720px;
+      letter-spacing: -0.024em;
+      max-width: 900px;
       margin: 0 auto 36px;
+    }
+    @media (max-width: 720px) {
+      .cmp-pain-line { font-size: 38px; }
     }
     .cmp-pain-row {
       display: flex;
@@ -1579,6 +1584,157 @@
     }
     @media (max-width: 560px) {
       .cmp-replace-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Integrations strip */
+    .cmp-integrations-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .cmp-integration {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 18px 20px;
+      background: var(--surface);
+      border: 1px solid var(--border-soft);
+      border-radius: 12px;
+      transition: border-color var(--t-fast) var(--ease), background var(--t-fast) var(--ease);
+    }
+    .cmp-integration:hover {
+      border-color: rgba(255, 255, 255, 0.16);
+      background: var(--surface-raised);
+    }
+    .cmp-integration-mark {
+      flex-shrink: 0;
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #1d1628 0%, #120d1c 100%);
+      border: 1px solid var(--border-soft);
+      display: grid;
+      place-items: center;
+      font-family: var(--font-head);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-primary);
+      letter-spacing: -0.01em;
+    }
+    .cmp-integration-name {
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+    .cmp-integration-cat {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+    .cmp-integrations-foot {
+      font-family: var(--font-body);
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+    .cmp-integrations-foot a { color: var(--gold); text-decoration: none; }
+    .cmp-integrations-foot a:hover { color: var(--gold-dim); }
+    @media (max-width: 900px) {
+      .cmp-integrations-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 480px) {
+      .cmp-integrations-grid { grid-template-columns: 1fr; }
+    }
+
+    /* MCP / AI workflows */
+    .cmp-mcp {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 48px;
+      align-items: center;
+      padding: 40px;
+      border: 1px solid rgba(255, 187, 83, 0.18);
+      border-radius: 18px;
+      background:
+        radial-gradient(120% 80% at 100% 0%, rgba(255,187,83,0.08), transparent 55%),
+        radial-gradient(80% 80% at 0% 100%, rgba(140,95,210,0.10), transparent 60%),
+        var(--surface);
+    }
+    .cmp-mcp-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+    .cmp-mcp-tag {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 6px 10px;
+      background: rgba(255, 187, 83, 0.10);
+      color: var(--gold-high);
+      border: 1px solid rgba(255, 187, 83, 0.22);
+      border-radius: 6px;
+    }
+    .cmp-mcp h3 {
+      font-family: var(--font-head);
+      font-size: 32px;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      color: var(--text-primary);
+      margin-bottom: 14px;
+    }
+    .cmp-mcp p {
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.55;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+    .cmp-mcp-clients {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+    .cmp-mcp-client {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 16px;
+      background: var(--canvas);
+      border: 1px solid var(--border-soft);
+      border-radius: 10px;
+    }
+    .cmp-mcp-client-mark {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      background: linear-gradient(135deg, #1d1628 0%, #120d1c 100%);
+      border: 1px solid var(--border-soft);
+      display: grid;
+      place-items: center;
+      font-family: var(--font-head);
+      font-weight: 600;
+      font-size: 11px;
+      color: var(--text-primary);
+      flex-shrink: 0;
+    }
+    .cmp-mcp-client-name {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+    @media (max-width: 900px) {
+      .cmp-mcp { grid-template-columns: 1fr; padding: 28px; }
+      .cmp-mcp h3 { font-size: 28px; }
     }
 
     /* Before / After stat blocks */
@@ -1776,7 +1932,7 @@
             <div>
               <div class="mm-section-label">Systems</div>
               <div class="mm-list two-col">
-                <a class="mm-item" href="/use-cases/customers">
+                <a class="mm-item" href="/features/customers">
                   <div class="mm-item-title">Customers</div>
                   <div class="mm-item-sub">Profiles, lifecycle, segmentation</div>
                 </a>
@@ -1806,27 +1962,27 @@
             <div>
               <div class="mm-section-label">Use cases</div>
               <div class="mm-list">
-                <a class="mm-item" href="/use-cases"><div class="mm-item-title">Launch your app</div></a>
-                <a class="mm-item" href="/use-cases"><div class="mm-item-title">Monetize your product</div></a>
-                <a class="mm-item" href="/use-cases"><div class="mm-item-title">Onboard and activate users</div></a>
-                <a class="mm-item" href="/use-cases"><div class="mm-item-title">Engage and retain users</div></a>
-                <a class="mm-item" href="/use-cases"><div class="mm-item-title">Understand your data</div></a>
-                <a class="mm-item" href="/use-cases"><div class="mm-item-title">Grow your app</div></a>
+                <a class="mm-item" href="/features"><div class="mm-item-title">Launch your app</div></a>
+                <a class="mm-item" href="/features"><div class="mm-item-title">Monetize your product</div></a>
+                <a class="mm-item" href="/features"><div class="mm-item-title">Onboard and activate users</div></a>
+                <a class="mm-item" href="/features"><div class="mm-item-title">Engage and retain users</div></a>
+                <a class="mm-item" href="/features"><div class="mm-item-title">Understand your data</div></a>
+                <a class="mm-item" href="/features"><div class="mm-item-title">Grow your app</div></a>
               </div>
               <div style="margin-top: 14px;">
-                <a class="mm-link" href="/use-cases">View all use cases →</a>
+                <a class="mm-link" href="/features">View all systems →</a>
               </div>
             </div>
             <div>
               <div class="mm-section-label">Built for</div>
               <div class="mm-list">
-                <a class="mm-item" href="/use-cases"><div class="mm-item-title">Shopify apps</div></a>
-                <a class="mm-item" href="/use-cases"><div class="mm-item-title">AI-built apps</div></a>
-                <a class="mm-item" href="/use-cases"><div class="mm-item-title">Web apps</div></a>
-                <a class="mm-item" href="/use-cases"><div class="mm-item-title">Mobile apps</div></a>
+                <a class="mm-item" href="/features"><div class="mm-item-title">Shopify apps</div></a>
+                <a class="mm-item" href="/features"><div class="mm-item-title">AI-built apps</div></a>
+                <a class="mm-item" href="/features"><div class="mm-item-title">Web apps</div></a>
+                <a class="mm-item" href="/features"><div class="mm-item-title">Mobile apps</div></a>
               </div>
               <div style="margin-top: 14px;">
-                <a class="mm-link" href="/use-cases">See all integrations →</a>
+                <a class="mm-link" href="/features">See all integrations →</a>
               </div>
             </div>
             <div>
@@ -1954,13 +2110,13 @@
     <div class="container">
       <p class="cmp-pain-line">Most teams did not choose a stack. They accumulated one.</p>
       <div class="cmp-pain-row">
-        <span>Stripe</span><span class="cmp-plus">+</span>
         <span>Loops</span><span class="cmp-plus">+</span>
         <span>Intercom</span><span class="cmp-plus">+</span>
         <span>GitBook</span><span class="cmp-plus">+</span>
         <span>HubSpot</span><span class="cmp-plus">+</span>
         <span>Zapier</span><span class="cmp-plus">+</span>
-        <span>Analytics</span>
+        <span>Mixpanel</span><span class="cmp-plus">+</span>
+        <span>Notion</span>
       </div>
     </div>
   </section>
@@ -1983,7 +2139,7 @@
         </div>
         <div class="cmp-table-row" role="row">
           <div class="cmp-table-cell label" role="cell">Billing</div>
-          <div class="cmp-table-cell" role="cell">Stripe + billing add-ons</div>
+          <div class="cmp-table-cell" role="cell">Standalone billing + add-ons</div>
           <div class="cmp-table-cell cost cost-stack" role="cell">$100–$2,000+</div>
           <div class="cmp-table-cell mantle cost-mantle" role="cell">Included</div>
         </div>
@@ -2078,6 +2234,122 @@
           </span>
           <h3>Analytics silos</h3>
           <p>Product, revenue, and lifecycle metrics in one model. No exports, no drift.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 4b. Integrations ═══ -->
+  <section class="cmp-section" style="padding-top: 24px;">
+    <div class="container">
+      <div class="cmp-section-head">
+        <span class="eyebrow">Plays nicely</span>
+        <h2>Connect what you already use</h2>
+        <p>Mantle replaces the systems that should live together. Everything else gets a clean integration — payments, identity, CDPs, ad platforms, data warehouses.</p>
+      </div>
+
+      <div class="cmp-integrations-grid">
+        <div class="cmp-integration">
+          <div class="cmp-integration-mark">S</div>
+          <div>
+            <div class="cmp-integration-name">Stripe</div>
+            <div class="cmp-integration-cat">Payments</div>
+          </div>
+        </div>
+        <div class="cmp-integration">
+          <div class="cmp-integration-mark">Sh</div>
+          <div>
+            <div class="cmp-integration-name">Shopify</div>
+            <div class="cmp-integration-cat">Commerce</div>
+          </div>
+        </div>
+        <div class="cmp-integration">
+          <div class="cmp-integration-mark">Sg</div>
+          <div>
+            <div class="cmp-integration-name">Segment</div>
+            <div class="cmp-integration-cat">CDP</div>
+          </div>
+        </div>
+        <div class="cmp-integration">
+          <div class="cmp-integration-mark">Sl</div>
+          <div>
+            <div class="cmp-integration-name">Slack</div>
+            <div class="cmp-integration-cat">Notifications</div>
+          </div>
+        </div>
+        <div class="cmp-integration">
+          <div class="cmp-integration-mark">Sf</div>
+          <div>
+            <div class="cmp-integration-name">Salesforce</div>
+            <div class="cmp-integration-cat">CRM sync</div>
+          </div>
+        </div>
+        <div class="cmp-integration">
+          <div class="cmp-integration-mark">Hs</div>
+          <div>
+            <div class="cmp-integration-name">HubSpot</div>
+            <div class="cmp-integration-cat">CRM sync</div>
+          </div>
+        </div>
+        <div class="cmp-integration">
+          <div class="cmp-integration-mark">Sn</div>
+          <div>
+            <div class="cmp-integration-name">Snowflake</div>
+            <div class="cmp-integration-cat">Warehouse</div>
+          </div>
+        </div>
+        <div class="cmp-integration">
+          <div class="cmp-integration-mark">Bq</div>
+          <div>
+            <div class="cmp-integration-name">BigQuery</div>
+            <div class="cmp-integration-cat">Warehouse</div>
+          </div>
+        </div>
+      </div>
+
+      <p class="cmp-integrations-foot">Plus webhooks, an open REST API, and OAuth for Google, GitHub, and Slack. <a href="#">See all integrations →</a></p>
+    </div>
+  </section>
+
+  <!-- ═══ 4c. MCP / AI workflows ═══ -->
+  <section class="cmp-section" style="padding-top: 24px;">
+    <div class="container">
+      <div class="cmp-mcp">
+        <div>
+          <div class="cmp-mcp-tags">
+            <span class="cmp-mcp-tag">Built for AI</span>
+            <span class="cmp-mcp-tag">MCP-native</span>
+          </div>
+          <h3>Run your business from Claude, Codex, or any agent that speaks MCP</h3>
+          <p>Mantle exposes your customer, billing, and messaging data over the Model Context Protocol — so any AI client can query, segment, and trigger workflows with full context.</p>
+          <p>Ask Claude to find at-risk customers, draft a win-back campaign, run the dunning batch, or open a refund — without an integration project.</p>
+        </div>
+
+        <div class="cmp-mcp-clients">
+          <div class="cmp-mcp-client">
+            <div class="cmp-mcp-client-mark">Cl</div>
+            <div class="cmp-mcp-client-name">Claude Desktop</div>
+          </div>
+          <div class="cmp-mcp-client">
+            <div class="cmp-mcp-client-mark">Cd</div>
+            <div class="cmp-mcp-client-name">Codex CLI</div>
+          </div>
+          <div class="cmp-mcp-client">
+            <div class="cmp-mcp-client-mark">Cu</div>
+            <div class="cmp-mcp-client-name">Cursor</div>
+          </div>
+          <div class="cmp-mcp-client">
+            <div class="cmp-mcp-client-mark">Wf</div>
+            <div class="cmp-mcp-client-name">Windsurf</div>
+          </div>
+          <div class="cmp-mcp-client">
+            <div class="cmp-mcp-client-mark">Cc</div>
+            <div class="cmp-mcp-client-name">Claude Code</div>
+          </div>
+          <div class="cmp-mcp-client">
+            <div class="cmp-mcp-client-mark">+</div>
+            <div class="cmp-mcp-client-name">Any MCP client</div>
+          </div>
         </div>
       </div>
     </div>

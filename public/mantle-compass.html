@@ -1939,21 +1939,23 @@
     }
     .compass-blog-grid {
       display: grid;
-      grid-template-columns: 2fr 1fr;
+      grid-template-columns: 1fr 1fr;
       gap: 32px;
     }
+    .compass-blog a.compass-blog-feature,
+    .compass-blog a.compass-blog-item { text-decoration: none; color: inherit; display: block; }
     .compass-blog-feature {
       cursor: pointer;
     }
     .compass-blog-feature-media {
-      aspect-ratio: 16 / 9;
-      border-radius: 6px;
+      aspect-ratio: 16 / 10;
+      border-radius: 8px;
       background:
         radial-gradient(circle at 40% 50%, rgba(255,187,83,0.12), transparent 55%),
         radial-gradient(circle at 80% 60%, rgba(120,80,180,0.20), transparent 55%),
         linear-gradient(135deg, #1d1628 0%, #120d1c 100%);
       border: 1px solid var(--border-soft);
-      margin-bottom: 16px;
+      margin-bottom: 18px;
       position: relative;
       overflow: hidden;
     }
@@ -1967,48 +1969,83 @@
       background-size: 18px 18px;
       opacity: 0.6;
     }
+    .compass-blog-tag {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      padding: 5px 9px;
+      background: var(--text-primary);
+      color: var(--canvas);
+      border-radius: 2px;
+      margin-bottom: 14px;
+    }
     .compass-blog-feature-title {
       font-family: var(--font-head);
-      font-size: 24px;
+      font-size: 30px;
       font-weight: 500;
       letter-spacing: -0.02em;
-      line-height: 1.2;
+      line-height: 1.15;
       color: var(--text-primary);
-      margin-bottom: 8px;
+      margin-bottom: 12px;
     }
-    .compass-blog-feature-byline {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      letter-spacing: 0.05rem;
-      text-transform: uppercase;
-      color: var(--text-muted);
-    }
-    /* Gold ribbon/flag badge — top-right of compass article card image */
-    .compass-blog-ribbon {
-      position: absolute;
-      top: 18px;
-      right: 18px;
-      z-index: 10;
-      background: #ffba52;
-      color: #000;
+    .compass-blog-feature-excerpt {
       font-family: var(--font-body);
-      font-weight: 500;
-      font-size: 12px;
-      line-height: 1;
-      text-transform: capitalize;
-      text-decoration: none;
-      padding: 2px 10px;
-      border-radius: 0.5px;
-      clip-path: polygon(0 0, 100% 0, calc(100% - 6px) 50%, 100% 100%, 0 100%, 6px 50%);
+      font-size: 18px;
+      line-height: 1.5;
+      color: var(--text-secondary);
+      margin-bottom: 18px;
     }
-    .compass-blog-side { display: flex; flex-direction: column; gap: 20px; }
+    .compass-blog-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .compass-blog-author-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #ffd596 0%, #ffba52 100%);
+      color: #1a1320;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-head);
+      font-size: 13px;
+      font-weight: 600;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+    .compass-blog-author-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .compass-blog-author-name {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-primary);
+      line-height: 1.2;
+    }
+    .compass-blog-author-role {
+      font-family: var(--font-body);
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.2;
+      margin-top: 2px;
+    }
+    .compass-blog-side { display: flex; flex-direction: column; gap: 24px; }
     .compass-blog-item {
       display: grid;
-      grid-template-columns: 1fr 120px;
-      gap: 16px;
+      grid-template-columns: 1fr 140px;
+      gap: 20px;
       align-items: start;
       cursor: pointer;
     }
+    .compass-blog-item-body { display: flex; flex-direction: column; }
     .compass-blog-item-thumb {
       aspect-ratio: 1 / 1;
       border-radius: 6px;
@@ -2022,20 +2059,15 @@
     }
     .compass-blog-item-title {
       font-family: var(--font-head);
-      font-size: 16px;
+      font-size: 26px;
       font-weight: 500;
-      letter-spacing: -0.012em;
-      line-height: 1.3;
+      letter-spacing: -0.018em;
+      line-height: 1.15;
       color: var(--text-primary);
-      margin-bottom: 6px;
+      margin-bottom: 14px;
     }
-    .compass-blog-item-byline {
-      font-family: var(--font-mono);
-      font-size: 10.5px;
-      letter-spacing: 0.05rem;
-      text-transform: uppercase;
-      color: var(--text-muted);
-    }
+    .compass-blog-item .compass-blog-tag { margin-bottom: 12px; }
+    .compass-blog-item .compass-blog-author { margin-top: auto; }
 
     /* Newsletter */
     .compass-connect {
@@ -2388,32 +2420,34 @@
         <section class="compass-blog">
           <h2>What our team is saying</h2>
           <div class="compass-blog-grid">
-            <article class="compass-blog-feature">
-              <div class="compass-blog-feature-media">
-                <span class="compass-blog-ribbon">Getting started</span>
+            <a class="compass-blog-feature" href="/compass/insights/mantle-is-a-thesis">
+              <div class="compass-blog-feature-media"></div>
+              <span class="compass-blog-tag">Thesis</span>
+              <div class="compass-blog-feature-title">Mantle is a thesis</div>
+              <p class="compass-blog-feature-excerpt">There's a difference between putting five products in one place and building one product that does five things.</p>
+              <div class="compass-blog-author">
+                <span class="compass-blog-author-avatar" aria-hidden="true">JG</span>
+                <div>
+                  <div class="compass-blog-author-name">Jordan Gutsche</div>
+                  <div class="compass-blog-author-role">Founder, Mantle</div>
+                </div>
               </div>
-              <div class="compass-blog-feature-title">Introducing enterprise AppGen: Software that starts with a sentence and ends in production</div>
-              <div class="compass-blog-feature-byline">By David Hsu</div>
-            </article>
+            </a>
             <div class="compass-blog-side">
-              <article class="compass-blog-item">
-                <div>
-                  <div class="compass-blog-item-title">The building revolution: 2026 builder report</div>
-                  <div class="compass-blog-item-byline">By Kelsey McKeon</div>
+              <a class="compass-blog-item" href="/compass/insights/asa-sasi-acquisition">
+                <div class="compass-blog-item-body">
+                  <span class="compass-blog-tag">Announcement</span>
+                  <div class="compass-blog-item-title">Mantle expands with acquisition of App Store Analytics and Shopify App Store Index</div>
+                  <div class="compass-blog-author">
+                    <span class="compass-blog-author-avatar" aria-hidden="true">JG</span>
+                    <div>
+                      <div class="compass-blog-author-name">Jordan Gutsche</div>
+                      <div class="compass-blog-author-role">Founder, Mantle</div>
+                    </div>
+                  </div>
                 </div>
-                <div class="compass-blog-item-thumb">
-                  <span class="compass-blog-ribbon">Report</span>
-                </div>
-              </article>
-              <article class="compass-blog-item">
-                <div>
-                  <div class="compass-blog-item-title">Lessons from four days of AI-assisted app development in Mantle</div>
-                  <div class="compass-blog-item-byline">By Sarah Sherman</div>
-                </div>
-                <div class="compass-blog-item-thumb">
-                  <span class="compass-blog-ribbon">Story</span>
-                </div>
-              </article>
+                <div class="compass-blog-item-thumb"></div>
+              </a>
             </div>
           </div>
         </section>

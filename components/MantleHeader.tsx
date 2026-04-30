@@ -1,8 +1,37 @@
 import Link from "next/link";
 
+const arrowIcon = (
+  <svg
+    className="icon-default"
+    width="18"
+    height="18"
+    viewBox="0 0 12 12"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M3 9L9 3" />
+    <path d="M5 3h4v4" />
+  </svg>
+);
+
+const chev = (
+  <svg className="chev" viewBox="0 0 12 12" fill="none">
+    <path
+      d="M3 4.5 L6 7.5 L9 4.5"
+      stroke="currentColor"
+      strokeWidth="1.4"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
 export function MantleHeader() {
   return (
-    <header className="site-header site-header--dark">
+    <header className="site-header">
       <Link className="site-brand" href="/" aria-label="Mantle">
         <svg
           className="site-logo"
@@ -20,20 +49,178 @@ export function MantleHeader() {
       </Link>
 
       <nav className="site-nav" aria-label="Primary">
-        <Link href="/">Platform</Link>
-        <Link href="/use-cases">Solutions</Link>
-        <Link href="/results">Results</Link>
-        <Link href="/compass">Resources</Link>
-        <Link href="/">Pricing</Link>
+        {/* Platform */}
+        <div className="nav-group">
+          <a className="nav-trigger">
+            Platform {chev}
+          </a>
+          <div className="mega-menu mega-menu-platform">
+            <div className="mm-grid cols-2-plat">
+              <div>
+                <div className="mm-stack">
+                  <Link className="mm-card" href="/ops">
+                    <div className="mm-card-head">
+                      <div className="mm-card-kicker">Mantle Ops</div>
+                      <span className="mm-card-arrow" aria-hidden="true">
+                        {arrowIcon}
+                      </span>
+                    </div>
+                    <div className="mm-card-title">The business layer for your app</div>
+                    <div className="mm-card-body">Run your entire product on one platform, fully connected.</div>
+                  </Link>
+                  <Link className="mm-card" href="#">
+                    <div className="mm-card-head">
+                      <div className="mm-card-kicker">
+                        Mantle AI <span className="mm-badge">New</span>
+                      </div>
+                      <span className="mm-card-arrow" aria-hidden="true">
+                        {arrowIcon}
+                      </span>
+                    </div>
+                    <div className="mm-card-title">AI that connects everything</div>
+                    <div className="mm-card-body">Automates workflows and takes action across your systems.</div>
+                  </Link>
+                </div>
+              </div>
+              <div>
+                <div className="mm-section-label">Systems</div>
+                <div className="mm-list two-col">
+                  <Link className="mm-item" href="/features/customers">
+                    <div className="mm-item-title">Customers</div>
+                    <div className="mm-item-sub">Profiles, lifecycle, segmentation</div>
+                  </Link>
+                  <Link className="mm-item" href="#"><div className="mm-item-title">Billing</div><div className="mm-item-sub">Pricing, subscriptions, payments</div></Link>
+                  <Link className="mm-item" href="#"><div className="mm-item-title">Email + messaging</div><div className="mm-item-sub">Lifecycle, campaigns, automation</div></Link>
+                  <Link className="mm-item" href="#"><div className="mm-item-title">Analytics</div><div className="mm-item-sub">Acquisition, retention, revenue</div></Link>
+                  <Link className="mm-item" href="#"><div className="mm-item-title">Automations</div><div className="mm-item-sub">Triggers, workflows, routing</div></Link>
+                  <Link className="mm-item" href="#"><div className="mm-item-title">Sales</div><div className="mm-item-sub">Leads, pipeline, conversion</div></Link>
+                  <Link className="mm-item" href="#"><div className="mm-item-title">Partnerships</div><div className="mm-item-sub">Affiliates, referrals, distribution</div></Link>
+                  <Link className="mm-item" href="#"><div className="mm-item-title">Support</div><div className="mm-item-sub">Tickets, help docs, AI responses</div></Link>
+                </div>
+                <div style={{ marginTop: 20 }}>
+                  <Link className="mm-link" href="/systems">View all systems →</Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Solutions */}
+        <div className="nav-group">
+          <a className="nav-trigger">
+            Solutions {chev}
+          </a>
+          <div className="mega-menu mega-menu-wide">
+            <div className="mm-grid cols-3-card">
+              <div>
+                <div className="mm-section-label">Use cases</div>
+                <div className="mm-list">
+                  <Link className="mm-item" href="/features"><div className="mm-item-title">Launch your app</div></Link>
+                  <Link className="mm-item" href="/features"><div className="mm-item-title">Monetize your product</div></Link>
+                  <Link className="mm-item" href="/features"><div className="mm-item-title">Onboard and activate users</div></Link>
+                  <Link className="mm-item" href="/features"><div className="mm-item-title">Engage and retain users</div></Link>
+                  <Link className="mm-item" href="/features"><div className="mm-item-title">Understand your data</div></Link>
+                  <Link className="mm-item" href="/features"><div className="mm-item-title">Grow your app</div></Link>
+                </div>
+                <div style={{ marginTop: 14 }}>
+                  <Link className="mm-link" href="/features">View all systems →</Link>
+                </div>
+              </div>
+              <div>
+                <div className="mm-section-label">Built for</div>
+                <div className="mm-list">
+                  <Link className="mm-item" href="/features"><div className="mm-item-title">Shopify apps</div></Link>
+                  <Link className="mm-item" href="/features"><div className="mm-item-title">AI-built apps</div></Link>
+                  <Link className="mm-item" href="/features"><div className="mm-item-title">Web apps</div></Link>
+                  <Link className="mm-item" href="/features"><div className="mm-item-title">Mobile apps</div></Link>
+                </div>
+                <div style={{ marginTop: 14 }}>
+                  <Link className="mm-link" href="/features">See all integrations →</Link>
+                </div>
+              </div>
+              <div>
+                <Link className="mm-card" href="/customers/txtcart">
+                  <div className="mm-card-media" aria-hidden="true">
+                    <span className="mm-card-media-label">Customer logo</span>
+                  </div>
+                  <div className="mm-card-head">
+                    <div className="mm-card-kicker">Featured customer</div>
+                    <span className="mm-card-arrow" aria-hidden="true">
+                      {arrowIcon}
+                    </span>
+                  </div>
+                  <div className="mm-card-title">How TXTCart drove $131K in referral revenue using Mantle</div>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <Link className="nav-link" href="/results">Results</Link>
+
+        {/* Resources */}
+        <div className="nav-group">
+          <a className="nav-trigger">
+            Resources {chev}
+          </a>
+          <div className="mega-menu mega-menu-wide">
+            <div className="mm-grid cols-4-sol">
+              <div>
+                <div className="mm-section-label">Company</div>
+                <div className="mm-list">
+                  <Link className="mm-item" href="/results"><div className="mm-item-title">Customers</div></Link>
+                  <Link className="mm-item" href="/compass/insights"><div className="mm-item-title">Blog</div></Link>
+                  <Link className="mm-item" href="#"><div className="mm-item-title">Events</div></Link>
+                  <Link className="mm-item" href="#"><div className="mm-item-title">About</div></Link>
+                </div>
+              </div>
+              <div>
+                <div className="mm-section-label">Learn</div>
+                <div className="mm-list">
+                  <Link className="mm-item" href="#"><div className="mm-item-title">Docs</div></Link>
+                  <Link className="mm-item" href="/compass"><div className="mm-item-title">Compass</div></Link>
+                  <Link className="mm-item" href="/compass/frameworks"><div className="mm-item-title">Frameworks</div></Link>
+                  <Link className="mm-item" href="/compare"><div className="mm-item-title">Compare</div></Link>
+                  <Link className="mm-item" href="#"><div className="mm-item-title">Join our Discord</div></Link>
+                </div>
+              </div>
+              <div>
+                <div className="mm-section-label">Developers</div>
+                <div className="mm-list">
+                  <Link className="mm-item" href="#"><div className="mm-item-title">MCPs</div></Link>
+                  <Link className="mm-item" href="#"><div className="mm-item-title">API reference</div></Link>
+                  <Link className="mm-item" href="#"><div className="mm-item-title">SDKs</div></Link>
+                  <Link className="mm-item" href="#"><div className="mm-item-title">Changelog</div></Link>
+                </div>
+              </div>
+              <div>
+                <Link className="mm-card" href="/compass">
+                  <div className="mm-card-media" aria-hidden="true">
+                    <span className="mm-card-media-label">Compass visual</span>
+                  </div>
+                  <div className="mm-card-head">
+                    <div className="mm-card-kicker">Mantle Compass</div>
+                    <span className="mm-card-arrow" aria-hidden="true">
+                      {arrowIcon}
+                    </span>
+                  </div>
+                  <div className="mm-card-title">Operating manuals for building real apps</div>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <a href="#">Pricing</a>
       </nav>
 
       <div className="site-actions">
-        <Link className="sign-in-link" href="#">
+        <a className="sign-in-link" href="#">
           Sign in
-        </Link>
-        <Link className="site-cta" href="#">
+        </a>
+        <a className="site-cta" href="#">
           Start for free
-        </Link>
+        </a>
       </div>
     </header>
   );
