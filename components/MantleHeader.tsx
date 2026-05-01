@@ -95,7 +95,7 @@ export function MantleHeader() {
                   <Link className="mm-item" href="#"><div className="mm-item-title">Automations</div><div className="mm-item-sub">Triggers, workflows, routing</div></Link>
                   <Link className="mm-item" href="#"><div className="mm-item-title">Sales</div><div className="mm-item-sub">Leads, pipeline, conversion</div></Link>
                   <Link className="mm-item" href="#"><div className="mm-item-title">Partnerships</div><div className="mm-item-sub">Affiliates, referrals, distribution</div></Link>
-                  <Link className="mm-item" href="#"><div className="mm-item-title">Support</div><div className="mm-item-sub">Tickets, help docs, AI responses</div></Link>
+                  <Link className="mm-item" href="#"><div className="mm-item-title">Help desk</div><div className="mm-item-sub">Tickets, help docs, AI responses</div></Link>
                 </div>
                 <div style={{ marginTop: 20 }}>
                   <Link className="mm-link" href="/systems">View all systems →</Link>

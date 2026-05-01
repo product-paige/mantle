@@ -105,6 +105,7 @@ export default async function ManualSectionPage({
       currentIndex={loaded.index}
       prev={loaded.prev}
       next={loaded.next}
+      currentSummary={(loaded.frontmatter as { summary?: string }).summary}
     >
       <script
         type="application/ld+json"

@@ -1,7 +1,7 @@
 ---
-title: "Validate with Reddit Research"
+title: "Reddit research report"
 slug: reddit-research-report
-summary: "Use real complaints, frustrations, and language from Reddit to pressure-test whether your idea solves a live problem."
+summary: "Use Reddit conversations to pressure-test an idea before you build."
 ribbon: "Frameworks"
 author: "Mantle Team"
 authorRole: "Mantle"
@@ -9,8 +9,8 @@ blockColor: "black"
 tags: ["Growth", "Validation"]
 published: true
 codeBlocks:
-  - filename: validate-with-reddit-research.prompt.md
-    language: markdown
+  - filename: reddit-research-report.prompt.md
+    language: prompt
     code: |
       Act as an experienced product strategist.
 
@@ -24,10 +24,10 @@ codeBlocks:
 
       Please give me:
 
-      ## 1. Where to search on Reddit
+      Where to search on Reddit
       Suggest the best subreddits where this audience likely talks.
 
-      ## 2. What to search
+      What to search
       Give me 10 exact Reddit search queries to uncover:
       - complaints
       - recurring frustrations
@@ -37,7 +37,7 @@ codeBlocks:
       - buying intent
       - "I wish this existed" moments
 
-      ## 3. What strong validation looks like
+      What strong validation looks like
       Tell me what signals would indicate real demand. Examples:
       - repeated complaints
       - emotional language
@@ -46,7 +46,7 @@ codeBlocks:
       - frequent recommendation requests
       - urgency
 
-      ## 4. What weak validation looks like
+      What weak validation looks like
       Tell me signals that suggest weak demand. Examples:
       - mild annoyance only
       - rare mentions
@@ -54,45 +54,69 @@ codeBlocks:
       - easy DIY solutions
       - no money being spent
 
-      ## 5. Extract likely user language
+      Extract likely user language
       Give me phrases real users might use so I can improve landing page copy.
 
-      ## 6. Honest verdict
+      Honest verdict
       Based on this type of problem, rate likely demand from 1–10.
 
-      ## 7. Best pivot if weak
+      Best pivot if weak
       If the idea feels weak, suggest a sharper niche, stronger audience, or
       more painful angle.
 
       Be brutally honest. I do not need encouragement. I need signal.
 ---
 
-Most early-stage ideas die because nobody pressure-tests the *problem* before they pressure-test the product. This prompt is a fast way to do that — borrowing the unfiltered honesty of public Reddit threads to figure out whether your idea is solving something people are already complaining about, paying around, or quietly suffering through.
+## Description
 
-Paste it into your AI of choice with your idea filled in, and use the output as raw research — not a final answer. The goal is signal, not validation theatre.
+Use Reddit conversations to pressure-test an idea before you build. This prompt helps you find real pain points, current workarounds, buying signals, and the language users already use.
 
-## How to use it
+Fast signal. No validation theatre.
 
-Drop the prompt into Mantle AI (or any model you trust) with two fields filled in:
+## Best for
 
-- **Your idea** — one to two sentences. Be specific.
-- **Your target user** — a real role or situation, not "small business owners."
+<ul className="framework-checklist">
+  <li>validating app or SaaS ideas</li>
+  <li>choosing between ideas</li>
+  <li>finding sharper positioning</li>
+  <li>uncovering user pain points</li>
+  <li>improving copy with real language</li>
+</ul>
 
-The model will give you subreddit suggestions, exact search queries, and a framework for reading what you find. Run those queries yourself and compare what you read to the "strong" vs "weak" demand signals it flagged.
+## Use with
+
+- **Claude** for deeper outputs
+- **ChatGPT** for speed and iteration
+
+## How to use
+
+Fill in:
+
+- **Your idea** — one clear sentence
+- **Your target user** — specific role or situation
+
+Run the prompt. Review the suggested subreddits and search terms yourself.
 
 ## What to look for
 
-The prompt is structured so you can answer four questions before you build:
+<ul className="framework-checklist">
+  <li>repeated complaints</li>
+  <li>messy manual solutions</li>
+  <li>people paying for alternatives</li>
+  <li>urgency or frustration</li>
+  <li>clear language patterns</li>
+</ul>
 
-- **Are people already in pain about this?** Real complaints, emotional language, repeat threads.
-- **Are they trying to solve it themselves?** Manual workarounds, hacked-together tools, "anyone else doing X?" posts.
-- **Are they spending money?** People asking for recommendations, comparing tools, switching off something.
-- **Is it urgent enough to act?** Frequent posts, frustrated tone, mentions of deadlines or business impact.
+## Why it works
 
-If you see all four, you have a live problem. If you only see one or two, the prompt's "weak validation" section is a checklist for *why* — and the pivot section pushes you toward sharper framing.
+Reddit is where people complain honestly, ask for help, and compare tools without polished marketing.
 
-## Why Reddit works
+## Reminder
 
-Reddit is one of the few public surfaces where people complain plainly without trying to sell you something. The signal isn't perfect — it's noisy, biased toward extreme experiences, and skewed by the sub you're reading. But it's a fast, free, and brutally honest pressure test before you invest weeks of build time.
+Use this prompt to find where pain exists — not to convince yourself the idea is good.
 
-Treat the verdict as one input. Pair it with conversations, your own usage data, and a small bet to test the strongest pivot.
+<a className="framework-cta-card framework-cta-card--purple" href="/manuals/get-to-real-demand/validate-your-app-idea">
+  <span className="framework-cta-card-eyebrow">Manuals / Find real demand</span>
+  <span className="framework-cta-card-title">Validate your app idea</span>
+  <span className="framework-cta-card-desc">Learn how to test demand, sharpen positioning, and validate ideas before you build.</span>
+</a>

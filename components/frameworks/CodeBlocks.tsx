@@ -1,7 +1,34 @@
 "use client";
 
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import type { FrameworkCodeBlock } from "@/lib/frameworks/content";
+
+/**
+ * Split a line into plain segments and [PLACEHOLDER] segments so we can
+ * style fill-in-the-blank slots (e.g. `[INSERT IDEA]`) in the gold accent.
+ */
+function renderLine(line: string) {
+  const re = /\[[A-Z][A-Z0-9 _\-]*\]/g;
+  const parts: Array<string | { ph: string }> = [];
+  let last = 0;
+  let m: RegExpExecArray | null;
+  while ((m = re.exec(line))) {
+    if (m.index > last) parts.push(line.slice(last, m.index));
+    parts.push({ ph: m[0] });
+    last = m.index + m[0].length;
+  }
+  if (last < line.length) parts.push(line.slice(last));
+  if (parts.length === 0) return line;
+  return parts.map((p, i) =>
+    typeof p === "string" ? (
+      <Fragment key={i}>{p}</Fragment>
+    ) : (
+      <span key={i} className="framework-code-placeholder">
+        {p.ph}
+      </span>
+    ),
+  );
+}
 
 export function CodeBlocks({ blocks }: { blocks: FrameworkCodeBlock[] }) {
   if (blocks.length === 0) return null;
@@ -81,7 +108,9 @@ function CodeCard({ block }: { block: FrameworkCodeBlock }) {
           {lines.map((line, i) => (
             <span className="framework-code-line" key={i}>
               <span className="framework-code-lineno">{i + 1}</span>
-              <span className="framework-code-content">{line || " "}</span>
+              <span className="framework-code-content">
+                {line ? renderLine(line) : " "}
+              </span>
             </span>
           ))}
         </code>

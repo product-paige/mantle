@@ -18,6 +18,7 @@ export function ManualShell({
   currentIndex,
   prev,
   next,
+  currentSummary,
   children,
 }: {
   manifest: ManualManifest;
@@ -25,6 +26,7 @@ export function ManualShell({
   currentIndex: number;
   prev: ManualSection | null;
   next: ManualSection | null;
+  currentSummary?: string;
   children: ReactNode;
 }) {
   const accent = manifest.accent ?? "#9676FF";
@@ -42,7 +44,12 @@ export function ManualShell({
     >
       <div className="manual-layout">
         <aside className="manual-sidebar" aria-label="Manual sections">
-          <div className="manual-sidebar-label">Sections</div>
+          <div className="manual-sidebar-head">
+            <Link className="manual-sidebar-trail" href="/compass/manuals">
+              Manuals /
+            </Link>
+            <h2 className="manual-sidebar-manual">{manifest.title}</h2>
+          </div>
           {manifest.sections.map((s, i) => {
             const active = s.slug === current.slug;
             return (
@@ -67,29 +74,17 @@ export function ManualShell({
             }
           >
             <div className="manual-hero-row">
-              <div className="manual-hero-trail">
-                <Link href="/compass/manuals">Manuals</Link>
-                <span className="manual-hero-trail-sep">/</span>
-                <Link href={`/manuals/${manifest.slug}/`} className="current">
-                  {manifest.title}
-                </Link>
+              <div className="manual-hero-eyebrow">
+                Section {pad2(currentIndex)}
               </div>
               <ManualCopyLink />
             </div>
-            <h1>{manifest.title}</h1>
+            <h1>{current.title}</h1>
+            {currentSummary ? (
+              <p className="manual-hero-summary">{currentSummary}</p>
+            ) : null}
           </header>
-          <section className="manual-section">
-            {currentIndex > 0 ? (
-              <div className="manual-section-eyebrow">
-                Section {pad2(currentIndex)}
-              </div>
-            ) : (
-              <div className="manual-section-eyebrow">
-                Section 00 · Introduction
-              </div>
-            )}
-            {children}
-          </section>
+          <section className="manual-section">{children}</section>
 
           <nav className="manual-prev-next" aria-label="Section navigation">
             {prev ? (

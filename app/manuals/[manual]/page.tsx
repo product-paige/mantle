@@ -52,6 +52,7 @@ export default async function ManualIntroPage({
       currentIndex={loaded.index}
       prev={loaded.prev}
       next={loaded.next}
+      currentSummary={(loaded.frontmatter as { summary?: string }).summary}
     >
       <MDXRemote
         source={loaded.source}
