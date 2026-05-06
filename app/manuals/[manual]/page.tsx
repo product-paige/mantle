@@ -4,6 +4,10 @@ import remarkGfm from "remark-gfm";
 import { ManualShell } from "@/compass/components/manuals/ManualShell";
 import { mdxComponents } from "@/compass/components/manuals/mdx-components";
 import { listManuals, loadSection } from "@/compass/lib/manuals/content";
+import {
+  buildSectionJsonLd,
+  buildSectionMetadata,
+} from "@/compass/lib/seo";
 
 type Params = { manual: string };
 
@@ -20,20 +24,7 @@ export async function generateMetadata({
   const { manual } = await params;
   const loaded = await loadSection(manual, "");
   if (!loaded) return {};
-  const fm = loaded.frontmatter as { summary?: string; description?: string };
-  const description =
-    fm.description ??
-    fm.summary ??
-    `${loaded.manifest.title} — a Mantle Compass manual.`;
-  const title = loaded.manifest.title;
-  const path = `/manuals/${manual}`;
-  return {
-    title,
-    description,
-    alternates: { canonical: path },
-    openGraph: { type: "article", title, description, url: path },
-    twitter: { card: "summary_large_image", title, description },
-  };
+  return buildSectionMetadata(loaded);
 }
 
 export default async function ManualIntroPage({
@@ -45,6 +36,8 @@ export default async function ManualIntroPage({
   const loaded = await loadSection(manual, "");
   if (!loaded) notFound();
 
+  const [articleLd, breadcrumbLd] = buildSectionJsonLd(loaded);
+
   return (
     <ManualShell
       manifest={loaded.manifest}
@@ -54,6 +47,14 @@ export default async function ManualIntroPage({
       next={loaded.next}
       introBody={(loaded.frontmatter as { introBody?: string }).introBody}
     >
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
+      />
       <MDXRemote
         source={loaded.source}
         components={mdxComponents}

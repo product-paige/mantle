@@ -723,6 +723,76 @@ body {
 .result-row { margin-top:28px; display:flex; flex-direction:column; align-items:center; gap:0; }
 .result-eq { display:flex; align-items:center; justify-content:center; margin-bottom:-18px; position:relative; z-index:10; }
 
+/* ═══════════════════════════════════════════
+   OPERATING LAYER INFOGRAPHIC
+═══════════════════════════════════════════ */
+.op-title {
+  font-family: 'Manrope', sans-serif;
+  font-size: 42px; font-weight: 500;
+  line-height: 1.05; letter-spacing: -0.03em;
+  color: rgba(0,0,0,0.88);
+  margin-bottom: 36px;
+}
+.op-title span { color: #1E1C23; }
+
+.op-timeline {
+  display: flex; align-items: center; gap: 0;
+  margin-bottom: 28px;
+}
+.op-node { display:flex; flex-direction:column; align-items:center; gap:10px; flex-shrink:0; }
+.op-node-icon {
+  width:52px; height:52px; border-radius:50%;
+  background:rgba(0,0,0,0.1);
+  display:flex; align-items:center; justify-content:center;
+}
+.op-node-icon.launch {
+  width:64px; height:64px; border-radius:14px;
+  background:#1E1C23;
+}
+.op-node-lbl { font-size:13px; font-weight:500; color:rgba(0,0,0,0.55); text-align:center; }
+.op-node-lbl.hl { color:#1E1C23; font-weight:700; font-size:14px; }
+.op-node-sub { font-size:12px; color:rgba(0,0,0,0.38); text-align:center; }
+.op-dash { flex:1; height:0; border-top:1.5px dashed rgba(0,0,0,0.22); }
+
+.op-cols { display:flex; gap:16px; }
+.op-panel { flex:1; border-radius:6px; padding:28px; }
+.op-panel-dark { background:#1E1C23; }
+.op-panel-light { background:rgba(0,0,0,0.1); }
+
+.op-panel-heading {
+  font-family:'Manrope',sans-serif;
+  font-size:17px; font-weight:500; line-height:1.3;
+  margin-bottom:3px;
+}
+.op-panel-heading.muted { color:rgba(255,255,255,0.45); }
+.op-panel-heading.accent { color:var(--mustard); margin-bottom:22px; }
+.op-panel-heading.dark { color:rgba(0,0,0,0.75); margin-bottom:20px; }
+
+.op-icon-grid {
+  display:grid; grid-template-columns:repeat(4,1fr); gap:10px;
+}
+.op-chip {
+  background:rgba(255,255,255,0.06); border-radius:6px;
+  padding:14px 8px 12px;
+  display:flex; flex-direction:column; align-items:center; gap:8px;
+}
+.op-chip-lbl {
+  font-family:'Geist Mono',monospace;
+  font-size:10px; letter-spacing:0.5px; text-transform:uppercase;
+  color:rgba(255,255,255,0.45);
+}
+
+.op-decisions { display:flex; flex-direction:column; gap:13px; }
+.op-decision { display:flex; align-items:center; gap:14px; }
+.op-decision-dot {
+  width:36px; height:36px; border-radius:50%;
+  background:rgba(0,0,0,0.15);
+  flex-shrink:0; display:flex; align-items:center; justify-content:center;
+}
+.op-decision-text {
+  font-size:16px; font-weight:400; color:rgba(0,0,0,0.72); line-height:1.4;
+}
+
 </style>
 </head>
 <body>
@@ -1571,6 +1641,190 @@ body {
   </div>
 
   <div class="airops-badge"><img src="/compass-logo-black.svg" alt="MantleCompass"/></div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════
+     OPERATING LAYER — process infographic
+═══════════════════════════════════════════════ -->
+<div class="section">Process infographic — vivid</div>
+
+<div class="card bg-mustard">
+
+  <!-- Eyebrow + Title -->
+  <div class="ch-tag on-vivid">Framework</div>
+  <div class="op-title">The operating layer<br><span>hasn't changed</span></div>
+
+  <!-- Timeline -->
+  <div class="op-timeline">
+    <!-- Before launch -->
+    <div class="op-node">
+      <div class="op-node-icon">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="rgba(0,0,0,0.52)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="4,7 1,11 4,15"/><polyline points="18,7 21,11 18,15"/>
+          <line x1="8" y1="5" x2="14" y2="17"/>
+        </svg>
+      </div>
+      <div class="op-node-lbl">Before launch</div>
+      <div class="op-node-sub">Build the app</div>
+    </div>
+    <div class="op-dash"></div>
+    <!-- Launch -->
+    <div class="op-node">
+      <div class="op-node-icon launch">
+        <svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="#FFC66E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M13 2.5S19.5 8 19.5 14.5C19.5 18.6 16.6 22 13 22S6.5 18.6 6.5 14.5C6.5 8 13 2.5 13 2.5Z"/>
+          <circle cx="13" cy="14.5" r="2.2" fill="#FFC66E" stroke="none"/>
+          <line x1="8.5" y1="23" x2="10.5" y2="19.5"/>
+          <line x1="17.5" y1="23" x2="15.5" y2="19.5"/>
+        </svg>
+      </div>
+      <div class="op-node-lbl hl">Launch</div>
+    </div>
+    <div class="op-dash"></div>
+    <!-- After launch -->
+    <div class="op-node">
+      <div class="op-node-icon">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="rgba(0,0,0,0.52)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="14" width="4" height="6" rx="1"/>
+          <rect x="9" y="9" width="4" height="11" rx="1"/>
+          <rect x="16" y="4" width="4" height="16" rx="1"/>
+          <polyline points="2,8 8,4 14,6.5 20,2"/>
+        </svg>
+      </div>
+      <div class="op-node-lbl">After launch</div>
+      <div class="op-node-sub">Run the system</div>
+    </div>
+  </div>
+
+  <!-- Two columns -->
+  <div class="op-cols">
+
+    <!-- Left: dark panel — You're operating -->
+    <div class="op-panel op-panel-dark">
+      <div class="op-panel-heading muted">You're not just building.</div>
+      <div class="op-panel-heading accent">You're operating.</div>
+      <div class="op-icon-grid">
+
+        <div class="op-chip">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="rgba(255,198,110,0.8)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="7" r="4"/><path d="M3 20c0-4.4 3.6-8 8-8s8 3.6 8 8"/>
+          </svg>
+          <span class="op-chip-lbl">Auth</span>
+        </div>
+
+        <div class="op-chip">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="rgba(255,198,110,0.8)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="5" width="18" height="13" rx="2"/>
+            <line x1="2" y1="9" x2="20" y2="9"/>
+            <line x1="6" y1="14" x2="10" y2="14"/>
+          </svg>
+          <span class="op-chip-lbl">Billing</span>
+        </div>
+
+        <div class="op-chip">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="rgba(255,198,110,0.8)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="13" width="4" height="6" rx="1"/>
+            <rect x="9" y="8" width="4" height="11" rx="1"/>
+            <rect x="15" y="4" width="4" height="15" rx="1"/>
+          </svg>
+          <span class="op-chip-lbl">Analytics</span>
+        </div>
+
+        <div class="op-chip">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="rgba(255,198,110,0.8)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 11.5c0 4.1-4 7.5-9 7.5-1.4 0-2.7-.3-3.9-.8L2 20l1.8-4.5C3 14.2 2 12.9 2 11.5 2 7.4 6 4 11 4s9 3.4 9 7.5z"/>
+            <line x1="8" y1="11" x2="14" y2="11"/><line x1="8" y1="14" x2="11" y2="14"/>
+          </svg>
+          <span class="op-chip-lbl">Support</span>
+        </div>
+
+        <div class="op-chip">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="rgba(255,198,110,0.8)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="2,12 5,12 7,6 9,18 12,10 14,14 16,12 20,12"/>
+          </svg>
+          <span class="op-chip-lbl">Uptime</span>
+        </div>
+
+        <div class="op-chip">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="rgba(255,198,110,0.8)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M11 2L3 6v5c0 4.5 3.4 8.7 8 9.9 4.6-1.2 8-5.4 8-9.9V6L11 2z"/>
+            <polyline points="8,11 10,13 14,9"/>
+          </svg>
+          <span class="op-chip-lbl">Security</span>
+        </div>
+
+        <div class="op-chip">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="rgba(255,198,110,0.8)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 17H5a4 4 0 0 1 0-8h.3A6 6 0 0 1 17 10a4 4 0 0 1 0 7z"/>
+            <line x1="11" y1="13" x2="11" y2="19"/>
+            <polyline points="8,16 11,13 14,16"/>
+          </svg>
+          <span class="op-chip-lbl">Deploys</span>
+        </div>
+
+        <div class="op-chip">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="rgba(255,198,110,0.8)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <ellipse cx="11" cy="6" rx="8" ry="3"/>
+            <path d="M3 6v4c0 1.7 3.6 3 8 3s8-1.3 8-3V6"/>
+            <path d="M3 10v5c0 1.7 3.6 3 8 3s8-1.3 8-3v-5"/>
+          </svg>
+          <span class="op-chip-lbl">Data</span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Right: light panel — Decisions -->
+    <div class="op-panel op-panel-light">
+      <div class="op-panel-heading dark">You now have to make decisions about:</div>
+      <div class="op-decisions">
+
+        <div class="op-decision">
+          <div class="op-decision-dot">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="rgba(0,0,0,0.55)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="8" cy="5" r="2.5"/><path d="M2 14c0-3.3 2.7-6 6-6s6 2.7 6 6"/>
+            </svg>
+          </div>
+          <div class="op-decision-text">Who the app is really for</div>
+        </div>
+
+        <div class="op-decision">
+          <div class="op-decision-dot">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="rgba(0,0,0,0.55)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="8" cy="8" r="6"/><polyline points="5,8 7,10 11,6"/>
+            </svg>
+          </div>
+          <div class="op-decision-text">What outcome you are promising</div>
+        </div>
+
+        <div class="op-decision">
+          <div class="op-decision-dot">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="rgba(0,0,0,0.55)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="8" cy="8" r="6"/><line x1="5" y1="8" x2="11" y2="8"/>
+            </svg>
+          </div>
+          <div class="op-decision-text">What you are intentionally not building</div>
+        </div>
+
+        <div class="op-decision">
+          <div class="op-decision-dot">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="rgba(0,0,0,0.55)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="3" y1="6" x2="13" y2="6"/>
+              <line x1="3" y1="6" x2="5" y2="4"/><line x1="3" y1="6" x2="5" y2="8"/>
+              <line x1="3" y1="10" x2="13" y2="10"/>
+              <line x1="13" y1="10" x2="11" y2="8"/><line x1="13" y1="10" x2="11" y2="12"/>
+            </svg>
+          </div>
+          <div class="op-decision-text">How much complexity you can realistically support</div>
+        </div>
+
+      </div>
+    </div>
+
+  </div><!-- /op-cols -->
+
+  <div class="badge"><img src="/compass-logo-black.svg" alt="MantleCompass"/></div>
 </div>
 
 
