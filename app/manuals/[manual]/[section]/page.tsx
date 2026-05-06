@@ -1,13 +1,13 @@
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
-import { ManualShell } from "@/components/manuals/ManualShell";
-import { mdxComponents } from "@/components/manuals/mdx-components";
+import { ManualShell } from "@/compass/components/manuals/ManualShell";
+import { mdxComponents } from "@/compass/components/manuals/mdx-components";
 import {
   getManualManifest,
   listManuals,
   loadSection,
-} from "@/lib/manuals/content";
+} from "@/compass/lib/manuals/content";
 
 type Params = { manual: string; section: string };
 
@@ -105,7 +105,7 @@ export default async function ManualSectionPage({
       currentIndex={loaded.index}
       prev={loaded.prev}
       next={loaded.next}
-      currentSummary={(loaded.frontmatter as { summary?: string }).summary}
+      introBody={(loaded.frontmatter as { introBody?: string }).introBody}
     >
       <script
         type="application/ld+json"

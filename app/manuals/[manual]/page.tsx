@@ -1,9 +1,9 @@
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
-import { ManualShell } from "@/components/manuals/ManualShell";
-import { mdxComponents } from "@/components/manuals/mdx-components";
-import { listManuals, loadSection } from "@/lib/manuals/content";
+import { ManualShell } from "@/compass/components/manuals/ManualShell";
+import { mdxComponents } from "@/compass/components/manuals/mdx-components";
+import { listManuals, loadSection } from "@/compass/lib/manuals/content";
 
 type Params = { manual: string };
 
@@ -52,7 +52,7 @@ export default async function ManualIntroPage({
       currentIndex={loaded.index}
       prev={loaded.prev}
       next={loaded.next}
-      currentSummary={(loaded.frontmatter as { summary?: string }).summary}
+      introBody={(loaded.frontmatter as { introBody?: string }).introBody}
     >
       <MDXRemote
         source={loaded.source}

@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 import { OG_CONTENT_TYPE, OG_SIZE, OGImage } from "@/app/og-image-template";
-import { loadSection } from "@/lib/manuals/content";
+import { loadSection } from "@/compass/lib/manuals/content";
 
 export const alt = "Mantle Compass manual section";
 export const size = OG_SIZE;

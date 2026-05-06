@@ -2,7 +2,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import matter from "gray-matter";
 
-const CONTENT_ROOT = path.join(process.cwd(), "content", "manuals");
+const CONTENT_ROOT = path.join(process.cwd(), "compass", "content", "manuals");
 
 export type ManualSection = {
   slug: string;

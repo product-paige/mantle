@@ -1,9 +1,10 @@
 import type { ReactNode } from "react";
-import { CompassHeader } from "@/components/CompassHeader";
 
 /**
  * Manual route layout — loads the same CSS the static manual pages use
  * so MDX-rendered manuals match the existing visual system exactly.
+ * The Mantle Compass top nav is intentionally omitted on manual pages;
+ * the manual hero + sidebar handle their own navigation chrome.
  */
 export default function ManualsLayout({ children }: { children: ReactNode }) {
   return (
@@ -26,7 +27,6 @@ export default function ManualsLayout({ children }: { children: ReactNode }) {
       />
       {/* eslint-disable-next-line @next/next/no-css-tags */}
       <link rel="stylesheet" href="/manuals/get-to-real-demand/manual.css" />
-      <CompassHeader />
       {children}
     </>
   );

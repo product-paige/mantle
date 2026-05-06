@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
-import { listInsights } from "@/lib/insights/content";
-import { getManualManifest, listManuals } from "@/lib/manuals/content";
+import { listInsights } from "@/compass/lib/insights/content";
+import { getManualManifest, listManuals } from "@/compass/lib/manuals/content";
 
 const SITE_URL = "https://mantle-chi.vercel.app";
 

@@ -2,7 +2,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import matter from "gray-matter";
 
-const CONTENT_ROOT = path.join(process.cwd(), "content", "insights");
+const CONTENT_ROOT = path.join(process.cwd(), "compass", "content", "insights");
 
 export type InsightFrontmatter = {
   title: string;
