@@ -1,3 +1,9 @@
+/* Cascade layer order: anything in `legacy` loses to Tailwind utilities.
+   Used to defang the `* { margin:0; padding:0 }` resets in the static
+   Compass CSS files (insight.css, manual-base.css) so they don't beat
+   utility classes during the Tailwind migration. */
+@layer legacy, theme, base, components, utilities;
+
 @import "tailwindcss";
 
 :root {
@@ -92,14 +98,352 @@
   --font-mono: var(--font-geist-mono);
 }
 
-* {
-  border-color: hsl(var(--border));
+/* ──────────────────────────────────────────────────────────────
+   Mantle design tokens — exact light mirror of the dark theme on
+   heymantle.com. Token names, structure, and values are identical
+   to the marketing site (--color-surface-*, --color-fg-*,
+   --color-edge-*, --color-accent-*, --color-seismic-*, shadow /
+   text / leading / rounded scales, etc.) so the same semantic
+   classes (bg-surface-high, text-fg-medium, rounded-3xl) render
+   consistently across both. Only three families flip for light
+   mode: surfaces, foregrounds, and edges. Accents, category
+   colors, seismics, scales, and typography stay identical.
+   ────────────────────────────────────────────────────────────── */
+@theme {
+  --spacing: 4px;
+
+  /* Breakpoints — match Mantle exactly. */
+  --breakpoint-xs: 400px;
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+
+  /* Typography stacks — identical to Mantle. */
+  --font-sans:    'Geist', ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-mono:    'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --font-heading: 'Manrope', 'Inter var', ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-display: 'Geist Pixel Square', 'Manrope', ui-sans-serif, sans-serif;
+
+  /* Text scale — px values that match Mantle's RENDERED sizes.
+     (Mantle uses rem at a 62.5% root so 1.3rem = 13px; we use a
+     16px root, so we encode the visual targets directly as px.
+     Same visual output as heymantle.com.) */
+  --text-xxs:  13px;
+  --text-xs:   14px;
+  --text-sm:   15px;
+  --text-base: 16px;
+  --text-md:   17px;
+  --text-lg:   18px;
+  --text-xl:   19px;
+  --text-2xl:  24px;
+  --text-3xl:  28px;
+  --text-4xl:  32px;
+  --text-5xl:  32px;
+  --text-6xl:  38px;
+  --text-7xl:  48px;
+
+  /* Leading — identical to Mantle. */
+  --leading-none:     1;
+  --leading-tightest: 1.1;
+  --leading-tighter:  1.2;
+  --leading-tight:    1.3;
+  --leading-normal:   1.4;
+  --leading-loose:    1.5;
+  --leading-looser:   1.6;
+  --leading-loosest:  1.8;
+  --leading-4:  1.6rem;
+  --leading-5:  2rem;
+  --leading-6:  2.4rem;
+  --leading-7:  2.8rem;
+  --leading-8:  3.2rem;
+  --leading-10: 4rem;
+  --leading-12: 4.8rem;
+  --leading-14: 5.6rem;
+  --leading-16: 6.4rem;
+
+  /* Rounded scale — identical to Mantle (note: not Tailwind
+     defaults — Mantle adds the 10px step at 2xl). */
+  --rounded-none: 0;
+  --rounded-md:   4px;
+  --rounded-lg:   6px;
+  --rounded-xl:   8px;
+  --rounded-2xl:  10px;
+  --rounded-3xl:  12px;
+  --rounded-4xl:  16px;
+  --rounded-full: 50%;
+
+  /* Base colors. */
+  --color-white:        #FFFFFF;
+  --color-black:        #000000;
+  --color-transparent:  rgba(0, 0, 0, 0);
+  --color-black-opaque: rgba(0, 0, 0, 1);
+
+  /* Ambient — warm light gold for the Compass light theme.
+     The radial-gradient on `[data-bg-ambient]` mixes this with
+     transparent at low intensity, so it reads as a faint warm
+     glow in the upper-right rather than a colored stain. */
+  --color-ambient: #FFE0A8;
+
+  /* Foreground tiers — LIGHT MIRROR of Mantle's dark fg ramp.
+     Mantle: #fff / #e2e1eb / #a2a0b1 / #5f5d72.
+     Here:   #110f14 / #1f1b27 / #5e5c5a / #8a8784. */
+  --color-fg-high:   #110F14;
+  --color-fg-medium: #1F1B27;
+  --color-fg-low:    #5E5C5A;
+  --color-fg-lower:  #8A8784;
+
+  /* Surface tiers — LIGHT MIRROR of Mantle's dark surface ramp.
+     "high" stays = most prominent / closest. Mantle's surfaces
+     go #1E1C23 → #000 from highest to lowest; we go #FFFFFF →
+     deep ink so light-theme cards remain lightest at the top. */
+  /* Surface ramp — clean white light-theme mirror of Mantle's
+     dark `#0C0A0E → #1E1C23` ramp. The bottom two tiers stay
+     dark so footer/CTA islands can render as dark surfaces
+     against a white page. */
+  --color-surface-highest: #FFFFFF;  /* pure white — cards, modals */
+  --color-surface-higher:  #FAFAFA;  /* subtly raised */
+  --color-surface-high:    #F5F5F5;  /* light gray */
+  --color-surface-medium:  #FFFFFF;  /* page bg (was cream #EFEDE6) */
+  --color-surface-low:     #E5E7EB;  /* recessed / inset */
+  --color-surface-lower:   #1F1B27;  /* dark island — footer/CTA */
+  --color-surface-lowest:  #110F14;  /* darkest island */
+
+  /* Edges — light mirror of Mantle's white-alpha edges. */
+  --color-edge-high:   rgba(17, 15, 20, 0.14);
+  --color-edge-medium: rgba(17, 15, 20, 0.08);
+  --color-edge-low:    rgba(17, 15, 20, 0.04);
+
+  /* Brand accent (gold) — identical to Mantle. */
+  --color-accent:        var(--color-accent-medium);
+  --color-accent-high:   #FFC66E;
+  --color-accent-medium: #FFBB53;
+  --color-accent-low:    #F5AC3D;
+  /* Foreground accent — darker amber tones for TEXT use on the
+     light Compass surface. The standard accent ramp above is
+     bright gold for solid fills (buttons, M-logo block, card
+     tints) where dark text sits on top; on a light surface the
+     bright ramp has poor contrast for text/icons. Use the
+     `-fg-*` ramp anywhere an accent color is rendered as text
+     or as an icon, so it passes WCAG AA on canvas / surface-
+     high / surface-higher. */
+  --color-accent-fg-high:   #6E2E00; /* deepest — for body/text  */
+  --color-accent-fg-medium: #8A3E00; /* eyebrow accent, headings */
+  --color-accent-fg-low:    #A85100; /* hover / lighter accent   */
+
+  /* Alternate accent (purple) — identical to Mantle. */
+  --color-accent-alt:        var(--color-accent-alt-medium);
+  --color-accent-alt-high:   #9676FF;
+  --color-accent-alt-medium: #6637FF;
+  --color-accent-alt-low:    #542ADD;
+
+  /* Category / signal colors — identical to Mantle. */
+  --color-orange-high: #FFC66E;
+  --color-purple-high: #9676FF;
+  --color-teal-high:   #76E8FF;
+  --color-green-high:  #98FF76;
+
+  --color-mac-red:    #EE5249;
+  --color-mac-yellow: #EFC62A;
+  --color-mac-green:  #5CD055;
+
+  /* Seismic palette — identical to Mantle. */
+  --color-seismic-green:    #04533B;
+  --color-seismic-red:      #BD2B2B;
+  --color-seismic-blue:     #035586;
+  --color-seismic-green-fg: #143F35;
+  --color-seismic-white:    #FDFDFD;
+
+  --color-seismic-1-bg:          #000321;
+  --color-seismic-1-btn:         #FFCD22;
+  --color-seismic-1-btn-fg:      #000321;
+  --color-seismic-1-fg:          #FDFDFD;
+  --color-seismic-1-fg-subdued:  #F4F5FF;
+
+  --color-seismic-2-bg:          #04533B;
+  --color-seismic-2-btn:         #FDFDFD;
+  --color-seismic-2-btn-fg:      #04533B;
+  --color-seismic-2-fg:          #FDFDFD;
+  --color-seismic-2-fg-subdued:  #DCFFF4;
+
+  --color-seismic-3-bg:          #0C0817;
+  --color-seismic-3-btn:         #7B3530;
+  --color-seismic-3-btn-fg:      #FDFDFD;
+  --color-seismic-3-fg:          #FDFDFD;
+  --color-seismic-3-fg-subdued:  #A7A1B3;
+
+  --color-seismic-4-bg:          #0C0817;
+  --color-seismic-4-btn:         #7B3530;
+  --color-seismic-4-btn-fg:      #FDFDFD;
+  --color-seismic-4-fg:          #FDFDFD;
+  --color-seismic-4-fg-subdued:  #A7A1B3;
+
+  /* Shadow scale — identical to Mantle. */
+  --shadow-2xs: 0 1px rgb(0 0 0 / 0.05);
+  --shadow-xs:  0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-sm:  0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --shadow-md:  0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg:  0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl:  0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+
+  --animate-infinite-scroll: infinite-scroll 35s linear infinite;
 }
 
-body {
-  background-color: hsl(var(--background));
-  color: hsl(var(--foreground));
-  font-feature-settings: "rlig" 1, "calt" 1;
+/* ──────────────────────────────────────────────────────────────
+   Base layer styles — light-theme mirror of Mantle's body /
+   focus / selection / hr defaults. Anything that references
+   bg-surface-medium picks up the LIGHT canvas (#F5F3EE) instead
+   of the dark surface (#0C0A0E).
+   ────────────────────────────────────────────────────────────── */
+@layer base {
+  ::selection {
+    background-color: var(--color-accent-medium);
+    color: var(--color-fg-high);
+  }
+
+  :focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  :focus-visible {
+    outline: none;
+    border-radius: var(--rounded-md);
+    /* Stacked focus ring — uses the page surface for the inner
+       gap and the accent-high for the outer ring, same recipe as
+       Mantle but with the LIGHT surface in the middle. */
+    box-shadow:
+      0 0 0 3px var(--color-surface-high),
+      0 0 0 5px var(--color-accent-high);
+  }
+
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-edge-medium);
+  }
+
+  hr {
+    border-color: var(--color-edge-medium);
+  }
+}
+
+/* ──────────────────────────────────────────────────────────────
+   Mantle's noise + ambient-glow utilities, ported as-is. The
+   ambient glow uses --color-ambient (#241819) which works in
+   both themes — same warm dark tint behind whatever canvas is
+   active.
+   ────────────────────────────────────────────────────────────── */
+@layer utilities {
+  .bg-noise {
+    background-image: url('/seismic/noise.png');
+  }
+
+  /* Canonical Compass eyebrow class — mirror of the rule in
+     /public/compass-typography.css so React-rendered surfaces
+     can use `className="compass-eyebrow"` and get the same
+     Mantle editorial-label recipe + chevron prefix as the
+     static pages. */
+  .compass-eyebrow {
+    font-family: var(--font-mono);
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    line-height: 1.6;
+    color: var(--color-fg-low);
+  }
+
+  .compass-eyebrow.compass-eyebrow--accent {
+    color: var(--color-accent-fg-medium);
+  }
+
+  /* The chevron-prefix on every eyebrow was removed. That pattern
+     ("> CORE FEATURES") is now expressed via the dedicated
+     `<CompassPromptHeading>` component (port of Mantle's
+     `PromptHeading.astro`). Eyebrows render as clean labels;
+     prompt-style headings opt-in via the component. */
+}
+
+:is([data-bg-fx-scope], [data-layout-bg-fx]) {
+  --bg-ambient-color: var(--color-ambient);
+}
+
+[data-bg-ambient] {
+  z-index: 1;
+  position: absolute;
+  top: -100vh;
+  right: -100vw;
+  height: 200vh;
+  width: 200vw;
+  border-radius: 9999px;
+  transform-origin: top right;
+  /* Light-theme mix — the ambient color blends with the surface
+     at low intensity (~22%) so it reads as a faint warm wash,
+     not a saturated stain. Override `--bg-ambient-intensity`
+     per-scope if a page wants a stronger glow. */
+  background: radial-gradient(
+    ellipse at center,
+    color-mix(in oklch, var(--bg-ambient-color) var(--bg-ambient-intensity, 22%), transparent) 0%,
+    transparent 70%
+  );
+  animation: bg-shaft-1 var(--bg-shaft-1-speed, 18s) ease-in-out infinite;
+}
+
+[data-footer-ambient] {
+  z-index: 1;
+  position: absolute;
+  bottom: -100vh;
+  left: -100vw;
+  height: 200vh;
+  width: 200vw;
+  border-radius: 9999px;
+  transform-origin: bottom left;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at center,
+    color-mix(
+      in oklch,
+      var(--bg-ambient-color, var(--color-ambient)) 50%,
+      transparent
+    )
+    0%,
+    transparent 70%
+  );
+}
+
+@keyframes infinite-scroll {
+  0%   { transform: translateX(-50%); }
+  100% { transform: translateX(-150%); }
+}
+
+/* Ambient glow drift — gentle rotation + scale loop so the
+   radial gradient on `[data-bg-ambient]` reads as a living
+   backdrop instead of a static smear. Matches Mantle's
+   `bg-shaft-1` cadence (18s ease-in-out, infinite). */
+@keyframes bg-shaft-1 {
+  0%, 100% {
+    transform: rotate(-2deg) scale(1);
+    opacity: 0.85;
+  }
+  50% {
+    transform: rotate(2deg) scale(1.05);
+    opacity: 1;
+  }
+}
+
+@layer base {
+  * {
+    border-color: hsl(var(--border));
+  }
+
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
 }
 
 ::selection {
