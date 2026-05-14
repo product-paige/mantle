@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mantle — Callouts v2 (top 10)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Geist+Pixel&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ─────────────────────────────────────────────────────────────────
+       Top-10 manual callouts, driven by Mantle global tokens. Each
+       callout uses the same shell — bordered card, 10px radius, soft
+       chapter-accent tint, floating filled-accent tag at top-left,
+       typed designation in the bottom-right — and varies in body
+       layout to express its semantic.
+       ───────────────────────────────────────────────────────────── */
+    :root {
+      /* Typography — Mantle stack */
+      --font-sans:    'Geist', ui-sans-serif, system-ui, sans-serif;
+      --font-mono:    'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+      --font-heading: 'Manrope', 'Inter var', ui-sans-serif, system-ui, sans-serif;
+      --font-display: 'Geist Pixel Line', 'Manrope', ui-sans-serif, sans-serif;
+
+      /* Text scale */
+      --text-xxs:  13px;
+      --text-xs:   14px;
+      --text-sm:   15px;
+      --text-base: 16px;
+      --text-md:   17px;
+      --text-lg:   18px;
+      --text-2xl:  24px;
+      --text-3xl:  28px;
+      --text-4xl:  32px;
+      --text-7xl:  48px;
+
+      /* Leading */
+      --leading-none:    1;
+      --leading-tight:   1.3;
+      --leading-normal:  1.4;
+      --leading-loose:   1.5;
+      --leading-looser:  1.6;
+
+      /* Rounded scale */
+      --rounded-md:  4px;
+      --rounded-lg:  6px;
+      --rounded-xl:  8px;
+      --rounded-2xl: 10px;
+
+      /* Shadow scale — identical to Mantle. */
+      --shadow-2xs: 0 1px rgb(0 0 0 / 0.05);
+      --shadow-xs:  0 1px 2px 0 rgb(0 0 0 / 0.05);
+      --shadow-sm:  0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+      --shadow-md:  0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+      --shadow-lg:  0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+
+      /* Foreground — Mantle next-gen DARK canonical (ported from
+         ~/Downloads/mantle_website-next_gen_redesign/src/styles/global.css).
+         The Compass cover series was designed against a dark canvas,
+         so flipping the callouts to dark reunites the chapter accents
+         with their native ground. */
+      --color-fg-high:   #FFFFFF;
+      --color-fg-medium: #E2E1EB;
+      --color-fg-low:    #A2A0B1;
+      --color-fg-lower:  #5F5D72;
+
+      /* Surfaces — next-gen dark ramp */
+      --color-surface-highest: #1E1C23;
+      --color-surface-higher:  #16141A;
+      --color-surface-high:    #110F14;
+      --color-surface-medium:  #0C0A0E;
+      --color-surface-low:     #08070A;
+      --color-surface-lower:   #030302;
+      --color-surface-lowest:  #000000;
+
+      /* Edges — white-alpha for dark theme */
+      --color-edge-high:   rgba(255, 255, 255, 0.11);
+      --color-edge-medium: rgba(255, 255, 255, 0.07);
+      --color-edge-low:    rgba(255, 255, 255, 0.03);
+
+      /* Ambient warm dark (next-gen default) */
+      --color-ambient: #241819;
+
+      /* Accent + alt + categories */
+      --color-accent-high:      #FFC66E;
+      --color-accent-fg-medium: #8A3E00;
+      --color-accent-alt-high:  #9676FF;
+      --color-teal-high:        #76E8FF;
+
+      /* Per-manual chapter accent — overridden on .manual-section */
+      --gold: var(--color-accent-high);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    /* Mantle next-gen ::selection — accent-medium fill with hard black
+       text. Lifted from app/globals.css / the next-gen redesign global. */
+    ::selection { background-color: #FFBB53; color: #000000; }
+    body {
+      background: var(--color-surface-medium);
+      /* Next-gen Mantle body: text-fg-MEDIUM, not fg-high. Body sits
+         one step back from headings so the editorial hierarchy reads. */
+      color: var(--color-fg-medium);
+      font-family: var(--font-sans);
+      font-size: var(--text-base);
+      line-height: var(--leading-normal);
+      padding: 64px 0 120px;
+    }
+    .page {
+      max-width: 72ch;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .page-eyebrow {
+      font-family: var(--font-mono);
+      font-weight: 500;
+      font-size: var(--text-xs);
+      letter-spacing: 0.05em;
+      line-height: var(--leading-looser);
+      text-transform: uppercase;
+      color: var(--color-fg-low);
+      margin: 0 0 12px;
+    }
+    .page-title {
+      font-family: var(--font-heading);
+      font-size: var(--text-4xl);
+      /* Mantle next-gen canonical h1: font-normal (400) +
+         tracking-tight + leading-tighter. The 500 weight I had
+         was Tailwind font-medium — Mantle's h1-h3 override to
+         normal. */
+      font-weight: 400;
+      letter-spacing: -0.025em;
+      line-height: var(--leading-tighter);
+      margin: 0 0 14px;
+    }
+    .page-lede {
+      color: var(--color-fg-low);
+      font-size: var(--text-lg);
+      line-height: var(--leading-loose);
+      margin: 0 0 48px;
+      max-width: 60ch;
+    }
+    .section-rule {
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+      margin: 64px 0 24px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--color-edge-medium);
+    }
+    .section-rule .num,
+    .section-rule .name {
+      font-family: var(--font-mono);
+      font-weight: 500;
+      font-size: var(--text-xs);
+      letter-spacing: 0.05em;
+      line-height: var(--leading-looser);
+      text-transform: uppercase;
+    }
+    .section-rule .num  { color: color-mix(in srgb, var(--gold) 60%, var(--color-fg-low)); }
+    .section-rule .name { color: var(--color-fg-low); }
+
+    /* ─────────────────────────────────────────────────────────────────
+       STANDARD CARD RECIPE — shared with charts-v3 + compass-charts.
+         ▸ 10px radius (--rounded-2xl)
+         ▸ 1px border  (accent-mix here for semantic chapter identity;
+                        neutral edge-medium on data cards)
+         ▸ shadow-md
+         ▸ 8% accent tint for the surface
+       The floating tag at top-left carries the chapter identity; the
+       bottom-right corner has a typed designation from `data-index`.
+       ───────────────────────────────────────────────────────────── */
+    .manual-section .callout,
+    .manual-section .notion-callout {
+      display: block;
+      position: relative;
+      margin: 56px 0 40px;
+      padding: 26px 24px 30px;
+      background: color-mix(in srgb, var(--gold) 8%, transparent);
+      /* 1px stroke matches the chart cards. Accent ramp bumped from
+         36% → 48% to compensate for the thinner line so optical
+         weight stays consistent with the prior 1.5px treatment. */
+      border: 1px solid color-mix(in srgb, var(--gold) 48%, transparent);
+      border-radius: var(--rounded-2xl);
+      color: var(--color-fg-high);
+    }
+    .manual-section .callout-header {
+      position: absolute;
+      /* Tag total height ≈ 22px (13px text + 5+4 padding). Top: -11px
+         puts exactly 11px of the tag above the card edge and 11px
+         inside — a clean 50/50 overlap regardless of accent. */
+      top: -11px;
+      left: 18px;
+      display: inline-flex;
+      align-items: center;
+      margin: 0;
+      padding: 0;
+      background: none;
+      border: 0;
+    }
+    .manual-section .callout-icon { display: none; }
+    .manual-section .callout-label {
+      margin: 0;
+      padding: 5px 11px 4px;
+      background: var(--gold);
+      border-radius: var(--rounded-md);
+      font-family: var(--font-mono);
+      font-weight: 500;
+      font-size: var(--text-xxs);
+      letter-spacing: 0.05em;
+      line-height: var(--leading-none);
+      text-transform: uppercase;
+      color: color-mix(in srgb, var(--gold) 20%, #110f14);
+    }
+    .manual-section .callout::after {
+      content: attr(data-index);
+      position: absolute;
+      right: 14px;
+      bottom: 10px;
+      font-family: var(--font-mono);
+      font-weight: 500;
+      font-size: var(--text-xxs);
+      letter-spacing: 0.16em;
+      line-height: 1;
+      color: color-mix(in srgb, var(--gold) 55%, var(--color-fg-lower));
+      text-transform: uppercase;
+      pointer-events: none;
+    }
+    .manual-section .callout-body,
+    .manual-section .callout-body p,
+    .manual-section .notion-callout p {
+      font-family: var(--font-sans);
+      font-size: var(--text-base);
+      /* Mantle next-gen body: leading-normal (1.4) on fg-medium —
+         not leading-loose / fg-high. Body sits one notch back so
+         it doesn't compete with the high-contrast headings. */
+      line-height: var(--leading-normal);
+      color: var(--color-fg-medium);
+    }
+    .manual-section .callout-body > * + * { margin-top: 12px; }
+    .manual-section .callout-body p { margin: 0; }
+    /* Mantle next-gen: .md strong → font-medium (500). 600 is too heavy. */
+    .manual-section .callout-body strong { font-weight: 500; }
+
+    /* ───── Decision Point ─────────────────────────────────────────── */
+    .manual-section .callout-decision-point .callout-body {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+    @media (min-width: 768px) {
+      .manual-section .callout-decision-point .callout-body {
+        grid-template-columns: 1fr 1fr;
+        gap: 0;
+      }
+      .manual-section .callout-decision-point .callout-fork-option-a {
+        padding-right: 28px;
+      }
+      .manual-section .callout-decision-point .callout-fork-option-b {
+        padding-left: 28px;
+        border-left: 1px solid color-mix(in srgb, var(--gold) 32%, transparent);
+      }
+    }
+    .manual-section .callout-decision-point .callout-fork-option h4 {
+      margin: 0 0 8px;
+      font-family: var(--font-sans);
+      font-size: var(--text-base);
+      /* Mantle next-gen: h4 inherits font-medium (500) from the h1-h6
+         base rule. 600 was Tailwind font-semibold — too heavy for h4. */
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      line-height: var(--leading-tighter);
+      color: var(--color-fg-high);
+    }
+    .manual-section .callout-decision-point .callout-fork-option p {
+      font-size: var(--text-sm);
+      line-height: var(--leading-normal);
+      color: var(--color-fg-low);
+    }
+
+    /* ───── Founder Shift ──────────────────────────────────────────── */
+    .manual-section .callout-founder-shift .callout-body {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      align-items: start;
+    }
+    @media (min-width: 768px) {
+      .manual-section .callout-founder-shift .callout-body {
+        grid-template-columns: 1fr auto 1fr;
+      }
+      .manual-section .callout-founder-shift .callout-shift-arrow {
+        /* SVG line sits at y=14 in a 28px-tall artwork. Kicker baseline
+           lands ~17px from the column top (text-xxs 13px × leading-
+           looser 1.6). Margin-top 3 puts the arrow line at 14+3 = 17 —
+           dead-on baseline align with the FROM/TO kickers. */
+        margin-top: 3px;
+      }
+    }
+    @media (max-width: 767px) {
+      .manual-section .callout-founder-shift .callout-shift-arrow {
+        transform: rotate(90deg);
+        justify-self: center;
+      }
+    }
+    .manual-section .callout-founder-shift .callout-shift-arrow {
+      color: color-mix(in srgb, var(--gold) 55%, transparent);
+      width: 28px; height: 28px;
+      flex: none;
+    }
+    .manual-section .callout-founder-shift h4 {
+      margin: 0 0 6px;
+      font-family: var(--font-mono);
+      font-weight: 500;
+      font-size: var(--text-xxs);
+      letter-spacing: 0.05em;
+      line-height: var(--leading-looser);
+      text-transform: uppercase;
+      color: var(--color-fg-low);
+    }
+    .manual-section .callout-founder-shift p {
+      font-family: var(--font-sans);
+      /* Body text — Mantle next-gen normal (400) / fg-medium. The
+         column kickers above (h4) are already 500 mono, so the
+         body doesn't need extra weight to register hierarchy. */
+      font-weight: 400;
+      font-size: var(--text-base);
+      line-height: var(--leading-normal);
+      color: var(--color-fg-medium);
+    }
+
+    /* ───── Quote callout ──────────────────────────────────────────── */
+    .manual-section .callout-quote {
+      padding: 34px 32px 30px;
+    }
+    .manual-section .callout-quote .callout-body {
+      position: relative;
+      padding-left: 36px;
+    }
+    .manual-section .callout-quote .callout-body::before {
+      content: "";
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 3px;
+      background: var(--gold);
+      border-radius: 2px;
+    }
+    .manual-section .callout-quote blockquote {
+      font-family: 'Geist Pixel', var(--font-heading);
+      font-size: var(--text-2xl);
+      font-weight: 400;
+      /* Geist Pixel is a pixel-grid display face — tighter letter
+         tracking would crush the bitmap rhythm, so we hold tracking
+         at 0 and lean on the natural pixel spacing. */
+      letter-spacing: 0;
+      line-height: var(--leading-tight);
+      color: var(--color-fg-high);
+      margin: 0 0 16px;
+    }
+    .manual-section .callout-quote cite {
+      font-family: var(--font-mono);
+      font-style: normal;
+      font-weight: 500;
+      font-size: var(--text-xxs);
+      letter-spacing: 0.05em;
+      line-height: var(--leading-looser);
+      text-transform: uppercase;
+      color: var(--color-fg-low);
+    }
+
+    /* ───── Checklist callout ──────────────────────────────────────── */
+    .manual-section .callout-checklist .callout-body {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .manual-section .callout-checklist .check-item {
+      /* button reset — keep `appearance` defaults out so the row reads
+         as a list item, not a form control. */
+      appearance: none;
+      background: transparent;
+      border: 0;
+      border-bottom: 1px solid color-mix(in srgb, var(--gold) 18%, transparent);
+      width: 100%;
+      text-align: left;
+      cursor: pointer;
+      color: inherit;
+      font-family: inherit;
+      display: grid;
+      /* 22px box column = 20px box + 2px to clear the 1.5px border. */
+      grid-template-columns: 22px 1fr;
+      gap: 14px;
+      align-items: flex-start;
+      /* Tighter row density — 8px vertical reads as a list rather
+         than a sequence of cards. Was 12px. */
+      padding: 8px 0;
+      /* Mantle text-base / leading-normal — tighter than the loose
+         body recipe so rows feel scannable rather than airy. */
+      font-size: var(--text-base);
+      line-height: var(--leading-normal);
+      font-weight: 400;
+    }
+    .manual-section .callout-checklist .check-item:first-child {
+      padding-top: 2px;
+    }
+    .manual-section .callout-checklist .check-item:last-child {
+      border-bottom: 0;
+      padding-bottom: 2px;
+    }
+    .manual-section .callout-checklist .check-item:hover .check-box {
+      border-color: color-mix(in srgb, var(--gold) 85%, transparent);
+    }
+    .manual-section .callout-checklist .check-box {
+      width: 20px;
+      height: 20px;
+      border: 1.5px solid color-mix(in srgb, var(--gold) 65%, transparent);
+      border-radius: var(--rounded-md);
+      /* Optical alignment with the first text line: text-base 16px ×
+         leading-normal 1.4 = 22.4px line. Box (20px) needs ~1px
+         margin-top so its visual center lands on the cap height. */
+      margin-top: 1px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 120ms, border-color 120ms;
+    }
+    .manual-section .callout-checklist .check-item.done .check-box {
+      background: var(--gold);
+      border-color: var(--gold);
+    }
+    .manual-section .callout-checklist .check-item.done .check-box::after {
+      content: "";
+      /* Scaled to match the larger 20px box — 10×5 check with 1.75px
+         strokes reads cleanly without feeling cramped. */
+      width: 10px;
+      height: 5px;
+      border-left: 1.75px solid color-mix(in srgb, var(--gold) 20%, #110f14);
+      border-bottom: 1.75px solid color-mix(in srgb, var(--gold) 20%, #110f14);
+      transform: rotate(-45deg) translate(1px, -1px);
+    }
+    .manual-section .callout-checklist .check-item.done {
+      color: var(--color-fg-low);
+      text-decoration: line-through;
+      text-decoration-color: color-mix(in srgb, var(--color-fg-low) 35%, transparent);
+    }
+
+    /* ───── Prompt (copyable text block) callout ────────────────────
+       The prompt is read-only display text the reader can copy into
+       their AI tool of choice. Copy button at the top-right of the
+       text block flashes a confirmation when clicked. */
+    .manual-section .callout-prompt .callout-body {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .manual-section .callout-prompt .prompt-block {
+      position: relative;
+      background: var(--color-surface-highest);
+      border: 1px solid color-mix(in srgb, var(--gold) 40%, transparent);
+      border-radius: var(--rounded-xl);
+      /* Symmetric padding now that the copy button sits ABOVE the
+         block in its own row — the textarea takes the full inner
+         width with no right-side cutout. */
+      padding: 16px 18px;
+    }
+    /* Editable textarea — strip default chrome and let it inherit
+       the body recipe so it reads identically to a <p> until you
+       click in. */
+    .manual-section .callout-prompt .prompt-text {
+      display: block;
+      width: 100%;
+      min-height: 88px;
+      margin: 0;
+      padding: 0;
+      background: transparent;
+      border: 0;
+      outline: 0;
+      resize: vertical;
+      font-family: var(--font-sans);
+      font-weight: 400;
+      font-size: var(--text-base);
+      line-height: var(--leading-normal);
+      color: var(--color-fg-medium);
+      caret-color: var(--gold);
+    }
+    .manual-section .callout-prompt .prompt-text::placeholder {
+      color: var(--color-fg-lower);
+    }
+    .manual-section .callout-prompt .prompt-text:focus {
+      outline: 0;
+    }
+    /* Toolbar row above the prompt-block — sits the header label on
+       the left and the copy button on the right via space-between. */
+    .manual-section .callout-prompt .prompt-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .manual-section .callout-prompt .prompt-title {
+      margin: 0;
+      font-family: var(--font-heading);
+      /* Mantle h4 recipe: font-medium / text-base / leading-tighter /
+         fg-high — same spec as the DecisionPoint kickers, so the
+         inline header reads as a sibling heading across callouts. */
+      font-size: var(--text-base);
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      line-height: var(--leading-tighter);
+      color: var(--color-fg-high);
+    }
+    .manual-section .callout-prompt .prompt-copy {
+      /* Lives in the toolbar row alongside the title — the parent
+         flex container handles its position (space-between pushes
+         it to the right). */
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 10px 4px;
+      background: var(--gold);
+      color: color-mix(in srgb, var(--gold) 20%, #110f14);
+      border: 0;
+      border-radius: var(--rounded-md);
+      cursor: pointer;
+      font-family: var(--font-mono);
+      font-weight: 500;
+      font-size: var(--text-xxs);
+      letter-spacing: 0.05em;
+      line-height: var(--leading-none);
+      text-transform: uppercase;
+      transition: background 140ms;
+    }
+    .manual-section .callout-prompt .prompt-copy svg {
+      width: 12px; height: 12px;
+      flex: none;
+    }
+    .manual-section .callout-prompt .prompt-copy.is-copied {
+      background: color-mix(in srgb, var(--gold) 30%, #110f14);
+      /* Hard-coded white — `--color-surface-highest` flipped to #1E1C23
+         when we moved to the dark canonical, which would now collide
+         with the dark "copied" bg. White stays correct in both themes. */
+      color: #FFFFFF;
+    }
+    .manual-section .callout-prompt .prompt-hint {
+      font-family: var(--font-mono);
+      font-weight: 500;
+      font-size: var(--text-xxs);
+      letter-spacing: 0.05em;
+      line-height: var(--leading-looser);
+      text-transform: uppercase;
+      color: var(--color-fg-lower);
+    }
+
+    /* ───── TL;DR callout ──────────────────────────────────────────── */
+    .manual-section .callout-tldr .callout-body p {
+      font-size: var(--text-lg);
+      line-height: var(--leading-loose);
+    }
+    .manual-section .callout-tldr .callout-body p + p {
+      margin-top: 14px;
+    }
+
+    /* ───── Table — colored background ─────────────────────────────── */
+    .manual-section table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 40px 0;
+      font-family: var(--font-sans);
+      font-size: var(--text-sm);
+      line-height: var(--leading-loose);
+      background: color-mix(in srgb, var(--gold) 10%, transparent);
+      /* 1px border matches the standard card recipe; 48% accent
+         compensates for the thinner stroke. */
+      border: 1px solid color-mix(in srgb, var(--gold) 48%, transparent);
+      border-radius: var(--rounded-2xl);
+      overflow: hidden;
+    }
+    .manual-section table thead th {
+      background: color-mix(in srgb, var(--gold) 22%, transparent);
+      color: var(--color-fg-low);
+      font-family: var(--font-mono);
+      font-weight: 500;
+      font-size: var(--text-xs);
+      letter-spacing: 0.05em;
+      line-height: var(--leading-looser);
+      text-transform: uppercase;
+      text-align: left;
+      /* Match the tightened tbody td padding (10px 14px). */
+      padding: 10px 14px;
+      border-bottom: 1px solid color-mix(in srgb, var(--gold) 32%, transparent);
+    }
+    .manual-section table tbody td {
+      /* Tighter cell density — 10px vertical / 14px horizontal reads
+         compact without crowding. Was 14/16. */
+      padding: 10px 14px;
+      border-bottom: 1px solid color-mix(in srgb, var(--gold) 20%, transparent);
+      vertical-align: top;
+      color: var(--color-fg-medium);
+    }
+    .manual-section table tbody tr:last-child td { border-bottom: 0; }
+    .manual-section table tbody tr:hover td {
+      background: color-mix(in srgb, var(--gold) 6%, transparent);
+    }
+    .manual-section table tbody td:first-child {
+      font-family: var(--font-mono);
+      font-weight: 500;
+      font-size: var(--text-xs);
+      letter-spacing: 0.05em;
+      line-height: var(--leading-looser);
+      color: color-mix(in srgb, var(--gold) 65%, var(--color-fg-medium));
+      white-space: nowrap;
+      padding-right: 24px;
+      text-transform: uppercase;
+    }
+    .manual-section table tbody td strong { font-weight: 600; }
+
+    /* ───── Per-chapter accent — pulled from Compass's canonical
+       --cover-accent-* tokens (defined in public/compass-base.css)
+       which alias Mantle's category-color palette. Same mappings as
+       app/globals.css so the static mockup and the React demo render
+       identically.
+       ─────────────────────────────────────────────────────────── */
+    .accent-foundation { --gold: #FFC66E; }   /* --cover-accent-orange */
+    .accent-shape      { --gold: #76E8FF; }   /* --cover-accent-cyan   */
+    .accent-build      { --gold: #9676FF; }   /* --cover-accent-lilac  */
+    .accent-launch     { --gold: #EFC62A; }   /* --cover-accent-warm   */
+    .accent-monetize   { --gold: #98FF76; }   /* --color-green-high    */
+    .accent-grow       { --gold: #EE5249; }   /* --color-mac-red       */
+    .accent-operate    { --gold: #FFFFFF; }   /* --cover-accent-white  */
+
+    /* ───── Alternative palette — muted Compass cover ink. The
+       original cover series used these deeper, less saturated
+       accents; toggle one of these classes if the bright Mantle
+       category palette reads too hot against the dark surface. */
+    .accent-muted-foundation { --gold: #C05A18; }   /* deep burnt orange */
+    .accent-muted-shape      { --gold: #469BA6; }   /* deep teal-cyan    */
+    .accent-muted-build      { --gold: #8475B0; }   /* dusty lilac       */
+    .accent-muted-launch     { --gold: #C9B99A; }   /* warm sand cream   */
+    .accent-muted-monetize   { --gold: #6F9F6C; }   /* muted sage green  */
+    .accent-muted-grow       { --gold: #B5503E; }   /* faded brick red   */
+    .accent-muted-operate    { --gold: #8A8784; }   /* warm grey         */
+  </style>
+</head>
+<body>
+
+<main class="page">
+  <p class="page-eyebrow">Preview · Manual callouts v2</p>
+  <h1 class="page-title">Top 10 callouts</h1>
+  <p class="page-lede">
+    Ten manual blocks, every one wearing the same shell — bordered
+    plate, soft chapter-accent tint, filled-accent tag at the top, a
+    typed designation in the bottom-right corner. Six are the
+    semantic callouts that already ship; four are new (Quote,
+    Checklist, Prompt, TL;DR). Table at the end picks up the same
+    coloured-plate treatment.
+  </p>
+
+  <!-- ════ 01 · FIELD NOTE ═════════════════════════════════════════ -->
+  <section class="manual-section accent-foundation">
+    <div class="section-rule">
+      <span class="num">001</span>
+      <span class="name">Foundation · Field Note</span>
+    </div>
+    <p>
+      Most founders enter the AI-builder game from one of two doors:
+      the engineer who learned to ship, or the operator who learned
+      to prompt. Both arrive confident in a craft. Neither, on day
+      one, is yet a founder.
+    </p>
+    <aside class="callout callout-field-note" data-index="F-01">
+      <header class="callout-header"><h3 class="callout-label">Field Note</h3></header>
+      <div class="callout-body">
+        <p>
+          A polished sidebar has emotionally manipulated a lot of
+          people into thinking they had product-market fit.
+        </p>
+      </div>
+    </aside>
+  </section>
+
+  <!-- ════ 02 · REALITY CHECK ══════════════════════════════════════ -->
+  <section class="manual-section accent-shape">
+    <div class="section-rule">
+      <span class="num">002</span>
+      <span class="name">Shape · Reality Check</span>
+    </div>
+    <aside class="callout callout-reality-check" data-index="R-01">
+      <header class="callout-header"><h3 class="callout-label">Reality Check</h3></header>
+      <div class="callout-body">
+        <p>
+          Building an app and building a business aren't the same
+          job. The first is engineering; the second is figuring out
+          who actually pays, and why they'd pay again.
+        </p>
+      </div>
+    </aside>
+  </section>
+
+  <!-- ════ 03 · COMMON FAILURE ═════════════════════════════════════ -->
+  <section class="manual-section accent-build">
+    <div class="section-rule">
+      <span class="num">003</span>
+      <span class="name">Build · Common Failure</span>
+    </div>
+    <aside class="callout callout-common-failure" data-index="C-01">
+      <header class="callout-header"><h3 class="callout-label">Common Failure</h3></header>
+      <div class="callout-body">
+        <p>
+          Founders launch with short trials because they want faster
+          conversion numbers, but the actual setup takes longer than
+          the trial itself. The users who would have paid never get
+          far enough to see the value.
+        </p>
+      </div>
+    </aside>
+  </section>
+
+  <!-- ════ 04 · DECISION POINT ═════════════════════════════════════ -->
+  <section class="manual-section accent-launch">
+    <div class="section-rule">
+      <span class="num">004</span>
+      <span class="name">Launch · Decision Point</span>
+    </div>
+    <aside class="callout callout-decision-point" data-index="D-01">
+      <header class="callout-header"><h3 class="callout-label">Decision Point</h3></header>
+      <div class="callout-body">
+        <div class="callout-fork-option callout-fork-option-a">
+          <h4>Fit your life around the company</h4>
+          <p>
+            Move fast, raise capital, optimize for outcome. Decisions
+            get made by the calendar — a launch, a round, a hire.
+          </p>
+        </div>
+        <div class="callout-fork-option callout-fork-option-b">
+          <h4>Fit the company around your life</h4>
+          <p>
+            Move at your pace, fund from revenue, optimize for
+            ownership. Decisions get made by the constraint — your
+            time, your energy.
+          </p>
+        </div>
+      </div>
+    </aside>
+  </section>
+
+  <!-- ════ 05 · FOUNDER SHIFT ══════════════════════════════════════ -->
+  <section class="manual-section accent-monetize">
+    <div class="section-rule">
+      <span class="num">005</span>
+      <span class="name">Monetize · Founder Shift</span>
+    </div>
+    <aside class="callout callout-founder-shift" data-index="S-01">
+      <header class="callout-header"><h3 class="callout-label">Founder Shift</h3></header>
+      <div class="callout-body">
+        <div class="callout-shift-from">
+          <h4>Builder mode</h4>
+          <p>
+            Ship the next thing. Measure progress in commits,
+            features, demo polish.
+          </p>
+        </div>
+        <svg class="callout-shift-arrow" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+          <line x1="3" y1="14" x2="25" y2="14" stroke="currentColor" stroke-width="1.5"/>
+          <polyline points="18,7 25,14 18,21" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linejoin="round"/>
+        </svg>
+        <div class="callout-shift-to">
+          <h4>Founder mode</h4>
+          <p>
+            Earn the next dollar. Measure progress in customer
+            conversations, revenue, retention.
+          </p>
+        </div>
+      </div>
+    </aside>
+  </section>
+
+  <!-- ════ 06 · GENERIC CALLOUT ════════════════════════════════════ -->
+  <section class="manual-section accent-grow">
+    <div class="section-rule">
+      <span class="num">006</span>
+      <span class="name">Grow · Generic Callout</span>
+    </div>
+    <div class="notion-callout" data-index="G-01">
+      <header class="callout-header"><h3 class="callout-label">Callout</h3></header>
+      <div class="notion-callout-content">
+        <p>
+          <strong>The hard part isn't shipping.</strong> AI made
+          shipping easy. The hard part is figuring out what actually
+          matters before you waste months building the wrong thing.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════ 07 · QUOTE ══════════════════════════════════════════════ -->
+  <section class="manual-section accent-operate">
+    <div class="section-rule">
+      <span class="num">007</span>
+      <span class="name">Operate · Quote</span>
+    </div>
+    <aside class="callout callout-quote" data-index="Q-01">
+      <header class="callout-header"><h3 class="callout-label">Quote</h3></header>
+      <div class="callout-body">
+        <blockquote>
+          "The biggest risk is not taking any risk. In a world that's
+          changing really quickly, the only strategy that is
+          guaranteed to fail is not taking risks."
+        </blockquote>
+        <cite>— Mark Zuckerberg, on Stratechery, 2011</cite>
+      </div>
+    </aside>
+  </section>
+
+  <!-- ════ 08 · CHECKLIST ══════════════════════════════════════════ -->
+  <section class="manual-section accent-foundation">
+    <div class="section-rule">
+      <span class="num">008</span>
+      <span class="name">Foundation · Checklist</span>
+    </div>
+    <aside class="callout callout-checklist" data-index="L-01">
+      <header class="callout-header"><h3 class="callout-label">Checklist</h3></header>
+      <div class="callout-body">
+        <button class="check-item done" type="button" aria-pressed="true">
+          <span class="check-box" aria-hidden="true"></span>
+          <span>You can describe the problem in one sentence.</span>
+        </button>
+        <button class="check-item done" type="button" aria-pressed="true">
+          <span class="check-box" aria-hidden="true"></span>
+          <span>You know one person who is paying you, or would.</span>
+        </button>
+        <button class="check-item" type="button" aria-pressed="false">
+          <span class="check-box" aria-hidden="true"></span>
+          <span>You can articulate what you're explicitly not building.</span>
+        </button>
+        <button class="check-item" type="button" aria-pressed="false">
+          <span class="check-box" aria-hidden="true"></span>
+          <span>You have a sustainable cadence — not a launch sprint.</span>
+        </button>
+        <button class="check-item" type="button" aria-pressed="false">
+          <span class="check-box" aria-hidden="true"></span>
+          <span>You've talked to five customers in the last seven days.</span>
+        </button>
+      </div>
+    </aside>
+  </section>
+
+  <!-- ════ 09 · PROMPT (editable text box) ═════════════════════════ -->
+  <section class="manual-section accent-shape">
+    <div class="section-rule">
+      <span class="num">009</span>
+      <span class="name">Shape · Prompt</span>
+    </div>
+    <aside class="callout callout-prompt" data-index="P-01">
+      <header class="callout-header"><h3 class="callout-label">Prompt</h3></header>
+      <div class="callout-body">
+        <div class="prompt-toolbar">
+          <h4 class="prompt-title">Pressure-test your one-liner</h4>
+          <button class="prompt-copy" type="button" aria-label="Copy prompt to clipboard">
+            <svg viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <rect x="4" y="4" width="8" height="8" rx="1.5" stroke="currentColor" stroke-width="1.4"/>
+              <path d="M10 4V3a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h1" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+            </svg>
+            <span class="prompt-copy-label">Copy</span>
+          </button>
+        </div>
+        <div class="prompt-block">
+          <textarea
+            class="prompt-text"
+            rows="4"
+            spellcheck="false"
+            aria-label="Editable prompt — copy to clipboard with the button above"
+          >Act as a brutally honest co-founder. Read my product one-liner below and tell me exactly which user it would confuse and why. Don't suggest fixes — just name the confusion clearly so I can rewrite it.</textarea>
+        </div>
+        <p class="prompt-hint">Paste into ChatGPT, Claude, or your AI tool of choice</p>
+      </div>
+    </aside>
+  </section>
+
+  <!-- ════ 10 · TL;DR ══════════════════════════════════════════════ -->
+  <section class="manual-section accent-build">
+    <div class="section-rule">
+      <span class="num">010</span>
+      <span class="name">Build · TL;DR</span>
+    </div>
+    <aside class="callout callout-tldr" data-index="T-01">
+      <header class="callout-header"><h3 class="callout-label">TL;DR</h3></header>
+      <div class="callout-body">
+        <p>
+          CoinTracker's content needs outgrew Ghost, so we migrated
+          the entire blog stack to Sanity and rebuilt it around
+          structured, scalable content.
+        </p>
+        <p>
+          This chapter is the story of why we moved, what broke, and
+          what we learned fixing it — read it before you greenlight
+          any CMS migration of your own.
+        </p>
+      </div>
+    </aside>
+  </section>
+
+  <!-- ════ TABLE — colored background ══════════════════════════════ -->
+  <section class="manual-section accent-operate">
+    <div class="section-rule">
+      <span class="num">·</span>
+      <span class="name">Operate · Reference Table</span>
+    </div>
+    <p>
+      Tables wear the same coloured-plate as the callouts above — the
+      shell is the chapter accent tinted at 10%, header row at 22%,
+      row dividers at 20%. First column is mono-tagged so the index
+      reads as a typed designation.
+    </p>
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">No.</th>
+          <th scope="col">Manual</th>
+          <th scope="col">Cover figure</th>
+          <th scope="col">Accent</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>001</td><td><strong>Foundation</strong></td><td>Vanishing grid</td><td>Orange</td></tr>
+        <tr><td>002</td><td><strong>Shape</strong></td><td>Nested ovals</td><td>Cyan</td></tr>
+        <tr><td>003</td><td><strong>Build</strong></td><td>Circuit path</td><td>Lilac</td></tr>
+        <tr><td>004</td><td><strong>Launch</strong></td><td>Broadcast fan</td><td>Warm</td></tr>
+        <tr><td>005</td><td><strong>Monetize</strong></td><td>Magnetic field</td><td>Orange</td></tr>
+        <tr><td>006</td><td><strong>Grow</strong></td><td>Bifurcation</td><td>Cyan</td></tr>
+        <tr><td>007</td><td><strong>Operate</strong></td><td>Stadium loop</td><td>White</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ════ ALT PALETTE — muted Compass cover ink ═══════════════════ -->
+  <section class="manual-section">
+    <div class="section-rule">
+      <span class="num">·</span>
+      <span class="name">Alt palette · Muted cover ink</span>
+    </div>
+    <p>
+      Side-by-side comparison: the same six callouts on a muted
+      Compass-cover palette instead of the bright Mantle category
+      colors used above. Same chrome, same typography — only the
+      accent ink changes. Toggle <code>.accent-muted-*</code> in
+      place of <code>.accent-*</code> to swap.
+    </p>
+
+    <div class="accent-muted-foundation">
+      <aside class="callout callout-field-note" data-index="F-01">
+        <header class="callout-header"><h3 class="callout-label">Field Note</h3></header>
+        <div class="callout-body">
+          <p>
+            A polished sidebar has emotionally manipulated a lot of
+            people into thinking they had product-market fit.
+          </p>
+        </div>
+      </aside>
+    </div>
+
+    <div class="accent-muted-shape">
+      <aside class="callout callout-reality-check" data-index="R-01">
+        <header class="callout-header"><h3 class="callout-label">Reality Check</h3></header>
+        <div class="callout-body">
+          <p>
+            Building an app and building a business aren't the same job.
+          </p>
+        </div>
+      </aside>
+    </div>
+
+    <div class="accent-muted-build">
+      <aside class="callout callout-common-failure" data-index="C-01">
+        <header class="callout-header"><h3 class="callout-label">Common Failure</h3></header>
+        <div class="callout-body">
+          <p>
+            Founders launch with short trials because they want faster
+            conversion numbers, but the actual setup takes longer than
+            the trial itself.
+          </p>
+        </div>
+      </aside>
+    </div>
+
+    <div class="accent-muted-monetize">
+      <aside class="callout callout-quote" data-index="Q-01">
+        <header class="callout-header"><h3 class="callout-label">Quote</h3></header>
+        <div class="callout-body">
+          <blockquote>
+            "The biggest risk is not taking any risk."
+          </blockquote>
+          <cite>— Mark Zuckerberg</cite>
+        </div>
+      </aside>
+    </div>
+
+    <div class="accent-muted-grow">
+      <aside class="callout callout-tldr" data-index="T-01">
+        <header class="callout-header"><h3 class="callout-label">TL;DR</h3></header>
+        <div class="callout-body">
+          <p>
+            The muted palette reads quieter against the dark surface —
+            useful if the bright Mantle category colors feel too
+            saturated for long-form manual reading.
+          </p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+</main>
+
+<script>
+  // Checklist — toggle .done on click, mirror to aria-pressed for AT.
+  document.querySelectorAll('.callout-checklist .check-item').forEach(item => {
+    item.addEventListener('click', () => {
+      const done = item.classList.toggle('done');
+      item.setAttribute('aria-pressed', String(done));
+    });
+  });
+
+  // Prompt — copy block text to the clipboard, flash a confirmation.
+  document.querySelectorAll('.callout-prompt .prompt-copy').forEach(btn => {
+    const label = btn.querySelector('.prompt-copy-label');
+    const initial = label.textContent;
+    btn.addEventListener('click', async () => {
+      // Button now lives ABOVE the prompt-block in the .callout-body
+      // flex column, so we scope the textarea lookup to the body
+      // container rather than the block.
+      const body = btn.closest('.callout-body') || btn.closest('.callout-prompt');
+      const field = body.querySelector('.prompt-text');
+      // <textarea>.value when editable, fall back to .textContent for
+      // any legacy <p>-rendered prompt blocks.
+      const text = (field.value ?? field.textContent).trim();
+      try {
+        await navigator.clipboard.writeText(text);
+      } catch (e) {
+        // Fallback for browsers that block clipboard from file:// — select + execCommand.
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand('copy'); } catch (_) {}
+        document.body.removeChild(ta);
+      }
+      btn.classList.add('is-copied');
+      label.textContent = 'Copied';
+      setTimeout(() => {
+        btn.classList.remove('is-copied');
+        label.textContent = initial;
+      }, 1600);
+    });
+  });
+</script>
+
+</body>
+</html>

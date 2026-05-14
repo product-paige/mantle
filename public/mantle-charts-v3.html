@@ -24,27 +24,85 @@
 ═══════════════════════════════════════════════ */
 
 :root {
-  --mustard:      #FFC66E;
+  /* ───── Mantle tokens (ported from app/globals.css) ─────────── */
+  --font-sans:    'Geist', ui-sans-serif, system-ui, sans-serif;
+  --font-mono:    'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-heading: 'Manrope', 'Inter var', ui-sans-serif, system-ui, sans-serif;
+
+  /* Text scale */
+  --text-xxs:  13px;
+  --text-xs:   14px;
+  --text-sm:   15px;
+  --text-base: 16px;
+  --text-md:   17px;
+  --text-lg:   18px;
+  --text-xl:   19px;
+  --text-2xl:  24px;
+  --text-3xl:  28px;
+  --text-4xl:  32px;
+  --text-6xl:  38px;
+  --text-7xl:  48px;
+
+  /* Leading */
+  --leading-none:    1;
+  --leading-tight:   1.3;
+  --leading-normal:  1.4;
+  --leading-loose:   1.5;
+  --leading-looser:  1.6;
+
+  /* Rounded — Mantle standard card uses --rounded-2xl (10px) */
+  --rounded-md:  4px;
+  --rounded-lg:  6px;
+  --rounded-xl:  8px;
+  --rounded-2xl: 10px;
+  --rounded-3xl: 12px;
+
+  /* Shadow scale */
+  --shadow-2xs: 0 1px rgb(0 0 0 / 0.05);
+  --shadow-xs:  0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-sm:  0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --shadow-md:  0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg:  0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+
+  /* Mantle accent + alt + category palette */
+  --color-accent-high:     #FFC66E;
+  --color-accent-alt-high: #9676FF;
+  --color-teal-high:       #76E8FF;
+  --color-green-high:      #98FF76;
+  --color-mac-red:         #EE5249;
+
+  /* Mantle fg ramp (light mirror) */
+  --color-fg-high:   #110F14;
+  --color-fg-medium: #1F1B27;
+  --color-fg-low:    #5E5C5A;
+  --color-fg-lower:  #8A8784;
+
+  /* ───── Legacy palette aliases — point at Mantle tokens so the rest
+     of this file's rules (mustard / teal / lavender / etc.) resolve
+     to canonical values without touching every selector. */
+  --mustard:      var(--color-accent-high);
   --mustard-deep: #2A606B;
-  --teal:         #76E8FF;
-  --lavender:     #9676FF;
-  --sage:         #76E8FF;
-  --red:          #EE4815;
+  --teal:         var(--color-teal-high);
+  --lavender:     var(--color-accent-alt-high);
+  --sage:         var(--color-teal-high);
+  --red:          var(--color-mac-red);
   --dark-teal:    #2A606B;
 
-  --ink:          #110f14;
-  --muted:        #5e5c5a;
+  --ink:          var(--color-fg-high);
+  --muted:        var(--color-fg-low);
   --faint:        #d8d8d6;
 
   --card-yellow:  #fff7ec;
   --card-teal:    #eafeff;
   --card-lavender:#f0ecff;
-  --page-bg:      #f0ede7;
+  --page-bg:      #F5F3EE; /* Mantle --color-surface-medium */
 
   --axis:         #d8d8d6;
   --rule:         #e5e5e3;
 
-  --r:   6px;
+  /* Card radius now points at Mantle's standard. Older rules
+     reference --r so they upgrade automatically. */
+  --r:   var(--rounded-2xl);
   --pad: 40px;
 }
 
@@ -52,9 +110,11 @@
 
 body {
   background: var(--page-bg);
-  font-family: 'Geist','Inter',sans-serif;
-  font-size: 16px;
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: var(--leading-loose);
   font-weight: 400;
+  color: var(--ink);
   padding: 60px 40px 100px;
   display: flex;
   flex-direction: column;
@@ -62,24 +122,39 @@ body {
   gap: 20px;
 }
 
-/* ── SECTION LABEL ──────────────────────────── */
+/* ── SECTION LABEL ────────────────────────────
+   Promoted to the canonical Compass eyebrow recipe — text-xxs /
+   500 / 0.05em / leading-looser — so it matches every other mono
+   label across the design system (callouts page-eyebrow, chart
+   card-eyebrow, compass-charts pip labels). */
 .section {
   width: 900px;
-  font-family: 'Geist Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.08em;
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: var(--text-xxs);
+  letter-spacing: 0.05em;
+  line-height: var(--leading-looser);
   text-transform: uppercase;
-  color: var(--faint);
+  color: var(--color-fg-low);
   padding: 16px 0 8px;
   border-top: 1px solid var(--rule);
   margin-top: 8px;
 }
 .section:first-child { border-top: none; margin-top: 0; }
 
-/* ── CARD BASE ──────────────────────────────── */
+/* ─────────────────────────────────────────────────────────────────
+   STANDARD CARD RECIPE — shared with callouts + compass-charts.
+   Every card across the design system carries:
+     ▸ 10px radius   (--rounded-2xl)
+     ▸ 1px border    (color varies: neutral edge here, accent-mix on
+                      semantic callouts)
+     ▸ shadow-md
+     ▸ Mantle text scale + eyebrow recipe inside
+   ───────────────────────────────────────────────────────────── */
 .card {
   width: 900px;
   border-radius: var(--r);
+  border: 1px solid var(--color-edge-medium);
   padding: var(--pad);
   position: relative;
 }
@@ -98,9 +173,9 @@ body {
 .ch { margin-bottom: 40px; }
 
 .ch-tag {
-  font-family: 'Geist Mono', monospace;
-  font-size: 13px;
-  letter-spacing: 0.5px;
+  font-family: var(--font-mono);
+  font-size: var(--text-xxs);
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--mustard);
   margin-bottom: 8px;
@@ -109,21 +184,25 @@ body {
 .ch-tag.on-vivid { color: rgba(0,0,0,0.38); }
 
 .ch-title {
-  font-family: 'Manrope', sans-serif;
-  font-size: 28px;
-  font-weight: 500;
+  font-family: var(--font-heading);
+  font-size: var(--text-3xl);
+  /* Mantle next-gen h1/h2/h3 override: font-normal (400) +
+     tracking-tight + leading-tighter. The h1-h6 base sits at 500
+     but specific h1/h2/h3 fall back to 400. */
+  font-weight: 400;
   color: var(--ink);
   letter-spacing: -0.025em;
-  line-height: 1.08;
+  line-height: var(--leading-tighter);
   margin-bottom: 6px;
 }
 .ch-title.on-dark  { color: #fff; }
 .ch-title.on-vivid { color: rgba(0,0,0,0.88); }
 
 .ch-sub {
-  font-size: 16px;
+  font-size: var(--text-base);
+  font-weight: 400;
   color: var(--muted);
-  line-height: 1.45;
+  line-height: var(--leading-normal);
 }
 .ch-sub.on-dark  { color: rgba(255,255,255,0.45); }
 .ch-sub.on-vivid { color: rgba(0,0,0,0.52); }
@@ -164,7 +243,7 @@ body {
 }
 .ic {
   flex: 1;
-  border-radius: 6px;
+  border-radius: var(--rounded-lg);
   padding: 28px 22px 22px;
   display: flex;
   flex-direction: column;
@@ -175,31 +254,31 @@ body {
 .ic.ic-sage     { background: var(--sage); }
 
 .ic-label {
-  font-family: 'Geist Mono', monospace;
-  font-size: 13px;
+  font-family: var(--font-mono);
+  font-size: var(--text-xxs);
   font-weight: 500;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   color: rgba(0,0,0,0.42);
   margin-bottom: 10px;
   flex-shrink: 0;
 }
 .ic-metric {
-  font-family: 'Geist Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 50px;
   font-weight: 500;
   letter-spacing: -0.03em;
-  line-height: 1.0;
+  line-height: var(--leading-none);
   color: rgba(0,0,0,0.88);
   margin-bottom: 10px;
   flex-shrink: 0;
 }
 .ic-desc {
-  font-family: 'Geist', sans-serif;
-  font-size: 16px;
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
   font-weight: 400;
   color: rgba(0,0,0,0.52);
-  line-height: 1.5;
+  line-height: var(--leading-normal);
   margin-bottom: 18px;
   flex-shrink: 0;
 }
@@ -220,12 +299,12 @@ body {
   background: #1E1C23;
   color: #fff;
   border: none;
-  border-radius: 6px;
+  border-radius: var(--rounded-lg);
   padding: 13px 16px;
-  font-family: 'Geist Mono', monospace;
-  font-size: 13px;
+  font-family: var(--font-mono);
+  font-size: var(--text-xxs);
   font-weight: 500;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   display: flex;
   align-items: center;
@@ -251,15 +330,15 @@ body {
   border-left: 1px solid rgba(0,0,0,0.12);
 }
 .kpi-tag {
-  font-family: 'Geist Mono', monospace;
-  font-size: 13px;
-  letter-spacing: 0.5px;
+  font-family: var(--font-mono);
+  font-size: var(--text-xxs);
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   color: rgba(0,0,0,0.38);
   margin-bottom: 10px;
 }
 .kpi-num {
-  font-family: 'Geist Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 52px;
   font-weight: 500;
   line-height: 1;
@@ -269,11 +348,11 @@ body {
 }
 .kpi-num.hl { color: var(--mustard-deep); }
 .kpi-desc {
-  font-family: 'Geist', sans-serif;
-  font-size: 16px;
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
   font-weight: 400;
   color: rgba(0,0,0,0.52);
-  line-height: 1.45;
+  line-height: var(--leading-normal);
   margin-bottom: 14px;
 }
 .kpi-bar { height:2px; background:rgba(0,0,0,0.12); border-radius:1px; overflow:hidden; }
@@ -285,8 +364,8 @@ body {
 .hbar-rows { display:flex; flex-direction:column; gap:10px; }
 .hbar-item { display:flex; align-items:center; gap:16px; }
 .hbar-lbl {
-  font-family: 'Geist', sans-serif;
-  font-size: 16px;
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
   font-weight: 400;
   color: rgba(0,0,0,0.65);
   width: 172px;
@@ -302,10 +381,10 @@ body {
 .hbar-fill.s { background: rgba(0,0,0,0.3); }
 .hbar-fill.t { background: rgba(0,0,0,0.1); }
 .hbar-val {
-  font-family: 'Geist Mono', monospace;
-  font-size: 13px;
+  font-family: var(--font-mono);
+  font-size: var(--text-xxs);
   font-weight: 500;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.05em;
   color: rgba(0,0,0,0.55);
   flex-shrink: 0;
 }
@@ -330,7 +409,7 @@ body {
   position: absolute;
   top: -19px; left: 50%;
   transform: translateX(-50%);
-  font-family: 'Geist Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 10px;
   font-weight: 500;
   color: rgba(0,0,0,0.55);
@@ -340,10 +419,10 @@ body {
 .col-x-item {
   flex: 1;
   text-align: center;
-  font-family: 'Geist Mono', monospace;
-  font-size: 13px;
+  font-family: var(--font-mono);
+  font-size: var(--text-xxs);
   color: rgba(0,0,0,0.38);
-  letter-spacing: 0.5px;
+  letter-spacing: 0.05em;
 }
 
 /* ═══════════════════════════════════════════
@@ -354,12 +433,12 @@ body {
 .ba-panel.before { background: var(--rule); }
 .ba-panel.after  { background: rgba(255,198,110,0.22); }
 .ba-lbl {
-  font-family: 'Geist Mono', monospace;
-  font-size: 13px; letter-spacing:0.5px; text-transform:uppercase;
+  font-family: var(--font-mono);
+  font-size: var(--text-xxs); letter-spacing:0.5px; text-transform:uppercase;
   color: var(--mustard); margin-bottom:12px;
 }
 .ba-num {
-  font-family: 'Geist Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 60px; font-weight:500; letter-spacing:-0.04em;
   line-height:1; color:var(--ink); margin-bottom:6px;
 }
@@ -367,12 +446,12 @@ body {
 .ba-sub { font-size:16px; font-weight:400; color:var(--muted); margin-bottom:18px; }
 .ba-stats { display:flex; flex-direction:column; gap:10px; }
 .ba-stat-num {
-  font-family: 'Geist Mono', monospace;
+  font-family: var(--font-mono);
   font-size:24px; font-weight:500; letter-spacing:-0.03em; color:var(--ink);
 }
 .ba-stat-num.hl { color: var(--mustard-deep); }
 .ba-stat-tag {
-  font-family: 'Geist Mono', monospace;
+  font-family: var(--font-mono);
   font-size:13px; color:var(--faint); letter-spacing:0.5px;
 }
 .ba-mid {
@@ -435,7 +514,7 @@ body {
 .tl-dot.active { background:var(--mustard); border-color:var(--mustard); color:rgba(0,0,0,0.75); font-weight:500; }
 .tl-content { text-align:center; padding:0 8px; }
 .tl-title { font-family:'Geist',sans-serif; font-size:14px; font-weight:500; color:var(--ink); letter-spacing:-0.01em; margin-bottom:4px; }
-.tl-desc  { font-size:16px; font-weight:400; color:var(--muted); line-height:1.45; }
+.tl-desc  { font-size:var(--text-base); font-weight:400; color:var(--muted); line-height:var(--leading-normal); }
 
 /* ═══════════════════════════════════════════
    FRAMEWORK (3-up)
@@ -447,7 +526,7 @@ body {
   letter-spacing:-0.03em; color:var(--mustard); line-height:1; margin-bottom:12px;
 }
 .fw-title { font-family:'Geist',sans-serif; font-size:16px; font-weight:500; color:var(--ink); letter-spacing:-0.01em; margin-bottom:6px; }
-.fw-desc  { font-size:16px; font-weight:400; line-height:1.5; color:var(--muted); }
+.fw-desc  { font-size:var(--text-base); font-weight:400; line-height:var(--leading-normal); color:var(--muted); }
 .fw-cell.on-dark { background:rgba(255,255,255,0.07); }
 .fw-cell.on-dark .fw-title { color:#fff; }
 .fw-cell.on-dark .fw-desc  { color:rgba(255,255,255,0.45); }
@@ -475,9 +554,9 @@ body {
 .ic-label, .ic-cta,
 .sbar-lg-item,
 .legend-item {
-  font-family: 'Geist Mono', monospace;
+  font-family: var(--font-mono);
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.05em;
   font-weight: 500;
 }
 
@@ -524,21 +603,24 @@ body {
 
 /* Card header for ported charts */
 .card-title {
-  font-family: 'Manrope', sans-serif;
-  font-size: 28px;
-  font-weight: 500;
-  letter-spacing: -0.015em;
+  font-family: var(--font-heading);
+  font-size: var(--text-3xl);
+  /* Mantle next-gen h1/h2/h3 → font-normal (400) + tracking-tight
+     + leading-tighter. Brings the secondary card-title in line with
+     the primary ch-title above. */
+  font-weight: 400;
+  letter-spacing: -0.025em;
   color: var(--text-heading);
-  line-height: 1.08;
+  line-height: var(--leading-tighter);
   margin-bottom: 14px;
 }
 .card-source {
-  font-family: 'Geist', sans-serif;
-  font-size: 16px;
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
   font-weight: 400;
   color: var(--text-muted);
   margin-bottom: 28px;
-  line-height: 1.5;
+  line-height: var(--leading-normal);
 }
 
 /* Inner chart area */
@@ -561,7 +643,7 @@ body {
 .ann {
   background: var(--bg-annot);
   border: 1px solid var(--border-accent);
-  border-radius: 6px; padding: 10px 14px; min-width: 156px;
+  border-radius: var(--rounded-lg); padding: 10px 14px; min-width: 156px;
 }
 .ann-num { font-family:var(--font-heading); font-size:24px; font-weight:500; letter-spacing:-0.01em; color:var(--text-heading); line-height:1; }
 .ann-label { font-family:var(--font-body); font-size:11px; color:var(--text-muted); margin-top:3px; }
@@ -664,12 +746,12 @@ body {
   background: var(--bg-airops);
   padding: 60px 68px 52px;
   position: relative;
-  border-radius: 6px;
+  border-radius: var(--rounded-lg);
 }
 .chart-title {
-  font-family: 'Manrope', sans-serif;
+  font-family: var(--font-heading);
   font-size: 44px; font-weight: 500;
-  color: var(--ink); line-height: 1.0;
+  color: var(--ink); line-height: var(--leading-none);
   margin-bottom: 44px; letter-spacing: -0.025em;
 }
 .formula { display:flex; flex-direction:column; }
@@ -728,16 +810,19 @@ body {
    OPERATING LAYER — PLG FRAMEWORK CARD
 ═══════════════════════════════════════════ */
 .op-title {
-  font-family: 'Manrope', sans-serif;
-  font-size: 42px; font-weight: 500;
-  line-height: 1.05; letter-spacing: -0.03em;
+  font-family: var(--font-heading);
+  /* Large display heading — Mantle next-gen h1 spec: font-normal
+     (400) + tracking-tight + leading-tightest. Size 42px is a
+     custom display step between --text-6xl (38px) and --text-7xl (48px). */
+  font-size: 42px; font-weight: 400;
+  line-height: var(--leading-tightest); letter-spacing: -0.025em;
   color: rgba(0,0,0,0.88); margin-bottom: 10px;
 }
 .op-title span { color: #1E1C23; }
 
 .op-subtitle {
-  font-family: 'Geist Mono', monospace;
-  font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+  font-family: var(--font-mono);
+  font-size: 11px; letter-spacing: 0.05em; text-transform: uppercase;
   color: rgba(0,0,0,0.4); margin-bottom: 32px;
 }
 
@@ -747,35 +832,35 @@ body {
   padding: 22px 18px 20px; display: flex; flex-direction: column;
 }
 .op-stage-num {
-  font-family: 'Geist Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
   color: rgba(255,255,255,0.18); margin-bottom: 16px;
 }
 .op-stage-icon { margin-bottom: 12px; }
 .op-stage-name {
-  font-family: 'Geist Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 10px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
   color: rgba(255,255,255,0.35); margin-bottom: 8px;
 }
 .op-stage-metric {
-  font-family: 'Manrope', sans-serif;
+  font-family: var(--font-heading);
   font-size: 40px; font-weight: 500; line-height: 1;
   color: #ffffff; letter-spacing: -0.02em;
 }
 .op-stage-metric .unit { font-size: 20px; opacity: 0.5; font-weight: 400; letter-spacing: 0; }
 .op-stage-lbl {
-  font-family: 'Geist Mono', monospace;
-  font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase;
+  font-family: var(--font-mono);
+  font-size: 9px; letter-spacing: 0.05em; text-transform: uppercase;
   color: rgba(255,255,255,0.28); margin-top: 6px; margin-bottom: 12px;
 }
 .op-stage-desc {
-  font-family: 'Geist', sans-serif;
-  font-size: 13px; color: rgba(255,255,255,0.4); line-height: 1.45; margin-top: auto;
+  font-family: var(--font-sans);
+  font-size: var(--text-xxs); color: rgba(255,255,255,0.4); line-height: var(--leading-normal); margin-top: auto;
 }
 .op-insight {
   background: rgba(0,0,0,0.12); border-radius: 8px; padding: 18px 22px;
-  font-family: 'Geist', sans-serif;
-  font-size: 15px; color: rgba(0,0,0,0.6); line-height: 1.6;
+  font-family: var(--font-sans);
+  font-size: var(--text-sm); color: rgba(0,0,0,0.6); line-height: 1.6;
 }
 .op-insight strong { color: #1E1C23; font-weight: 600; }
 
@@ -787,19 +872,19 @@ body {
   margin-bottom: 36px;
 }
 .stk-title {
-  font-family: 'Manrope', sans-serif;
-  font-size: 32px; font-weight: 500; line-height: 1.1; letter-spacing: -0.02em;
+  font-family: var(--font-heading);
+  font-size: var(--text-4xl); font-weight: 400; line-height: var(--leading-tighter); letter-spacing: -0.025em;
   color: rgba(255,255,255,0.92); margin-bottom: 8px;
 }
 .stk-desc {
-  font-family: 'Geist Mono', monospace;
-  font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+  font-family: var(--font-mono);
+  font-size: 11px; letter-spacing: 0.05em; text-transform: uppercase;
   color: rgba(255,255,255,0.3);
 }
 .stk-legend { display: flex; gap: 18px; padding-top: 6px; }
 .stk-legend-item {
   display: flex; align-items: center; gap: 8px;
-  font-family: 'Geist Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase;
   color: rgba(255,255,255,0.35);
 }
@@ -809,14 +894,16 @@ body {
 .stk-row { display: flex; align-items: stretch; gap: 18px; }
 .stk-era { width: 72px; flex-shrink: 0; display: flex; flex-direction: column; justify-content: center; }
 .stk-era-lbl {
-  font-family: 'Manrope', sans-serif;
-  font-size: 19px; font-weight: 500; line-height: 1.1;
+  font-family: var(--font-heading);
+  /* Small heading — h4-h6 territory in Mantle: font-medium (500) +
+     leading-tightest (1.1). 19px = --text-xl. */
+  font-size: var(--text-xl); font-weight: 500; line-height: var(--leading-tightest);
   color: rgba(255,255,255,0.55);
 }
 .stk-era-lbl.now { color: #FFC66E; }
 .stk-era-sub {
-  font-family: 'Geist Mono', monospace;
-  font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase;
+  font-family: var(--font-mono);
+  font-size: 9px; letter-spacing: 0.05em; text-transform: uppercase;
   color: rgba(255,255,255,0.22); margin-top: 4px;
 }
 
@@ -830,7 +917,7 @@ body {
 .stk-seg-operate { background: #FFC66E; }
 .stk-seg-operate.dim { background: rgba(255,198,110,0.38); }
 .stk-pct {
-  font-family: 'Manrope', sans-serif;
+  font-family: var(--font-heading);
   font-size: 30px; font-weight: 500; line-height: 1;
   letter-spacing: -0.02em; white-space: nowrap; flex-shrink: 0;
 }
@@ -838,8 +925,8 @@ body {
 .stk-seg-operate .stk-pct { color: #1E1C23; }
 .stk-seg-operate.dim .stk-pct { color: rgba(255,255,255,0.55); }
 .stk-seg-lbl {
-  font-family: 'Geist Mono', monospace;
-  font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; white-space: nowrap;
+  font-family: var(--font-mono);
+  font-size: 9px; letter-spacing: 0.05em; text-transform: uppercase; white-space: nowrap;
 }
 .stk-seg-build .stk-seg-lbl { color: rgba(255,255,255,0.2); }
 .stk-seg-operate .stk-seg-lbl { color: rgba(30,28,35,0.55); }
@@ -848,8 +935,8 @@ body {
 .stk-callout {
   background: rgba(255,255,255,0.06); border-radius: 8px;
   padding: 18px 22px;
-  font-family: 'Geist', sans-serif;
-  font-size: 15px; color: rgba(255,255,255,0.45); line-height: 1.6;
+  font-family: var(--font-sans);
+  font-size: var(--text-sm); color: rgba(255,255,255,0.45); line-height: 1.6;
 }
 .stk-callout strong { color: rgba(255,198,110,0.9); font-weight: 500; }
 
@@ -857,9 +944,12 @@ body {
    REFRAME FORMULA CHART
 ═══════════════════════════════════════════ */
 .rf-title {
-  font-family: 'Manrope', sans-serif;
-  font-size: 40px; font-weight: 500;
-  line-height: 1.06; letter-spacing: -0.025em;
+  font-family: var(--font-heading);
+  /* Display heading (40px ≈ between --text-6xl 38 and --text-7xl 48).
+     Mantle next-gen h1: font-normal (400) + tracking-tight +
+     leading-tightest. */
+  font-size: 40px; font-weight: 400;
+  line-height: var(--leading-tightest); letter-spacing: -0.025em;
   color: rgba(255,255,255,0.92);
   margin-bottom: 32px;
 }
@@ -869,7 +959,7 @@ body {
   gap: 0; margin-bottom: 14px;
 }
 .rf-col-lbl {
-  font-family: 'Geist Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
   flex: 1;
 }
@@ -882,8 +972,8 @@ body {
 
 .rf-box {
   flex: 1; border-radius: 8px; padding: 20px 24px;
-  font-family: 'Geist', sans-serif;
-  font-size: 17px; font-weight: 400; line-height: 1.5;
+  font-family: var(--font-sans);
+  font-size: var(--text-md); font-weight: 400; line-height: var(--leading-normal);
 }
 .rf-box.old {
   background: rgba(255,255,255,0.05);
@@ -900,15 +990,15 @@ body {
 .rf-arrow {
   width: 56px; flex-shrink: 0;
   display: flex; align-items: center; justify-content: center;
-  font-family: 'Geist Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 20px; color: rgba(255,198,110,0.55);
 }
 
 .rf-insight {
   border-top: 1px solid rgba(255,255,255,0.09);
   padding-top: 24px;
-  font-family: 'Geist', sans-serif;
-  font-size: 16px; color: rgba(255,255,255,0.4);
+  font-family: var(--font-sans);
+  font-size: var(--text-base); color: rgba(255,255,255,0.4);
   line-height: 1.7; font-style: italic;
 }
 .rf-insight strong {

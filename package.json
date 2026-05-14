@@ -18,13 +18,14 @@
     "inspector"
   ],
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
     "lint": "eslint ."
   },
   "dependencies": {
     "@mendable/firecrawl-js": "4.18.1",
+    "@vercel/analytics": "2.0.1",
     "clsx": "^2.1.1",
     "gray-matter": "4.0.3",
     "lucide-react": "^0.468.0",

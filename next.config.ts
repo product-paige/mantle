@@ -5,21 +5,34 @@ import type { NextConfig } from "next";
 const CLEAN_URL_PAGES: Array<{ clean: string; file: string }> = [
   { clean: "/ops",                file: "/mantle-ops.html" },
   { clean: "/compare",            file: "/mantle-compare.html" },
-  { clean: "/compass",            file: "/mantle-compass.html" },
-  { clean: "/compass/v2",         file: "/mantle-compass-v2.html" },
+  // `/compass` home migrated to a React route in `app/compass/page.tsx`.
+  // `/compass/v2` deprecated — file kept on disk for reference,
+  // rewrite removed.
   // Answers preserved: route + static page still live for now,
   // but removed from the primary section nav (replaced by
   // Templates). Re-add the nav link when Answers content is
   // ready to surface again.
-  { clean: "/compass/answers",    file: "/mantle-compass-answers.html" },
-  { clean: "/compass/framework",  file: "/mantle-compass-framework.html" },
-  { clean: "/compass/insights",   file: "/mantle-compass-insights.html" },
-  { clean: "/compass/manuals",    file: "/mantle-compass-manuals.html" },
-  { clean: "/compass/frameworks", file: "/mantle-compass-frameworks.html" },
-  // Templates: parallel resource section to Compass. Listing is
-  // static; `/templates/[slug]` detail pages are React (see
-  // `app/templates/[slug]/page.tsx`).
-  { clean: "/templates",          file: "/mantle-compass-templates.html" },
+  // `/compass/answers` migrated to a React route in
+  // `app/compass/answers/page.tsx`.
+  // `/compass/framework` (singular) and its `mantle-compass-framework.html`
+  // file were retired when Frameworks became Methods. The file was
+  // deleted; this comment is here so the absence is intentional.
+  // `/compass/insights` migrated to a React route in
+  // `app/compass/insights/page.tsx`.
+  // `/compass/manuals` migrated to a React route in
+  // `app/compass/manuals/page.tsx`. The static HTML file was the
+  // legacy implementation; the rewrite is removed so the React
+  // page resolves directly. `public/mantle-compass-manuals.html`
+  // is kept as a reference for the SVG cover artwork but no
+  // longer served — safe to delete in a follow-up cleanup.
+  // `/compass/methods` migrated to a React route in
+  // `app/compass/methods/page.tsx`. Static HTML at
+  // `public/mantle-compass-frameworks.html` no longer served.
+  // `/templates` migrated to a React route in `app/templates/page.tsx`.
+  // Detail pages have always been React (`app/templates/[slug]/page.tsx`);
+  // the index is now also React, so no rewrite needed.
+  // `public/mantle-compass-templates.html` kept as a reference for the
+  // legacy SVG / copy but no longer served — safe to delete in cleanup.
   { clean: "/systems",            file: "/mantle-core-systems.html" },
   { clean: "/results",            file: "/mantle-results.html" },
   { clean: "/features",           file: "/mantle-use-case-directory.html" },
@@ -64,13 +77,27 @@ const nextConfig: NextConfig = {
       { source: "/use-cases",            destination: "/features",            permanent: true },
       { source: "/use-cases/:path*",     destination: "/features/:path*",     permanent: true },
 
+      // Frameworks renamed to Methods. Old /compass/frameworks/* URLs
+      // 301 to the new /compass/methods/* surface so external links
+      // and search indexes carry over cleanly.
+      { source: "/compass/frameworks",                    destination: "/compass/methods",         permanent: true },
+      { source: "/compass/frameworks/:slug*",             destination: "/compass/methods/:slug*",  permanent: true },
+      // Catch the old singular `/compass/framework` too — was a
+      // separate static page (now deleted); fold it into Methods.
+      { source: "/compass/framework",                     destination: "/compass/methods",         permanent: true },
+
       // Manuals moved under /compass/* with a new 7-manual structure.
       // The four old manuals map to the first four new manuals by
       // position (the old chapter slugs don't 1:1 with the new chapter
       // slugs, so chapter URLs redirect to the manual root rather
       // than a specific chapter that may not exist).
-      { source: "/manuals/think-like-a-founder",          destination: "/compass/reality", permanent: true },
-      { source: "/manuals/think-like-a-founder/:path*",   destination: "/compass/reality", permanent: true },
+      { source: "/manuals/think-like-a-founder",          destination: "/compass/foundation", permanent: true },
+      { source: "/manuals/think-like-a-founder/:path*",   destination: "/compass/foundation", permanent: true },
+
+      // Reality renamed to Foundation. 308 the old route + every
+      // chapter URL so external links keep working without a 404.
+      { source: "/compass/reality",                       destination: "/compass/foundation",         permanent: true },
+      { source: "/compass/reality/:slug*",                destination: "/compass/foundation/:slug*",  permanent: true },
       { source: "/manuals/get-to-real-demand",            destination: "/compass/shape",   permanent: true },
       { source: "/manuals/get-to-real-demand/:path*",     destination: "/compass/shape",   permanent: true },
       { source: "/manuals/build-your-first-mvp",          destination: "/compass/build",   permanent: true },

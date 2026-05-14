@@ -1,9 +1,10 @@
 import type { MetadataRoute } from "next";
+import { SITE_ORIGIN } from "@/compass/lib/seo";
 
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [{ userAgent: "*", allow: "/" }],
-    sitemap: "https://mantle-chi.vercel.app/sitemap.xml",
-    host: "https://mantle-chi.vercel.app",
+    sitemap: `${SITE_ORIGIN}/sitemap.xml`,
+    host: SITE_ORIGIN,
   };
 }
