@@ -95,9 +95,17 @@ export function CompassSectionNav({
                  @theme block propagates here. */
               "font-heading text-[28px] font-medium tracking-tight leading-none",
               "transition-colors duration-150",
+              /* Inactive tabs: white text, hover to gold — matches the
+                 next-gen `.site-nav > a { color: #fff }` +
+                 `.site-nav > a:hover { color: var(--gold) }` recipe
+                 used on every Mantle marketing page. Previously the
+                 hover was `text-accent-fg-medium` (#8A3E00, a deep
+                 orange) which was inconsistent with the rest of the
+                 Mantle nav system. `text-accent` resolves to the
+                 canonical gold (#FFBB53). */
               active
                 ? "text-fg-high"
-                : "text-fg-high hover:text-accent-fg-medium",
+                : "text-fg-high hover:text-accent",
             ].join(" ")}
           >
             <span>{item.label}</span>

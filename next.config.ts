@@ -39,8 +39,17 @@ const CLEAN_URL_PAGES: Array<{ clean: string; file: string }> = [
 ];
 
 const nextConfig: NextConfig = {
-  typescript: { ignoreBuildErrors: true },
-  eslint: { ignoreDuringBuilds: true },
+  /* TypeScript + ESLint errors fail the build. Previously both were
+     set to ignore (`ignoreBuildErrors: true`, `ignoreDuringBuilds:
+     true`), which silently masked real bugs — notably two stale
+     `import ... from "../../lib/frameworks/content"` paths that
+     should have been renamed to `lib/methods/content` when the
+     Frameworks → Methods rename happened, but went unnoticed because
+     the build never type-checked them. With strict checking on,
+     future renames + breaking changes surface at build time instead
+     of in production. */
+  typescript: { ignoreBuildErrors: false },
+  eslint: { ignoreDuringBuilds: false },
   async rewrites() {
     return {
       beforeFiles: [
