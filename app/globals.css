@@ -120,18 +120,20 @@
   --breakpoint-xl: 1280px;
   --breakpoint-2xl: 1536px;
 
-  /* Typography stacks — identical to Mantle. The faces are loaded
-     via the external Google Fonts <link> in each route segment's
-     layout (app/compass/layout.tsx, app/templates/layout.tsx,
-     etc.), so the literal `'Geist'` / `'Manrope'` names resolve
-     directly. `next/font/google` in `app/layout.tsx` additionally
-     exposes `--font-geist-sans` / `--font-geist-mono` /
-     `--font-manrope` on <body>, available to React components
-     that opt in via those variable names. */
-  --font-sans:    'Geist', ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --font-mono:    'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  --font-heading: 'Manrope', 'Inter var', ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --font-display: 'Geist Pixel Line', 'Manrope', ui-sans-serif, sans-serif;
+  /* Typography stacks — identical to Mantle. Every face is loaded
+     once at the root via `next/font/google` in `app/layout.tsx`,
+     which exposes `--font-geist-sans` / `--font-geist-mono` /
+     `--font-manrope` as CSS variables on <body>. The stacks below
+     lead with `var(--font-*, 'literal')` so React routes resolve
+     the self-hosted face (zero DNS, zero CLS); the literal name
+     inside the var() fallback covers the static HTML pages that
+     consume mirror tokens in /public/*.css. No external
+     <link rel="stylesheet" href="fonts.googleapis.com/..."> is
+     required on any React route. */
+  --font-sans:    var(--font-geist-sans, 'Geist'), ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-mono:    var(--font-geist-mono, 'Geist Mono'), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --font-heading: var(--font-manrope, 'Manrope'), 'Inter var', ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-display: 'Geist Pixel Line', var(--font-manrope, 'Manrope'), ui-sans-serif, sans-serif;
 
   /* Text scale — px values that match Mantle's RENDERED sizes.
      (Mantle uses rem at a 62.5% root so 1.3rem = 13px; we use a
